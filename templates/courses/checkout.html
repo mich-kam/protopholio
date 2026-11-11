@@ -20,7 +20,12 @@
   {% if simulated and not course.is_free %}
     <div class="mt-6 flex items-start gap-3 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800 dark:border-amber-500/30 dark:bg-amber-500/10 dark:text-amber-300">
       {% icon "shield" "mt-0.5 h-4 w-4 shrink-0" %}
-      <p><strong>{% trans "Paiement en démonstration :" %}</strong> {% trans "aucun montant n'est débité — la validation donne accès au cours pour tester le parcours." %}</p>
+      <p><strong>{% trans "Paiement en démonstration :" %}</strong> {% trans "aucun montant n'est débité — ajoutez vos clés Flutterwave pour activer Mobile Money et carte." %}</p>
+    </div>
+  {% elif not course.is_free %}
+    <div class="mt-6 flex items-start gap-3 rounded-xl border border-teal-200 bg-teal-50 px-4 py-3 text-sm text-teal-900 dark:border-teal-500/30 dark:bg-teal-500/10 dark:text-teal-200">
+      {% icon "shield" "mt-0.5 h-4 w-4 shrink-0" %}
+      <p>{% trans "Paiement sécurisé via Flutterwave (carte bancaire et Mobile Money selon votre réseau)." %}</p>
     </div>
   {% endif %}
 

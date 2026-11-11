@@ -394,5 +394,5 @@ class PaymentSwitchTests(TestCase):
         self.client.force_login(User.objects.create_user("alice", "a@x.com", "pw"))
         url = reverse("courses:checkout", args=[course.slug])
         self.assertContains(self.client.get(url), "Paiement en démonstration")
-        with mock.patch("courses.payments.SIMULATED", False):
+        with mock.patch("courses.payments.is_simulated", return_value=False):
             self.assertNotContains(self.client.get(url), "Paiement en démonstration")

@@ -169,34 +169,45 @@ PROJECTS_EN = {
     "Application de gestion scolaire": {
         "title": "School management application",
         "description": (
-            "Design of an application for managing students, courses, "
-            "teachers and academic results. Project completed at Hope Africa University."
+            "Web app to manage students, courses, teachers and grades. "
+            "Academic project at Hope Africa University: data modeling plus "
+            "interfaces for entering and reviewing results."
         ),
-        "technologies": "Application development, Databases, Programming",
+        "technologies": "PHP, MySQL, HTML5, CSS3, JavaScript",
     },
     "Application de gestion de restaurant": {
         "title": "Restaurant management application",
         "description": (
-            "Web application for managing a restaurant's customers and orders. "
-            "Personal project."
+            "Web app for restaurant customers and orders "
+            "(ordering, tracking, simple UI). Public source code on GitHub."
         ),
         "technologies": "HTML5, CSS3, JavaScript, PHP, MySQL",
     },
     "Réseau local d'entreprise": {
         "title": "Business local network",
         "description": (
-            "Installation and configuration of a LAN with resource sharing, "
-            "and equipment maintenance. Completed at Avolik Bujumbura."
+            "LAN installation with structured cabling, routers/switches, "
+            "IP addressing, resource sharing and maintenance. Internship at AVOLIK "
+            "(IP CCTV & networking)."
         ),
-        "technologies": "LAN, Cabling, Routers, Switches",
+        "technologies": "LAN, Cabling, Routers, Switches, Hikvision",
     },
     "Portfolio & plateforme de cours en ligne": {
         "title": "Portfolio & online course platform",
         "description": (
-            "The site you are visiting: a dynamic portfolio paired with a course sales "
-            "platform (authentication, orders, personal dashboard, administration)."
+            "The site you are visiting: bilingual FR/EN portfolio, blog, online CV and "
+            "course store (auth, orders, Flutterwave payments, learner dashboard, admin). "
+            "Deployed on Render with PostgreSQL."
         ),
-        "technologies": "Python, Django, Tailwind CSS, PostgreSQL",
+        "technologies": "Python, Django, Tailwind CSS, PostgreSQL, Gunicorn",
+    },
+    "Mes Liens — page de liens personnelle": {
+        "title": "Mes Liens — personal links page",
+        "description": (
+            "Lightweight site to gather and share useful links (profile, projects, contact). "
+            "Source on GitHub."
+        ),
+        "technologies": "HTML, CSS, Python, Django",
     },
 }
 

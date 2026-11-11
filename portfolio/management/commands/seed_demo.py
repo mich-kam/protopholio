@@ -34,12 +34,28 @@ from portfolio.models import FAQ, GalleryPhoto, Profile, Project, ProjectImage, 
 
 DEMO_IMG = Path(settings.BASE_DIR) / "static" / "img" / "demo"
 
-# Image principale d'exemple par titre de projet (fichiers dans static/img/demo/).
+# Image principale par titre de projet (fichiers dans static/img/demo/).
 PROJECT_DEMO_IMAGES = {
     "Application de gestion scolaire": "project-school.jpg",
     "Application de gestion de restaurant": "project-restaurant.jpg",
     "Réseau local d'entreprise": "project-network.jpg",
     "Portfolio & plateforme de cours en ligne": "project-portfolio.jpg",
+    "Mes Liens — page de liens personnelle": "project-links.jpg",
+}
+
+# Couvertures cours / blog (même dossier demo).
+COURSE_DEMO_IMAGES = {
+    "Python pour débutants": "course-python.jpg",
+    "HTML, CSS et JavaScript : créer son premier site": "course-web.jpg",
+    "Bases de données avec MySQL et SQL": "course-sql.jpg",
+    "Cybersécurité : les bases pour se protéger": "course-security.jpg",
+}
+
+BLOG_DEMO_IMAGES = {
+    "5 réflexes pour des mots de passe vraiment solides": "blog-passwords.jpg",
+    "Phishing : comment reconnaître un message piégé": "blog-phishing.jpg",
+    "Sécuriser son réseau Wi-Fi à la maison ou au bureau": "blog-wifi.jpg",
+    "Django : 7 réglages de sécurité à vérifier avant le déploiement": "blog-django.jpg",
 }
 
 # Galerie photos d'exemple : (titre, fichier, type, légende_fr, légende_en, titre_en)
@@ -80,12 +96,16 @@ GALLERY_DEMO = [
 
 
 def _attach_demo_image(field, filename, save_name=None):
-    """Copie une image d'exemple depuis static/img/demo/ vers un ImageField (si encore vide)."""
-    if field.name:
-        return False
+    """Copie une image depuis static/img/demo/ vers un ImageField (vide ou fichier média perdu)."""
     path = DEMO_IMG / filename
     if not path.exists():
         return False
+    if field.name:
+        try:
+            if field.storage.exists(field.name):
+                return False
+        except Exception:
+            pass
     with path.open("rb") as fh:
         field.save(save_name or filename, File(fh), save=True)
     return True
@@ -295,38 +315,60 @@ PROJECTS = [
     {
         "title": "Application de gestion scolaire",
         "description": (
-            "Conception d'une application destinée à la gestion des élèves, des cours, des "
-            "enseignants et des résultats scolaires. Projet réalisé à Hope Africa University."
+            "Application web pour gérer élèves, cours, enseignants et résultats scolaires. "
+            "Projet académique réalisé à Hope Africa University : modélisation des données, "
+            "interfaces de saisie et consultation des notes."
         ),
-        "technologies": "Développement d'application, Base de données, Programmation",
+        "technologies": "PHP, MySQL, HTML5, CSS3, JavaScript",
         "featured": True,
+        "github_url": "",
+        "demo_url": "",
     },
     {
         "title": "Application de gestion de restaurant",
         "description": (
-            "Application web de gestion des clients et des commandes d'un restaurant. "
-            "Projet personnel."
+            "Application web de gestion des clients et des commandes d'un restaurant "
+            "(prise de commande, suivi, interface simple). Code source public sur GitHub."
         ),
         "technologies": "HTML5, CSS3, JavaScript, PHP, MySQL",
         "featured": True,
+        "github_url": "https://github.com/mich-kam/restaurant-mich",
+        "demo_url": "",
     },
     {
         "title": "Réseau local d'entreprise",
         "description": (
-            "Installation et configuration d'un réseau LAN avec partage de ressources, "
-            "et maintenance des équipements. Réalisé chez Avolik Bujumbura."
+            "Installation et configuration d'un réseau LAN avec câblage structuré, "
+            "routeurs/switches, adressage IP, partage de ressources et maintenance. "
+            "Réalisé en stage chez AVOLIK (vidéosurveillance IP & réseau)."
         ),
-        "technologies": "LAN, Câblage, Routeurs, Switches",
+        "technologies": "LAN, Câblage, Routeurs, Switches, Hikvision",
         "featured": False,
+        "github_url": "",
+        "demo_url": "",
     },
     {
         "title": "Portfolio & plateforme de cours en ligne",
         "description": (
-            "Le site que vous visitez : un portfolio dynamique couplé à une plateforme de vente "
-            "de cours (authentification, commandes, espace personnel, administration)."
+            "Le site que vous visitez : portfolio bilingue FR/EN, blog, CV en ligne et "
+            "boutique de cours (auth, commandes, paiement Flutterwave, espace apprenant, admin). "
+            "Déployé sur Render avec PostgreSQL."
         ),
-        "technologies": "Python, Django, Tailwind CSS, PostgreSQL",
+        "technologies": "Python, Django, Tailwind CSS, PostgreSQL, Gunicorn",
         "featured": False,
+        "github_url": "https://github.com/mich-kam/protopholio",
+        "demo_url": "https://ir-kamango-mich.onrender.com/",
+    },
+    {
+        "title": "Mes Liens — page de liens personnelle",
+        "description": (
+            "Mini-site pour regrouper et partager des liens utiles (profil, projets, contact). "
+            "Projet léger, déployable rapidement. Code sur GitHub."
+        ),
+        "technologies": "HTML, CSS, Python, Django",
+        "featured": False,
+        "github_url": "https://github.com/mich-kam/mesliens_project",
+        "demo_url": "https://mesliens-project.onrender.com",
     },
 ]
 
@@ -494,6 +536,18 @@ class Command(BaseCommand):
                 title=data["title"], defaults={**data, "order": order}
             )
             created += was_created
+            # Rafraîchit les textes / liens publics (sans écraser une image déjà uploadée).
+            changed = []
+            for field in ("description", "technologies", "github_url", "demo_url", "featured"):
+                value = data.get(field, getattr(obj, field))
+                if getattr(obj, field) != value:
+                    setattr(obj, field, value)
+                    changed.append(field)
+            if obj.order != order:
+                obj.order = order
+                changed.append("order")
+            if changed:
+                obj.save(update_fields=changed)
             en = PROJECTS_EN.get(data["title"])
             if en and fill_en(obj, en):
                 obj.save(update_fields=["title_en", "description_en", "technologies_en"])
@@ -501,7 +555,7 @@ class Command(BaseCommand):
             demo_file = PROJECT_DEMO_IMAGES.get(data["title"])
             if demo_file and _attach_demo_image(obj.screenshot, demo_file):
                 photos += 1
-            # Une capture secondaire d'exemple pour le projet mis en avant
+            # Une capture secondaire pour le projet mis en avant
             if data.get("featured") and demo_file and obj.images.count() == 0:
                 extra = DEMO_IMG / demo_file
                 if extra.exists():
@@ -511,7 +565,7 @@ class Command(BaseCommand):
                     img.caption_en = "Interface preview"
                     img.save(update_fields=["caption_en"])
                     photos += 1
-        self.stdout.write(f"Projets : {created} créé(s), {photos} image(s) d'exemple ajoutée(s).")
+        self.stdout.write(f"Projets : {created} créé(s), {photos} image(s) ajoutée(s).")
 
         created = 0
         for order, (title, filename, kind, caption, title_en, caption_en) in enumerate(GALLERY_DEMO):
@@ -533,6 +587,7 @@ class Command(BaseCommand):
         self.stdout.write(f"Galerie photos : {created} photo(s) d'exemple créée(s).")
 
         created = 0
+        course_photos = 0
         for data in COURSES:
             # Pas d'URL factice : le contenu se configure dans l'admin (fichier ou lien réel).
             payload = {**data, "course_url": ""}
@@ -542,13 +597,17 @@ class Command(BaseCommand):
             if obj.course_url and "example.com" in obj.course_url:
                 obj.course_url = ""
                 obj.save(update_fields=["course_url"])
+            cover = COURSE_DEMO_IMAGES.get(data["title"])
+            if cover and _attach_demo_image(obj.image, cover):
+                course_photos += 1
             en = COURSES_EN.get(data["title"])
             if en and fill_en(obj, en):
                 obj.save(update_fields=[f"{k}_en" for k in en])
                 translated += 1
-        self.stdout.write(f"Cours d'exemple : {created} créé(s).")
+        self.stdout.write(f"Cours : {created} créé(s), {course_photos} image(s) ajoutée(s).")
 
         created = 0
+        blog_photos = 0
         for title, excerpt, tags, days_ago, featured, content in DEMO_POSTS:
             obj, was_created = Post.objects.get_or_create(
                 title=title,
@@ -561,11 +620,14 @@ class Command(BaseCommand):
                 },
             )
             created += was_created
+            cover = BLOG_DEMO_IMAGES.get(title)
+            if cover and _attach_demo_image(obj.cover, cover):
+                blog_photos += 1
             en = POSTS_EN.get(title)
             if en and fill_en(obj, en):
                 obj.save(update_fields=[f"{k}_en" for k in en])
                 translated += 1
-        self.stdout.write(f"Articles d'exemple : {created} créé(s).")
+        self.stdout.write(f"Articles : {created} créé(s), {blog_photos} image(s) ajoutée(s).")
 
         if translated:
             self.stdout.write(self.style.SUCCESS(f"Traductions anglaises : {translated} enregistrement(s) complété(s)."))

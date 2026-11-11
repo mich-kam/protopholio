@@ -8,3 +8,4 @@ python-dotenv==1.2.4
 Markdown==3.11.3
 nh3==0.3.7
 django-modeltranslation==0.20.6
+requests==2.32.5

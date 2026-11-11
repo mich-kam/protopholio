@@ -11,6 +11,7 @@ urlpatterns = [
     path(_("cours/"), views.course_list, name="list"),
     path(format_lazy("{}<slug:slug>/", _("cours/")), views.course_detail, name="detail"),
     path(format_lazy("{}<slug:slug>/{}", _("cours/"), _("acheter/")), views.checkout, name="checkout"),
+    path(_("paiement/retour/"), views.payment_callback, name="payment_callback"),
     path(format_lazy("{}<slug:slug>/{}", _("cours/"), _("acces/")), views.course_access, name="access"),
     path(format_lazy("{}<slug:slug>/{}", _("cours/"), _("telecharger/")), views.course_download, name="download"),
     path(format_lazy("{}<slug:slug>/{}", _("cours/"), _("avis/")), views.review_submit, name="review"),

@@ -247,6 +247,10 @@ CONTACT_RECIPIENT = os.environ.get("CONTACT_RECIPIENT", "")
 CURRENCY_SYMBOL = os.environ.get("CURRENCY_SYMBOL", "$")
 CURRENCY_CODE = os.environ.get("CURRENCY_CODE", "USD")  # code ISO 4217 (données structurées SEO)
 
+# Flutterwave : carte + Mobile Money. Sans clé secrète = paiement simulé (démo).
+FLUTTERWAVE_PUBLIC_KEY = os.environ.get("FLUTTERWAVE_PUBLIC_KEY", "")
+FLUTTERWAVE_SECRET_KEY = os.environ.get("FLUTTERWAVE_SECRET_KEY", "")
+
 
 # --------------------------------------------------------------------------
 # Logs : tout sur la sortie standard (collectée par Render/Railway/Heroku)

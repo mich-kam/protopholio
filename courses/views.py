@@ -164,7 +164,7 @@ def course_detail(request, slug):
 @login_required
 @require_http_methods(["GET", "POST"])
 def checkout(request, slug):
-    """Récapitulatif de commande puis paiement (SIMULÉ — voir courses/payments.py)."""
+    """Récapitulatif puis paiement (Flutterwave si configuré, sinon simulation)."""
     course = get_object_or_404(Course.objects.published(), slug=slug)
 
     if Order.objects.filter(user=request.user, course=course, status=Order.Status.PAID).exists():
@@ -172,6 +172,7 @@ def checkout(request, slug):
         return redirect("courses:access", slug=course.slug)
 
     form = CheckoutForm(request.POST or None)
+    simulated = payments.is_simulated()
 
     if request.method == "POST" and (course.is_free or form.is_valid()):
         method = (
@@ -188,18 +189,27 @@ def checkout(request, slug):
                 order.payment_method = method
                 order.save()
 
-                paid = payments.charge(order)
-                if paid:
+            # Gratuit ou démo : confirmation immédiate.
+            if payments.charge(order):
+                with transaction.atomic():
                     order.mark_paid()
-
-            if paid:
-                send_order_confirmation(order, request)  # hors transaction : l'achat est déjà validé
+                send_order_confirmation(order, request)
                 messages.success(
                     request,
                     _("Paiement confirmé ! Commande n° %(reference)s. Bon apprentissage !")
                     % {"reference": order.short_reference},
                 )
                 return redirect("courses:access", slug=course.slug)
+
+            # Paiement réel : redirection vers Flutterwave.
+            try:
+                checkout_url = payments.start_checkout(order, request)
+            except RuntimeError as exc:
+                messages.error(request, str(exc) or _("Le paiement a échoué. Veuillez réessayer."))
+                return redirect("courses:checkout", slug=course.slug)
+
+            if checkout_url:
+                return redirect(checkout_url)
 
             messages.error(request, _("Le paiement a échoué. Veuillez réessayer."))
         except IntegrityError:
@@ -210,8 +220,51 @@ def checkout(request, slug):
     return render(
         request,
         "courses/checkout.html",
-        {"course": course, "form": form, "simulated": payments.SIMULATED},
+        {"course": course, "form": form, "simulated": simulated},
     )
+
+
+@login_required
+@require_http_methods(["GET"])
+def payment_callback(request):
+    """Retour Flutterwave après paiement : vérifie la transaction puis ouvre l'accès."""
+    status = (request.GET.get("status") or "").lower()
+    tx_ref = request.GET.get("tx_ref") or ""
+    transaction_id = request.GET.get("transaction_id") or ""
+
+    order = Order.objects.filter(reference=tx_ref).select_related("course").first()
+    if not order or order.user_id != request.user.id:
+        messages.error(request, _("Commande introuvable."))
+        return redirect("courses:list")
+
+    if order.status == Order.Status.PAID:
+        return redirect("courses:access", slug=order.course.slug)
+
+    if status not in {"successful", "completed"}:
+        messages.error(request, _("Le paiement n'a pas été confirmé. Vous pouvez réessayer."))
+        return redirect("courses:checkout", slug=order.course.slug)
+
+    data = payments.verify_transaction(transaction_id)
+    if not data:
+        messages.error(request, _("Impossible de vérifier le paiement. Contactez le support si vous avez été débité."))
+        return redirect("courses:checkout", slug=order.course.slug)
+
+    expected = float(order.amount)
+    paid_amount = float(data.get("amount") or 0)
+    currency = (data.get("currency") or "").upper()
+    expected_currency = (getattr(settings, "CURRENCY_CODE", "USD") or "USD").upper()
+    if abs(paid_amount - expected) > 0.01 or (currency and currency != expected_currency):
+        messages.error(request, _("Le montant payé ne correspond pas à la commande."))
+        return redirect("courses:checkout", slug=order.course.slug)
+
+    order.mark_paid()
+    send_order_confirmation(order, request)
+    messages.success(
+        request,
+        _("Paiement confirmé ! Commande n° %(reference)s. Bon apprentissage !")
+        % {"reference": order.short_reference},
+    )
+    return redirect("courses:access", slug=order.course.slug)
 
 
 @login_required
@@ -293,7 +346,10 @@ def receipt(request, reference):
     return render(
         request,
         "courses/receipt.html",
-        {"order": order, "simulated": payments.SIMULATED and order.payment_method != Order.PaymentMethod.FREE},
+        {
+            "order": order,
+            "simulated": payments.is_simulated() and order.payment_method != Order.PaymentMethod.FREE,
+        },
     )
 
 
