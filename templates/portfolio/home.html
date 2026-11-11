@@ -108,17 +108,18 @@
           <span class="ml-3 font-mono text-[11px] text-slate-400">{% if LANGUAGE_CODE == "en" %}{% trans "developer.py" %}{% else %}{% trans "developpeur.py" %}{% endif %}</span>
         </div>
 <pre data-code-animate class="overflow-x-auto p-4 font-mono text-[11px] leading-5 text-slate-300 sm:text-[12px] sm:leading-6"><code><span class="code-line"><span class="tok-kw">class</span> <span class="tok-cls">{% if LANGUAGE_CODE == "en" %}Developer{% else %}Developpeur{% endif %}</span>:</span>
-<span class="code-line">    {% if LANGUAGE_CODE == "en" %}name{% else %}nom{% endif %} = <span class="tok-str">"{{ profile.full_name|default:'Votre nom' }}"</span></span>
+{% trans "Portfolio" as code_name_fallback %}{% trans "Développeur" as code_role_fallback %}
+<span class="code-line">    {% if LANGUAGE_CODE == "en" %}name{% else %}nom{% endif %} = <span class="tok-str">"{{ profile.full_name|default:code_name_fallback }}"</span></span>
 {% with parts=profile.headline|code_lines:30 %}{% if parts|length > 1 %}<span class="code-line">    role = (</span>{% for part in parts %}
 <span class="code-line">        <span class="tok-str">"{{ part }}"</span></span>{% endfor %}
-<span class="code-line">    )</span>{% else %}<span class="code-line">    role = <span class="tok-str">"{{ profile.headline|default:'Développeur' }}"</span></span>{% endif %}{% endwith %}
+<span class="code-line">    )</span>{% else %}<span class="code-line">    role = <span class="tok-str">"{{ profile.headline|default:code_role_fallback }}"</span></span>{% endif %}{% endwith %}
 <span class="code-line">    stack = [</span>{% for skill in top_skills %}
 <span class="code-line">        <span class="tok-str">"{{ skill.name }}"</span>,</span>{% endfor %}
 <span class="code-line">    ]</span>
 <span class="code-line">    {% if LANGUAGE_CODE == "en" %}available{% else %}disponible{% endif %} = <span class="tok-bool">{% if profile.available_for_work %}True{% else %}False{% endif %}</span></span>
-<span class="code-line"> </span>
+{% if profile.email %}<span class="code-line"> </span>
 <span class="code-line">    <span class="tok-kw">def</span> <span class="tok-fn">{% if LANGUAGE_CODE == "en" %}contact{% else %}contacter{% endif %}</span>(self):</span>
-<span class="code-line">        <span class="tok-kw">return</span> <span class="tok-str">"{{ profile.email|default:'contact@exemple.com' }}"</span></span></code></pre>
+<span class="code-line">        <span class="tok-kw">return</span> <span class="tok-str">"{{ profile.email }}"</span></span>{% endif %}</code></pre>
       </div>
     </div>
   </div>
@@ -270,7 +271,7 @@
       {# --- Présentation + coordonnées --- #}
       <div class="reveal {% if profile.photo_url %}lg:col-span-8{% else %}lg:col-span-12{% endif %}" style="--d: 100ms">
         <div class="space-y-4 text-base leading-7">
-          {% if profile.about %}{{ profile.about|linebreaks }}{% else %}<p>{% trans "Renseignez votre présentation depuis l'espace d'administration." %}</p>{% endif %}
+          {% if profile.about %}{{ profile.about|linebreaks }}{% elif user.is_staff %}<p>{% trans "Renseignez votre présentation depuis l'espace d'administration." %}</p>{% else %}<p>{% trans "Présentation bientôt disponible." %}</p>{% endif %}
         </div>
 
         <dl class="mt-8 grid gap-4 sm:grid-cols-2">
@@ -373,7 +374,7 @@
       <div>
         <p class="eyebrow">{% trans "Portfolio" %}</p>
         <h2 class="section-title">{% trans "Mes projets" %}</h2>
-        <p class="section-lead">{% trans "Une sélection de projets réalisés pendant mes études, mes stages et à titre personnel. Chaque projet peut avoir une image principale et plusieurs photos." %}</p>
+        <p class="section-lead">{% trans "Une sélection de projets réalisés pendant mes études, mes stages et à titre personnel." %}</p>
       </div>
       {% if user.is_staff %}
         <a href="{% url 'admin:portfolio_project_add' %}" class="btn btn-primary">{% icon "plus" "h-4 w-4" %} {% trans "Ajouter un projet" %}</a>
@@ -429,7 +430,7 @@
       <div>
         <p class="eyebrow">{% trans "Galerie" %}</p>
         <h2 class="section-title">{% trans "Photos professionnelles" %}</h2>
-        <p class="section-lead">{% trans "Portrait, atelier, formations ou interventions. Ajoutez vos photos dans Admin → Galerie photos." %}</p>
+        <p class="section-lead">{% if user.is_staff %}{% trans "Portrait, atelier, formations ou interventions. Ajoutez vos photos dans Admin → Galerie photos." %}{% else %}{% trans "Portrait, atelier, formations et interventions." %}{% endif %}</p>
       </div>
       {% if user.is_staff %}
         <a href="{% url 'admin:portfolio_galleryphoto_add' %}" class="btn btn-secondary">{% icon "camera" "h-4 w-4" %} {% trans "Ajouter une photo" %}</a>

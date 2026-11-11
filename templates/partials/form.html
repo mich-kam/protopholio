@@ -12,7 +12,10 @@
     {% if is_password == "password" %}
       <div class="relative">
         {{ field }}
-        <button type="button" data-toggle-password aria-label="{% trans "Afficher le mot de passe" %}"
+        <button type="button" data-toggle-password
+                aria-label="{% trans "Afficher le mot de passe" %}"
+                data-label-show="{% trans "Afficher le mot de passe" %}"
+                data-label-hide="{% trans "Masquer le mot de passe" %}"
                 class="absolute inset-y-0 right-0 flex items-center px-3.5 text-slate-400 transition hover:text-slate-600 dark:hover:text-slate-200">
           <span data-eye>{% icon "eye" "h-4 w-4" %}</span>
           <span data-eye-off class="hidden">{% icon "eye-off" "h-4 w-4" %}</span>

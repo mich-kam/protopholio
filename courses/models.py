@@ -151,9 +151,9 @@ class Order(models.Model):
         CANCELLED = "cancelled", _("Annulée")
 
     class PaymentMethod(models.TextChoices):
-        MOBILE_MONEY = "mobile_money", _("Mobile Money (simulation)")
-        CARD = "card", _("Carte bancaire (simulation)")
-        PAYPAL = "paypal", _("PayPal (simulation)")
+        MOBILE_MONEY = "mobile_money", _("Mobile Money")
+        CARD = "card", _("Carte bancaire")
+        PAYPAL = "paypal", _("PayPal")
         FREE = "free", _("Cours gratuit")
         MANUAL = "manual", _("Validation manuelle")
 

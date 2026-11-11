@@ -90,10 +90,10 @@ def _home_context(request, contact_form):
     # Statistiques RÉELLES (jamais inventées) : un compteur à zéro est simplement masqué.
     learners = Order.objects.filter(status=Order.Status.PAID).values("user").distinct().count()
     stats = [
-        ("Projets réalisés", len(projects)),
-        ("Certifications", len(certifications)),
-        ("Cours en ligne", Course.objects.published().count()),
-        ("Apprenants", learners),
+        (_("Projets réalisés"), len(projects)),
+        (_("Certifications"), len(certifications)),
+        (_("Cours en ligne"), Course.objects.published().count()),
+        (_("Apprenants"), learners),
     ]
 
     # Pile technique affichée dans la carte de code : les 5 meilleures compétences TECHNIQUES.

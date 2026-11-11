@@ -8,7 +8,7 @@
     {% else %}
       <div class="flex h-full min-h-[16rem] w-full flex-col items-center justify-center gap-3 bg-slate-800 px-6 text-center lg:min-h-full">
         {% icon "code" "h-12 w-12 text-white/40" %}
-        <p class="max-w-xs text-sm text-slate-400">{% trans "Emplacement photo du projet mis en avant — ajoutez une image dans Admin → Projets." %}</p>
+        <p class="max-w-xs text-sm text-slate-400">{% if user.is_staff %}{% trans "Emplacement photo du projet mis en avant — ajoutez une image dans Admin → Projets." %}{% else %}{% trans "Visuel du projet à venir." %}{% endif %}</p>
         {% if user.is_staff %}
           <a href="{% url 'admin:portfolio_project_change' project.pk %}" class="btn btn-secondary !py-2 text-xs">{% trans "Ajouter l'image" %}</a>
         {% endif %}

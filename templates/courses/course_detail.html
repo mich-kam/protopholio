@@ -156,7 +156,7 @@
         <ul class="mt-4 space-y-3 text-sm">
           <li class="flex items-center gap-3">{% icon "layers" "h-4 w-4 text-teal-500" %} {% blocktrans with level=course.get_level_display|lower %}Niveau {{ level }}{% endblocktrans %}</li>
           {% if course.duration %}<li class="flex items-center gap-3">{% icon "clock" "h-4 w-4 text-teal-500" %} {{ course.duration }}</li>{% endif %}
-          {% if course.course_url %}<li class="flex items-center gap-3">{% icon "play" "h-4 w-4 text-teal-500" %} {% trans "Contenu à suivre en ligne" %}</li>{% endif %}
+          {% if course.course_url and "example.com" not in course.course_url %}<li class="flex items-center gap-3">{% icon "play" "h-4 w-4 text-teal-500" %} {% trans "Contenu à suivre en ligne" %}</li>{% endif %}
           {% if course.course_file %}<li class="flex items-center gap-3">{% icon "download" "h-4 w-4 text-teal-500" %} {% trans "Fichier téléchargeable" %}</li>{% endif %}
           <li class="flex items-center gap-3">{% icon "zap" "h-4 w-4 text-teal-500" %} {% trans "Accès immédiat après la commande" %}</li>
           <li class="flex items-center gap-3">{% icon "file-text" "h-4 w-4 text-teal-500" %} {% trans "Reçu disponible pour chaque achat" %}</li>

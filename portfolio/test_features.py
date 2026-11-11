@@ -107,7 +107,7 @@ class CVPageTests(FrenchLocaleTestCase):
             "Licence LMD en Informatique",
             "Stagiaire en informatique",
             "Application de gestion scolaire",
-            "Télécharger en PDF",
+            "Imprimer / Enregistrer en PDF",
             'src="/static/img/profile.jpg"',
         ):
             self.assertContains(response, expected)

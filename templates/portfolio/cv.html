@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
-{% block title %}CV — {{ profile.full_name }}{% endblock %}
-{% block meta_description %}{% blocktrans trimmed with name=profile.full_name headline=profile.headline %}Curriculum vitae de {{ name }} : {{ headline }}. Compétences, expériences, formations et projets.{% endblocktrans %}{% endblock %}
-{% block og_title %}CV — {{ profile.full_name }}{% endblock %}
+{% block title %}{% if profile %}{% trans "CV" %} — {{ profile.full_name }}{% else %}{% trans "CV" %}{% endif %}{% endblock %}
+{% block meta_description %}{% if profile %}{% blocktrans trimmed with name=profile.full_name headline=profile.headline %}Curriculum vitae de {{ name }} : {{ headline }}. Compétences, expériences, formations et projets.{% endblocktrans %}{% else %}{% trans "Curriculum vitae." %}{% endif %}{% endblock %}
+{% block og_title %}{% if profile %}{% trans "CV" %} — {{ profile.full_name }}{% else %}{% trans "CV" %}{% endif %}{% endblock %}
 {% block extra_head %}
   {# Impression : feuille A4 sans marges (les marges sont gérées par la mise en page de la feuille) #}
   <style media="print">@page { size: A4; margin: 0; }</style>
@@ -14,10 +14,10 @@
   <div class="no-print mx-auto mb-6 flex max-w-[210mm] flex-wrap items-center justify-between gap-3">
     <a href="{% url 'portfolio:home' %}" class="inline-flex items-center gap-1.5 text-sm text-teal-600 hover:underline dark:text-teal-400">{% trans "&larr; Retour au site" %}</a>
     <div class="flex flex-wrap gap-2">
-      {% if profile.cv_file %}
+      {% if profile and profile.cv_file %}
         <a href="{{ profile.cv_file.url }}" target="_blank" rel="noopener" class="btn btn-secondary">{% icon "download" "h-4 w-4" %} {% trans "Version PDF d'origine" %}</a>
       {% endif %}
-      <button type="button" data-print class="btn btn-primary">{% icon "printer" "h-4 w-4" %} {% trans "Télécharger en PDF" %}</button>
+      <button type="button" data-print class="btn btn-primary">{% icon "printer" "h-4 w-4" %} {% trans "Imprimer / Enregistrer en PDF" %}</button>
     </div>
   </div>
 
@@ -25,21 +25,23 @@
 
     {# ============ COLONNE GAUCHE ============ #}
     <aside class="bg-slate-900 px-5 py-6 text-slate-300 print:px-5">
-      {% if profile.photo_url %}
+      {% if profile and profile.photo_url %}
         <img src="{{ profile.photo_url }}" alt="{% trans "Photo de" %} {{ profile.full_name }}" class="mx-auto aspect-[4/5] w-full max-w-[42mm] rounded-2xl object-cover object-top ring-4 ring-white/15">
       {% endif %}
 
       <h2 class="mt-5 flex items-center gap-2 text-[10.5px] font-bold uppercase tracking-[0.18em] text-teal-300">{% trans "Contact" %}</h2>
       <ul class="mt-2.5 space-y-2">
-        {% if profile.email %}<li class="flex items-start gap-2.5">{% icon "mail" "mt-0.5 h-3.5 w-3.5 shrink-0 text-teal-300" %}<span class="break-all">{{ profile.email }}</span></li>{% endif %}
-        {% if profile.phone %}<li class="flex items-start gap-2.5">{% icon "phone" "mt-0.5 h-3.5 w-3.5 shrink-0 text-teal-300" %}<span>{{ profile.phone }}</span></li>{% endif %}
-        {% if profile.location %}<li class="flex items-start gap-2.5">{% icon "pin" "mt-0.5 h-3.5 w-3.5 shrink-0 text-teal-300" %}<span>{{ profile.location }}</span></li>{% endif %}
-        {% for icon_name, label, url in profile.social_links %}
-          <li class="flex items-start gap-2.5">{% icon icon_name "mt-0.5 h-3.5 w-3.5 shrink-0 text-teal-300" %}<span class="break-all">{{ url|cut:"https://"|cut:"www." }}</span></li>
-        {% endfor %}
+        {% if profile and profile.email %}<li class="flex items-start gap-2.5">{% icon "mail" "mt-0.5 h-3.5 w-3.5 shrink-0 text-teal-300" %}<span class="break-all">{{ profile.email }}</span></li>{% endif %}
+        {% if profile and profile.phone %}<li class="flex items-start gap-2.5">{% icon "phone" "mt-0.5 h-3.5 w-3.5 shrink-0 text-teal-300" %}<span>{{ profile.phone }}</span></li>{% endif %}
+        {% if profile and profile.location %}<li class="flex items-start gap-2.5">{% icon "pin" "mt-0.5 h-3.5 w-3.5 shrink-0 text-teal-300" %}<span>{{ profile.location }}</span></li>{% endif %}
+        {% if profile %}
+          {% for icon_name, label, url in profile.social_links %}
+            <li class="flex items-start gap-2.5">{% icon icon_name "mt-0.5 h-3.5 w-3.5 shrink-0 text-teal-300" %}<span class="break-all">{{ url|cut:"https://"|cut:"www." }}</span></li>
+          {% endfor %}
+        {% endif %}
       </ul>
 
-      {% if profile.languages_list %}
+      {% if profile and profile.languages_list %}
         <h2 class="mt-5 text-[10.5px] font-bold uppercase tracking-[0.18em] text-teal-300">{% trans "Langues" %}</h2>
         <ul class="mt-2.5 space-y-1">
           {% for language in profile.languages_list %}<li>{{ language }}</li>{% endfor %}
@@ -67,9 +69,9 @@
     {# ============ COLONNE PRINCIPALE ============ #}
     <div class="px-6 py-6 print:px-6">
       <header class="border-b border-slate-200 pb-4">
-        <h1 class="font-display text-[26px] font-extrabold leading-tight tracking-tight text-slate-900">{{ profile.full_name }}</h1>
-        <p class="mt-0.5 text-[14px] font-semibold text-teal-600">{{ profile.headline }}</p>
-        {% if profile.tagline %}<p class="mt-2.5 leading-5">{{ profile.tagline }}</p>{% endif %}
+        <h1 class="font-display text-[26px] font-extrabold leading-tight tracking-tight text-slate-900">{% if profile %}{{ profile.full_name }}{% else %}{% trans "Curriculum vitae" %}{% endif %}</h1>
+        {% if profile %}<p class="mt-0.5 text-[14px] font-semibold text-teal-600">{{ profile.headline }}</p>{% endif %}
+        {% if profile and profile.tagline %}<p class="mt-2.5 leading-5">{{ profile.tagline }}</p>{% endif %}
       </header>
 
       {% if services %}

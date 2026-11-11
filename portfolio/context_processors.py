@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.templatetags.static import static
 
-from .models import Profile, _static_exists
+from .models import GalleryPhoto, Profile, Skill, _static_exists
 
 SOCIAL_CARD = "img/social-card.jpg"
 
@@ -25,6 +25,11 @@ def _og_image(request, profile):
 def site_context(request):
     """Variables disponibles dans TOUS les templates (navbar, footer, SEO, prix...)."""
     profile = get_profile(request)
+    try:
+        has_gallery = GalleryPhoto.objects.filter(is_published=True).exists()
+    except Exception:
+        has_gallery = False
+    staff = getattr(request.user, "is_staff", False)
     return {
         "profile": profile,
         "CURRENCY_SYMBOL": settings.CURRENCY_SYMBOL,
@@ -32,4 +37,6 @@ def site_context(request):
         "canonical_url": request.build_absolute_uri(request.path),
         "site_url": request.build_absolute_uri("/"),
         "og_image": _og_image(request, profile),
+        "nav_show_security": Skill.objects.filter(category=Skill.Category.SECURITY).exists(),
+        "nav_show_gallery": has_gallery or staff,
     }

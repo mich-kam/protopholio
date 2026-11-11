@@ -251,7 +251,12 @@
       if (!input) return;
       var show = input.type === "password";
       input.type = show ? "text" : "password";
-      btn.setAttribute("aria-label", show ? "Masquer le mot de passe" : "Afficher le mot de passe");
+      btn.setAttribute(
+        "aria-label",
+        show
+          ? (btn.getAttribute("data-label-hide") || "Masquer le mot de passe")
+          : (btn.getAttribute("data-label-show") || "Afficher le mot de passe")
+      );
       var eye = btn.querySelector("[data-eye]");
       var eyeOff = btn.querySelector("[data-eye-off]");
       if (eye) eye.classList.toggle("hidden", show);

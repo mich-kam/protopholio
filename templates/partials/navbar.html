@@ -10,10 +10,10 @@
     {# Liens desktop : le scroll-spy (data-spy) souligne la section visible #}
     <div class="hidden items-center gap-0.5 lg:flex">
       <a class="nav-link hidden xl:inline-block" data-spy="services" href="{{ home_url }}#services">{% trans "Services" %}</a>
-      <a class="nav-link" data-spy="cybersecurite" href="{{ home_url }}#cybersecurite">{% trans "Cybersécurité" %}</a>
+      {% if nav_show_security %}<a class="nav-link" data-spy="cybersecurite" href="{{ home_url }}#cybersecurite">{% trans "Cybersécurité" %}</a>{% endif %}
       <a class="nav-link" data-spy="a-propos" href="{{ home_url }}#a-propos">{% trans "À propos" %}</a>
       <a class="nav-link" data-spy="portfolio" href="{{ home_url }}#portfolio">{% trans "Portfolio" %}</a>
-      <a class="nav-link hidden xl:inline-block" data-spy="galerie" href="{{ home_url }}#galerie">{% trans "Galerie" %}</a>
+      {% if nav_show_gallery %}<a class="nav-link hidden xl:inline-block" data-spy="galerie" href="{{ home_url }}#galerie">{% trans "Galerie" %}</a>{% endif %}
       <a class="nav-link" data-spy="cours" href="{{ courses_url }}"{% if request.resolver_match.app_name == "courses" and request.resolver_match.url_name != "dashboard" %} aria-current="page"{% endif %}>{% trans "Cours" %}</a>
       <a class="nav-link" href="{% url 'blog:list' %}"{% if request.resolver_match.app_name == "blog" %} aria-current="page"{% endif %}>{% trans "Blog" %}</a>
       <a class="nav-link" data-spy="contact" href="{{ home_url }}#contact">{% trans "Contact" %}</a>
@@ -78,10 +78,10 @@
     <div class="flex flex-col gap-1">
       <a class="nav-link" data-spy="accueil" href="{{ home_url }}#accueil">{% trans "Accueil" %}</a>
       <a class="nav-link" data-spy="services" href="{{ home_url }}#services">{% trans "Services" %}</a>
-      <a class="nav-link" data-spy="cybersecurite" href="{{ home_url }}#cybersecurite">{% trans "Cybersécurité" %}</a>
+      {% if nav_show_security %}<a class="nav-link" data-spy="cybersecurite" href="{{ home_url }}#cybersecurite">{% trans "Cybersécurité" %}</a>{% endif %}
       <a class="nav-link" data-spy="a-propos" href="{{ home_url }}#a-propos">{% trans "À propos" %}</a>
       <a class="nav-link" data-spy="portfolio" href="{{ home_url }}#portfolio">{% trans "Portfolio" %}</a>
-      <a class="nav-link" data-spy="galerie" href="{{ home_url }}#galerie">{% trans "Galerie" %}</a>
+      {% if nav_show_gallery %}<a class="nav-link" data-spy="galerie" href="{{ home_url }}#galerie">{% trans "Galerie" %}</a>{% endif %}
       <a class="nav-link" href="{{ courses_url }}">{% trans "Cours en ligne" %}</a>
       <a class="nav-link" href="{% url 'blog:list' %}">{% trans "Blog" %}</a>
       <a class="nav-link" href="{% url 'portfolio:cv' %}">{% trans "Mon CV" %}</a>

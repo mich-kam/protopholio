@@ -210,7 +210,7 @@ SKILLS = [
     ("Développement d'applications web", S.WEB, 70),
     ("MySQL", S.DATA, 65),
     ("SQL", S.DATA, 65),
-    ("Data Analytics (niveau junior)", S.DATA, 55),
+    ("Data Analytics", S.DATA, 55),
     ("Réseaux LAN, routeurs et switches", S.SYSTEMS, 70),
     ("Vidéosurveillance IP (Hikvision, DVR/NVR)", S.SYSTEMS, 75),
     ("Support et maintenance informatique", S.SYSTEMS, 80),
@@ -453,6 +453,9 @@ class Command(BaseCommand):
                 translated += 1
         self.stdout.write(f"FAQ : {created} créée(s).")
 
+        # Ancien libellé trop « junior » pour un site public.
+        Skill.objects.filter(name="Data Analytics (niveau junior)").update(name="Data Analytics")
+
         created = 0
         for order, (name, category, level) in enumerate(SKILLS):
             obj, was_created = Skill.objects.get_or_create(
@@ -531,12 +534,14 @@ class Command(BaseCommand):
 
         created = 0
         for data in COURSES:
-            # Les cours d'exemple pointent vers un lien fictif : remplacez-le dans l'admin.
-            obj, was_created = Course.objects.get_or_create(
-                title=data["title"],
-                defaults={**data, "course_url": "https://example.com/remplacez-ce-lien"},
-            )
+            # Pas d'URL factice : le contenu se configure dans l'admin (fichier ou lien réel).
+            payload = {**data, "course_url": ""}
+            obj, was_created = Course.objects.get_or_create(title=data["title"], defaults=payload)
             created += was_created
+            # Nettoie les anciens liens example.com laissés par une seed précédente.
+            if obj.course_url and "example.com" in obj.course_url:
+                obj.course_url = ""
+                obj.save(update_fields=["course_url"])
             en = COURSES_EN.get(data["title"])
             if en and fill_en(obj, en):
                 obj.save(update_fields=[f"{k}_en" for k in en])

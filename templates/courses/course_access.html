@@ -18,14 +18,16 @@
     <h2 class="text-xl font-bold">{% trans "Accéder au contenu" %}</h2>
     <p class="mt-1 text-sm text-slate-300">{% trans "Votre contenu est disponible immédiatement et pour toujours." %}</p>
     <div class="mt-6 flex flex-wrap gap-3">
-      {% if course.course_url %}
+      {% if course.course_url and "example.com" not in course.course_url %}
         <a href="{{ course.course_url }}" target="_blank" rel="noopener noreferrer" class="btn bg-white text-slate-900 hover:bg-slate-100">{% icon "play" "h-4 w-4" %} {% trans "Ouvrir le cours en ligne" %}</a>
       {% endif %}
       {% if course.course_file %}
         <a href="{% url 'courses:download' course.slug %}" class="btn border border-slate-600 bg-transparent text-white hover:border-slate-400 hover:bg-white/5">{% icon "download" "h-4 w-4" %} {% trans "Télécharger le fichier" %}</a>
       {% endif %}
-      {% if not course.course_url and not course.course_file %}
-        <p class="text-sm text-slate-300">{% trans "Le contenu de ce cours sera bientôt disponible." %}</p>
+      {% if not course.course_file %}
+        {% if not course.course_url or "example.com" in course.course_url %}
+          <p class="text-sm text-slate-300">{% trans "Le contenu de ce cours sera bientôt disponible." %}</p>
+        {% endif %}
       {% endif %}
     </div>
   </div>

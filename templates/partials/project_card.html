@@ -8,7 +8,7 @@
     {% else %}
       <div class="flex h-full w-full flex-col items-center justify-center gap-2 bg-slate-800 px-4 text-center">
         {% icon "code" "h-10 w-10 text-white/40" %}
-        <p class="text-xs font-medium text-slate-400">{% trans "Ajoutez une image dans l'admin → Projets" %}</p>
+        <p class="text-xs font-medium text-slate-400">{% if user.is_staff %}{% trans "Ajoutez une image dans l'admin → Projets" %}{% else %}{% trans "Image à venir" %}{% endif %}</p>
       </div>
     {% endif %}
     {% if project.featured %}

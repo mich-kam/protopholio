@@ -102,7 +102,7 @@ FAQS_EN = {
 
 SKILLS_EN = {
     "Développement d'applications web": "Web application development",
-    "Data Analytics (niveau junior)": "Data Analytics (junior level)",
+    "Data Analytics": "Data Analytics",
     "Réseaux LAN, routeurs et switches": "LAN networks, routers and switches",
     "Vidéosurveillance IP (Hikvision, DVR/NVR)": "IP video surveillance (Hikvision, DVR/NVR)",
     "Support et maintenance informatique": "IT support and maintenance",

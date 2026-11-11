@@ -20,7 +20,7 @@
   {% if simulated and not course.is_free %}
     <div class="mt-6 flex items-start gap-3 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800 dark:border-amber-500/30 dark:bg-amber-500/10 dark:text-amber-300">
       {% icon "shield" "mt-0.5 h-4 w-4 shrink-0" %}
-      <p><strong>{% trans "Mode démonstration :" %}</strong> {% trans "le paiement est simulé, aucun montant n'est réellement débité." %}</p>
+      <p><strong>{% trans "Paiement en démonstration :" %}</strong> {% trans "aucun montant n'est débité — la validation donne accès au cours pour tester le parcours." %}</p>
     </div>
   {% endif %}
 
@@ -75,7 +75,7 @@
           <div class="flex justify-between border-t border-slate-200 pt-3 text-base font-bold text-slate-900 dark:border-slate-800 dark:text-white"><dt>{% trans "Total" %}</dt><dd>{% if course.is_free %}0 {{ CURRENCY_SYMBOL }}{% else %}{{ course.price|floatformat:"-2" }} {{ CURRENCY_SYMBOL }}{% endif %}</dd></div>
         </dl>
         <button type="submit" class="btn btn-primary btn-lg mt-6 w-full">
-          {% if course.is_free %}{% trans "Obtenir le cours" %}{% else %}{% blocktrans with price=course.price|floatformat:"-2" symbol=CURRENCY_SYMBOL %}Payer {{ price }} {{ symbol }}{% endblocktrans %}{% if simulated %} {% trans "(simulation)" %}{% endif %}{% endif %}
+          {% if course.is_free %}{% trans "Obtenir le cours" %}{% else %}{% blocktrans with price=course.price|floatformat:"-2" symbol=CURRENCY_SYMBOL %}Confirmer {{ price }} {{ symbol }}{% endblocktrans %}{% endif %}
         </button>
         <p class="mt-3 text-center text-xs text-slate-500">{% trans "Accès immédiat après validation." %}</p>
       </div>
