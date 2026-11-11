@@ -2,9 +2,8 @@
 <footer class="no-print mt-16 border-t border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-950 sm:mt-24">
   <div class="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 sm:py-14 md:grid-cols-12">
     <div class="md:col-span-5">
-      <a href="{{ home_url }}" class="flex items-center gap-2.5 font-display text-lg font-bold text-slate-900 dark:text-white">
-        <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-900 text-sm font-bold text-white dark:bg-teal-700">{% if profile %}{{ profile.initials }}{% else %}P{% endif %}</span>
-        {% if profile %}{{ profile.full_name }}{% else %}{% trans "Portfolio" %}{% endif %}
+      <a href="{{ home_url }}" class="nav-wordmark font-display text-slate-900 dark:text-white">
+        <span class="nav-wordmark-name">{% if profile %}{{ profile.full_name }}{% else %}{% trans "Portfolio" %}{% endif %}</span>
       </a>
       <p class="mt-4 max-w-sm text-sm leading-6">
         {% if profile %}{{ profile.headline }}.{% endif %} {% trans "Des projets concrets et des cours en ligne pour apprendre à votre rythme." %}
@@ -53,7 +52,7 @@
   <div class="border-t border-slate-200 dark:border-slate-800">
     <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-4 py-5 text-xs text-slate-500 sm:flex-row sm:px-6">
       <p>&copy; {% now "Y" %} {% if profile %}{{ profile.full_name }}{% else %}{% trans "Portfolio" %}{% endif %}{% trans ". Tous droits réservés." %}</p>
-      <p>{% trans "Conçu avec Django &amp; Tailwind CSS" %}</p>
+      <p class="inline-flex items-center gap-2 font-mono tracking-wide"><span class="pulse-dot h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden="true"></span>{% trans "Conçu avec Django &amp; Tailwind CSS" %}</p>
     </div>
   </div>
 </footer>

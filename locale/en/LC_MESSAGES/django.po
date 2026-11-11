@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portfolio VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-11-10 12:37+0300\n"
+"POT-Creation-Date: 2026-11-11 20:42+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -16,29 +16,29 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
 
-#: templates/blog/post_list.html:51
+#: templates/blog/post_list.html:54
 #, python-format
 msgid "%(counter)s article"
 msgid_plural "%(counter)s articles"
 msgstr[0] "%(counter)s article"
 msgstr[1] "%(counter)s articles"
 
-#: templates/courses/course_detail.html:39 templates/courses/course_detail.html:101
-#: templates/partials/course_card.html:34
+#: templates/courses/course_detail.html:36 templates/courses/course_detail.html:98
+#: templates/partials/course_card.html:33
 #, python-format
 msgid "%(counter)s avis"
 msgid_plural "%(counter)s avis"
 msgstr[0] "%(counter)s review"
 msgstr[1] "%(counter)s reviews"
 
-#: templates/courses/course_list.html:54
+#: templates/courses/course_list.html:57
 #, python-format
 msgid "%(counter)s cours"
 msgid_plural "%(counter)s cours"
 msgstr[0] "%(counter)s course"
 msgstr[1] "%(counter)s courses"
 
-#: templates/courses/course_access.html:68
+#: templates/courses/course_access.html:67
 #, python-format
 msgid "%(counter)s étoile"
 msgid_plural "%(counter)s étoiles"
@@ -50,12 +50,12 @@ msgstr[1] "%(counter)s stars"
 msgid "%(minutes)s min"
 msgstr "%(minutes)s min"
 
-#: templates/blog/post_detail.html:43 templates/blog/post_list.html:68
+#: templates/blog/post_detail.html:40 templates/blog/post_list.html:71
 #, python-format
 msgid "%(minutes)s min de lecture"
 msgstr "%(minutes)s min read"
 
-#: templates/courses/course_access.html:68
+#: templates/courses/course_access.html:67
 #, python-format
 msgid "%(n)s sur 5"
 msgstr "%(n)s out of 5"
@@ -65,7 +65,7 @@ msgstr "%(n)s out of 5"
 msgid "%(name)s, %(headline)s. Découvrez mes projets, mes services et mes cours en ligne."
 msgstr "%(name)s, %(headline)s. Discover my projects, services and online courses."
 
-#: templates/blog/post_detail.html:99
+#: templates/blog/post_detail.html:96
 msgid "&larr; Article précédent"
 msgstr "&larr; Previous article"
 
@@ -74,7 +74,7 @@ msgstr "&larr; Previous article"
 msgid "&larr; Mes cours"
 msgstr "&larr; My courses"
 
-#: templates/blog/post_list.html:91 templates/courses/course_list.html:65
+#: templates/blog/post_list.html:94 templates/courses/course_list.html:68
 msgid "&larr; Précédent"
 msgstr "&larr; Previous"
 
@@ -94,28 +94,37 @@ msgstr "&larr; Back to sign in"
 msgid "&larr; Retour à mon compte"
 msgstr "&larr; Back to my account"
 
-#: templates/courses/checkout.html:78
-msgid "(simulation)"
-msgstr "(simulation)"
-
 #: templates/partials/footer.html:54
 msgid ". Tous droits réservés."
 msgstr ". All rights reserved."
 
-#: templates/courses/checkout.html:54
+#: templates/courses/checkout.html:59
 msgid ". Une confirmation sera envoyée à cette adresse."
 msgstr ". A confirmation will be sent to this address."
 
-#: templates/portfolio/home.html:202
+#: templates/portfolio/home.html:229
 msgid "./verifier --domaines-de-securite"
 msgstr "./check --security-domains"
 
-#: templates/courses/checkout.html:48
+#: templates/portfolio/home.html:487
+msgid "1. Photo de profil"
+msgstr "1. Profile photo"
+
+#: templates/portfolio/home.html:495
+msgid "2. Projets + captures"
+msgstr "2. Projects + screenshots"
+
+#: templates/portfolio/home.html:503
+msgid "3. Galerie photos"
+msgstr "3. Photo gallery"
+
+#: templates/courses/checkout.html:53
 msgid ": aucun paiement n'est nécessaire. Confirmez simplement votre inscription."
 msgstr ": no payment is required. Simply confirm your enrollment."
 
-#: templates/blog/post_detail.html:25 templates/courses/course_detail.html:18
-#: templates/partials/command_palette.html:17 templates/partials/navbar.html:78
+#: templates/blog/post_detail.html:22 templates/courses/course_detail.html:15
+#: templates/partials/command_palette.html:17 templates/partials/navbar.html:36
+#: templates/partials/navbar.html:120 templates/partials/side_index.html:3
 msgid "Accueil"
 msgstr "Home"
 
@@ -123,11 +132,11 @@ msgstr "Home"
 msgid "Accès"
 msgstr "Access"
 
-#: templates/courses/course_detail.html:164 templates/portfolio/home.html:445
+#: templates/courses/course_detail.html:161 templates/portfolio/home.html:578
 msgid "Accès immédiat après la commande"
 msgstr "Instant access after purchase"
 
-#: templates/courses/checkout.html:80
+#: templates/courses/checkout.html:85
 msgid "Accès immédiat après validation."
 msgstr "Instant access after confirmation."
 
@@ -135,19 +144,19 @@ msgstr "Instant access after confirmation."
 msgid "Accéder"
 msgstr "Open"
 
-#: templates/courses/course_access.html:20
+#: templates/courses/course_access.html:18
 msgid "Accéder au contenu"
 msgstr "Access the content"
 
-#: templates/courses/course_detail.html:146
+#: templates/courses/course_detail.html:143
 msgid "Accéder au cours"
 msgstr "Access the course"
 
-#: templates/courses/course_detail.html:149
+#: templates/courses/course_detail.html:146
 msgid "Acheter ce cours"
 msgstr "Buy this course"
 
-#: templates/courses/course_list.html:16
+#: templates/courses/course_list.html:19
 msgid "Achetez un cours et retrouvez-le à vie dans votre espace « Mes cours »."
 msgstr "Buy a course and keep lifetime access in your “My courses” area."
 
@@ -156,15 +165,42 @@ msgstr "Buy a course and keep lifetime access in your “My courses” area."
 msgid "Acheté le %(date)s"
 msgstr "Purchased on %(date)s"
 
-#: templates/partials/course_card.html:15
+#: templates/partials/course_card.html:14
 msgid "Acquis"
 msgstr "Owned"
 
-#: templates/partials/command_palette.html:46
+#: templates/partials/command_palette.html:47
 msgid "Actions"
 msgstr "Actions"
 
-#: templates/partials/command_palette.html:37 templates/partials/navbar.html:56
+#: templates/portfolio/home.html:504
+msgid "Admin → Galerie photos : portrait, atelier, formations…"
+msgstr "Admin → Photo gallery: portrait, workshop, training…"
+
+#: templates/portfolio/home.html:474
+msgid "Admin → Galerie photos → Ajouter. Format conseillé : 1200×900 px."
+msgstr "Admin → Photo gallery → Add. Recommended size: 1200×900 px."
+
+#: templates/portfolio/home.html:488
+msgid "Admin → Profil → Photo de profil (hero & À propos)."
+msgstr "Admin → Profile → Profile photo (hero & About)."
+
+#: templates/portfolio/home.html:496
+msgid "Admin → Projets : image principale + images supplémentaires."
+msgstr "Admin → Projects: main image + extra images."
+
+#: templates/portfolio/home.html:413
+msgid ""
+"Admin → Projets → Ajouter. Joignez une image principale (1600×1000) et des captures dans « Images"
+" de projet »."
+msgstr "Admin → Projects → Add. Attach a main image (1600×1000) and screenshots under “Project images”."
+
+#: templates/portfolio/home.html:427
+msgid "Admin → Projets → Ajouter. Joignez une image principale et des photos."
+msgstr "Admin → Projects → Add. Attach a main image and photos."
+
+#: templates/partials/command_palette.html:38 templates/partials/navbar.html:96
+#: templates/partials/navbar.html:136
 msgid "Administration"
 msgstr "Administration"
 
@@ -172,19 +208,43 @@ msgstr "Administration"
 msgid "Adresse e-mail"
 msgstr "Email address"
 
-#: templates/partials/form.html:15
+#: templates/partials/form.html:16 templates/partials/form.html:17
 msgid "Afficher le mot de passe"
 msgstr "Show password"
 
-#: templates/blog/post_detail.html:53
+#: templates/portfolio/home.html:458
+msgid "Agrandir"
+msgstr "Enlarge"
+
+#: templates/blog/post_detail.html:50
 msgid "Agrandir l'image"
 msgstr "Enlarge image"
 
-#: templates/partials/project_card.html:5
+#: templates/partials/featured_project.html:5 templates/partials/project_card.html:5
 msgid "Agrandir la capture"
 msgstr "Enlarge screenshot"
 
-#: templates/base.html:114
+#: templates/partials/featured_project.html:13
+msgid "Ajouter l'image"
+msgstr "Add the image"
+
+#: templates/partials/content_slot.html:11
+msgid "Ajouter maintenant"
+msgstr "Add now"
+
+#: templates/portfolio/home.html:394
+msgid "Ajouter un projet"
+msgstr "Add a project"
+
+#: templates/portfolio/home.html:450
+msgid "Ajouter une photo"
+msgstr "Add a photo"
+
+#: templates/partials/project_card.html:11
+msgid "Ajoutez une image dans l'admin → Projets"
+msgstr "Add an image in admin → Projects"
+
+#: templates/base.html:113
 msgid "Aller au contenu"
 msgstr "Skip to content"
 
@@ -204,7 +264,7 @@ msgstr "Cancelled"
 msgid "Anti-spam sans espionnage"
 msgstr "Anti-spam without tracking"
 
-#: templates/base.html:128
+#: templates/base.html:130
 msgid "Aperçu de l'image"
 msgstr "Image preview"
 
@@ -212,17 +272,21 @@ msgstr "Image preview"
 msgid "Aperçu réservé à l'administration : cet article n'est pas (encore) visible du public."
 msgstr "Admin preview only: this article is not (yet) visible to the public."
 
-#: templates/portfolio/home.html:531
+#: templates/portfolio/home.html:665
 msgid ""
 "Application web, réseau, vidéosurveillance ou formation : décrivez votre besoin, je vous réponds "
 "rapidement."
 msgstr "Web app, network, CCTV or training: describe your need and I’ll reply quickly."
 
-#: templates/portfolio/home.html:175
+#: templates/portfolio/home.html:203
 msgid "Applications web"
 msgstr "Web applications"
 
-#: templates/portfolio/home.html:428
+#: portfolio/views.py:96
+msgid "Apprenants"
+msgstr "Learners"
+
+#: templates/portfolio/home.html:561
 msgid "Apprenez avec moi"
 msgstr "Learn with me"
 
@@ -234,11 +298,11 @@ msgstr ""
 "After several failed attempts, sign-in is temporarily locked: that makes brute-force attacks "
 "ineffective."
 
-#: templates/blog/post_detail.html:102
+#: templates/blog/post_detail.html:99
 msgid "Article suivant &rarr;"
 msgstr "Next article &rarr;"
 
-#: templates/blog/post_list.html:17
+#: templates/blog/post_list.html:20
 msgid "Articles &amp; tutoriels"
 msgstr "Articles &amp; tutorials"
 
@@ -256,31 +320,27 @@ msgstr "Articles and tutorials on cybersecurity, web development, networking and
 msgid "Articles sur la cybersécurité, le développement web et les réseaux."
 msgstr "Articles on cybersecurity, web development and networking."
 
-#: templates/blog/post_list.html:51
+#: templates/blog/post_list.html:54
 msgid "Aucun article"
 msgstr "No articles"
 
-#: templates/blog/post_list.html:83
+#: templates/blog/post_list.html:86
 msgid "Aucun article pour le moment"
 msgstr "No articles yet"
 
-#: templates/courses/course_list.html:76
+#: templates/courses/course_list.html:79
 msgid "Aucun cours ne correspond à votre recherche"
 msgstr "No courses match your search"
 
-#: templates/portfolio/home.html:376
-msgid "Aucun projet publié pour le moment."
-msgstr "No projects published yet."
-
-#: templates/courses/course_list.html:54
+#: templates/courses/course_list.html:57
 msgid "Aucun résultat"
 msgstr "No results"
 
-#: templates/partials/command_palette.html:55
+#: templates/partials/command_palette.html:56
 msgid "Aucun résultat. Essayez un autre mot."
 msgstr "No results. Try another keyword."
 
-#: templates/portfolio/security.html:59
+#: templates/portfolio/security.html:56
 msgid ""
 "Aucun système n'est invulnérable : la sécurité est un travail continu, fait de mises à jour et de"
 " vigilance."
@@ -290,7 +350,7 @@ msgstr "No system is invulnerable: security is ongoing work of updates and vigil
 msgid "Aucun élément pour le moment."
 msgstr "Nothing here yet."
 
-#: templates/portfolio/home.html:342
+#: templates/portfolio/home.html:366
 msgid "Aucune compétence renseignée pour le moment."
 msgstr "No skills listed yet."
 
@@ -298,7 +358,11 @@ msgstr "No skills listed yet."
 msgid "Aucune donnée bancaire"
 msgstr "No card data stored"
 
-#: templates/blog/post_detail.html:97
+#: portfolio/models.py:312
+msgid "Autre"
+msgstr "Other"
+
+#: templates/blog/post_detail.html:94
 msgid "Autres articles"
 msgstr "More articles"
 
@@ -306,19 +370,19 @@ msgstr "More articles"
 msgid "Avancé"
 msgstr "Advanced"
 
-#: templates/courses/course_detail.html:95
+#: templates/courses/course_detail.html:92
 msgid "Avis des apprenants"
 msgstr "Learner reviews"
 
-#: templates/partials/command_palette.html:48
+#: templates/partials/command_palette.html:49
 msgid "Basculer le thème clair / sombre"
 msgstr "Toggle light / dark theme"
 
-#: portfolio/models.py:131
+#: portfolio/models.py:132
 msgid "Base de données"
 msgstr "Database"
 
-#: portfolio/models.py:190
+#: portfolio/models.py:191
 msgid "Bases de données & données"
 msgstr "Databases & data"
 
@@ -327,14 +391,14 @@ msgstr "Databases & data"
 msgid "Bienvenue %(username)s ! Votre compte a bien été créé."
 msgstr "Welcome %(username)s! Your account has been created."
 
-#: blog/feeds.py:20 templates/blog/post_detail.html:26 templates/blog/post_list.html:3
-#: templates/blog/post_list.html:5 templates/blog/post_list.html:16 templates/partials/footer.html:34
-#: templates/partials/navbar.html:17 templates/partials/navbar.html:84
-#: templates/portfolio/home.html:458
+#: blog/feeds.py:20 templates/blog/post_detail.html:23 templates/blog/post_list.html:3
+#: templates/blog/post_list.html:5 templates/blog/post_list.html:18 templates/partials/footer.html:34
+#: templates/partials/navbar.html:41 templates/partials/navbar.html:53
+#: templates/partials/navbar.html:127 templates/portfolio/home.html:591
 msgid "Blog"
 msgstr "Blog"
 
-#: templates/partials/command_palette.html:23
+#: templates/partials/command_palette.html:24
 msgid "Blog &amp; articles"
 msgstr "Blog &amp; articles"
 
@@ -352,21 +416,26 @@ msgstr "Blog — RSS feed"
 msgid "Bonjour %(name)s"
 msgstr "Hello %(name)s"
 
-#: templates/portfolio/home.html:26
+#: templates/portfolio/home.html:42
 msgid "Bonjour, je suis"
 msgstr "Hello, I am"
 
-#: templates/base.html:144
+#: templates/base.html:146
 msgid "Bonjour, je vous contacte depuis votre site."
 msgstr "Hello, I’m reaching out from your website."
 
+#: templates/portfolio/cv.html:3 templates/portfolio/cv.html:5
+msgid "CV"
+msgstr "CV"
+
+#: templates/partials/featured_project.html:4 templates/partials/featured_project.html:6
 #: templates/partials/project_card.html:4 templates/partials/project_card.html:6
 msgid "Capture d'écran du projet"
 msgstr "Project screenshot"
 
 #: courses/models.py:155
-msgid "Carte bancaire (simulation)"
-msgstr "Bank card (simulation)"
+msgid "Carte bancaire"
+msgstr "Bank card"
 
 #: templates/courses/course_list.html:6
 msgid "Catalogue de cours en ligne : programmation, bases de données, web."
@@ -380,19 +449,19 @@ msgstr ""
 "Online course catalog: programming, databases, web. Buy a course and keep lifetime access in your"
 " personal dashboard."
 
-#: templates/courses/course_list.html:15 templates/partials/command_palette.html:22
+#: templates/courses/course_list.html:18 templates/partials/command_palette.html:23
 msgid "Catalogue des cours"
 msgstr "Course catalog"
 
-#: templates/courses/checkout.html:48
+#: templates/courses/checkout.html:53
 msgid "Ce cours est"
 msgstr "This course is"
 
-#: templates/courses/course_detail.html:158
+#: templates/courses/course_detail.html:155
 msgid "Ce cours inclut"
 msgstr "This course includes"
 
-#: templates/courses/course_access.html:58
+#: templates/courses/course_access.html:57
 msgid "Ce cours vous a plu ?"
 msgstr "Did you enjoy this course?"
 
@@ -400,11 +469,11 @@ msgstr "Did you enjoy this course?"
 msgid "Ce lien a expiré ou a déjà été utilisé."
 msgstr "This link has expired or has already been used."
 
-#: templates/portfolio/home.html:133
+#: templates/portfolio/home.html:163
 msgid "Ce que je peux faire pour vous"
 msgstr "What I can do for you"
 
-#: templates/courses/course_access.html:44 templates/courses/course_detail.html:65
+#: templates/courses/course_access.html:43 templates/courses/course_detail.html:62
 msgid "Ce que vous allez apprendre"
 msgstr "What you will learn"
 
@@ -416,15 +485,15 @@ msgstr "What you liked, what could be improved…"
 msgid "Ce site ne collecte ni ne stocke aucun numéro de carte bancaire."
 msgstr "This site never collects or stores any card numbers."
 
-#: portfolio/models.py:217
+#: portfolio/models.py:218
 msgid "Certification"
 msgstr "Certification"
 
-#: templates/portfolio/home.html:352
+#: portfolio/views.py:94 templates/portfolio/home.html:376
 msgid "Certifications"
 msgstr "Certifications"
 
-#: templates/portfolio/cv.html:110
+#: templates/portfolio/cv.html:112
 msgid "Certifications &amp; formations courtes"
 msgstr "Certifications &amp; short courses"
 
@@ -436,7 +505,7 @@ msgstr "This email address is already used by another account."
 msgid "Cette page est introuvable"
 msgstr "This page could not be found"
 
-#: templates/partials/navbar.html:39
+#: templates/partials/navbar.html:79
 msgid "Changer de thème"
 msgstr "Change theme"
 
@@ -448,7 +517,7 @@ msgstr "Change it regularly to protect your account."
 msgid "Chaque formulaire embarque un jeton unique qui empêche un site tiers d'agir à votre place."
 msgstr "Every form embeds a unique token that stops a third-party site from acting on your behalf."
 
-#: templates/blog/post_list.html:29 templates/courses/course_list.html:45
+#: templates/blog/post_list.html:32 templates/courses/course_list.html:48
 msgid "Chercher"
 msgstr "Search"
 
@@ -472,23 +541,27 @@ msgstr ""
 "Click the link you receive to choose a new password. Check your spam folder if nothing arrives "
 "within a few minutes."
 
-#: templates/partials/project_card.html:26
+#: templates/partials/featured_project.html:39 templates/partials/project_card.html:32
 msgid "Code source"
 msgstr "Source code"
 
-#: templates/courses/checkout.html:3 templates/courses/course_access.html:38
+#: templates/courses/checkout.html:3 templates/courses/course_access.html:37
 msgid "Commande"
 msgstr "Order"
 
-#: templates/courses/checkout.html:54
+#: templates/courses/checkout.html:59
 msgid "Commande au nom de"
 msgstr "Order for"
 
-#: templates/portfolio/security.html:17
+#: courses/views.py:237
+msgid "Commande introuvable."
+msgstr "Order not found."
+
+#: templates/portfolio/security.html:15
 msgid "Comment ce site protège vos données"
 msgstr "How this site protects your data"
 
-#: templates/portfolio/home.html:386
+#: templates/portfolio/home.html:519
 msgid "Comment je travaille"
 msgstr "How I work"
 
@@ -496,11 +569,11 @@ msgstr "How I work"
 msgid "Comment puis-je vous aider ?"
 msgstr "How can I help you?"
 
-#: templates/partials/command_palette.html:32
+#: templates/partials/command_palette.html:33
 msgid "Compte"
 msgstr "Account"
 
-#: templates/portfolio/cv.html:49 templates/portfolio/home.html:297
+#: templates/portfolio/cv.html:51 templates/portfolio/home.html:321
 msgid "Compétences"
 msgstr "Skills"
 
@@ -509,12 +582,17 @@ msgstr "Skills"
 msgid "Confirmation de votre commande %(reference)s"
 msgstr "Confirmation of your order %(reference)s"
 
+#: templates/courses/checkout.html:83
+#, python-format
+msgid "Confirmer %(price)s %(symbol)s"
+msgstr "Confirm %(price)s %(symbol)s"
+
 #: templates/accounts/login.html:5
 msgid "Connectez-vous pour accéder à vos cours."
 msgstr "Sign in to access your courses."
 
-#: templates/accounts/login.html:3 templates/partials/command_palette.html:39
-#: templates/partials/navbar.html:64 templates/partials/navbar.html:107
+#: templates/accounts/login.html:3 templates/partials/command_palette.html:40
+#: templates/partials/navbar.html:104 templates/partials/navbar.html:142
 msgid "Connexion"
 msgstr "Sign in"
 
@@ -522,9 +600,10 @@ msgstr "Sign in"
 msgid "Connexion chiffrée (HTTPS)"
 msgstr "Encrypted connection (HTTPS)"
 
-#: templates/partials/command_palette.html:27 templates/partials/footer.html:38
-#: templates/partials/footer.html:43 templates/partials/navbar.html:18
-#: templates/partials/navbar.html:86 templates/portfolio/cv.html:32 templates/portfolio/home.html:543
+#: templates/partials/command_palette.html:28 templates/partials/footer.html:38
+#: templates/partials/footer.html:43 templates/partials/navbar.html:42
+#: templates/partials/navbar.html:130 templates/partials/side_index.html:10
+#: templates/portfolio/cv.html:32 templates/portfolio/home.html:677
 msgid "Contact"
 msgstr "Contact"
 
@@ -532,11 +611,11 @@ msgstr "Contact"
 msgid "Content de vous revoir"
 msgstr "Welcome back"
 
-#: templates/courses/course_detail.html:162
+#: templates/courses/course_detail.html:159
 msgid "Contenu à suivre en ligne"
 msgstr "Content to follow online"
 
-#: templates/portfolio/home.html:181
+#: templates/portfolio/home.html:209
 msgid "Contrôle des accès et protection des informations sensibles."
 msgstr "Access control and protection of sensitive information."
 
@@ -544,20 +623,21 @@ msgstr "Access control and protection of sensitive information."
 msgid "Conçu avec Django &amp; Tailwind CSS"
 msgstr "Built with Django &amp; Tailwind CSS"
 
-#: templates/portfolio/home.html:276 templates/portfolio/home.html:555
+#: templates/portfolio/home.html:300 templates/portfolio/home.html:689
 msgid "Copier"
 msgstr "Copy"
 
-#: templates/portfolio/home.html:276 templates/portfolio/home.html:555
+#: templates/portfolio/home.html:300 templates/portfolio/home.html:689
 msgid "Copier l'e-mail"
 msgstr "Copy email"
 
-#: templates/blog/post_detail.html:81 templates/courses/course_detail.html:48
+#: templates/blog/post_detail.html:78 templates/courses/course_detail.html:45
 msgid "Copier le lien"
 msgstr "Copy link"
 
-#: templates/courses/checkout.html:13 templates/courses/course_detail.html:20
-#: templates/courses/dashboard.html:80 templates/partials/navbar.html:16
+#: templates/courses/checkout.html:13 templates/courses/course_detail.html:17
+#: templates/courses/dashboard.html:80 templates/partials/navbar.html:40
+#: templates/partials/navbar.html:126 templates/partials/side_index.html:9
 msgid "Cours"
 msgstr "Courses"
 
@@ -565,14 +645,13 @@ msgstr "Courses"
 msgid "Cours achetés"
 msgstr "Courses purchased"
 
-#: templates/courses/course_access.html:13 templates/courses/course_detail.html:30
+#: templates/courses/course_access.html:13 templates/courses/course_detail.html:27
 msgid "Cours acquis"
 msgstr "Courses owned"
 
-#: templates/courses/course_list.html:3 templates/courses/course_list.html:5
-#: templates/courses/course_list.html:14 templates/courses/receipt.html:52
-#: templates/partials/footer.html:33 templates/partials/navbar.html:83
-#: templates/portfolio/home.html:427
+#: portfolio/views.py:95 templates/courses/course_list.html:3 templates/courses/course_list.html:5
+#: templates/courses/course_list.html:16 templates/courses/receipt.html:52
+#: templates/partials/footer.html:33 templates/portfolio/home.html:560
 msgid "Cours en ligne"
 msgstr "Online courses"
 
@@ -589,23 +668,31 @@ msgstr "Courses reserved for buyers"
 msgid "Créer un compte"
 msgstr "Create an account"
 
+#: templates/portfolio/cv.html:72
+msgid "Curriculum vitae"
+msgstr "Curriculum vitae"
+
 #: templates/portfolio/cv.html:4
 #, python-format
 msgid "Curriculum vitae de %(name)s : %(headline)s. Compétences, expériences, formations et projets."
 msgstr "Curriculum vitae of %(name)s: %(headline)s. Skills, experience, education and projects."
 
-#: portfolio/models.py:134 portfolio/models.py:192 templates/partials/command_palette.html:19
-#: templates/partials/footer.html:30 templates/partials/navbar.html:13
-#: templates/partials/navbar.html:80 templates/portfolio/home.html:161
-#: templates/portfolio/home.html:249
+#: templates/portfolio/cv.html:4
+msgid "Curriculum vitae."
+msgstr "Curriculum vitae."
+
+#: portfolio/models.py:135 portfolio/models.py:193 templates/partials/command_palette.html:19
+#: templates/partials/footer.html:29 templates/partials/navbar.html:51
+#: templates/partials/navbar.html:122 templates/partials/side_index.html:5
+#: templates/portfolio/home.html:189 templates/portfolio/home.html:278
 msgid "Cybersécurité"
 msgstr "Cybersecurity"
 
-#: templates/portfolio/home.html:460
+#: templates/portfolio/home.html:593
 msgid "Cybersécurité, développement web, réseaux : des conseils concrets à appliquer tout de suite."
 msgstr "Cybersecurity, web development, networking: practical advice you can apply right away."
 
-#: templates/blog/post_list.html:18
+#: templates/blog/post_list.html:21
 msgid "Cybersécurité, développement web, réseaux : des conseils concrets, sans jargon inutile."
 msgstr "Cybersecurity, web development, networking: practical advice, without useless jargon."
 
@@ -621,15 +708,15 @@ msgstr "Request a new link"
 msgid "Dernier achat"
 msgstr "Latest purchase"
 
-#: templates/portfolio/home.html:459
+#: templates/portfolio/home.html:592
 msgid "Derniers articles"
 msgstr "Latest articles"
 
-#: templates/portfolio/home.html:429
+#: templates/portfolio/home.html:562
 msgid "Des cours pratiques, accessibles à vie depuis votre espace personnel après achat."
 msgstr "Practical courses with lifetime access from your personal dashboard after purchase."
 
-#: templates/partials/footer.html:10
+#: templates/partials/footer.html:9
 msgid "Des projets concrets et des cours en ligne pour apprendre à votre rythme."
 msgstr "Real projects and online courses to learn at your own pace."
 
@@ -637,31 +724,35 @@ msgstr "Real projects and online courses to learn at your own pace."
 msgid "Description"
 msgstr "Description"
 
-#: templates/courses/course_detail.html:78
+#: templates/courses/course_detail.html:75
 msgid "Description du cours"
 msgstr "Course description"
 
-#: templates/base.html:146 templates/partials/command_palette.html:50
+#: templates/base.html:148 templates/partials/command_palette.html:51
 msgid "Discuter sur WhatsApp"
 msgstr "Chat on WhatsApp"
 
-#: templates/portfolio/home.html:21
+#: templates/portfolio/home.html:111
+msgid "Disponible"
+msgstr "Available"
+
+#: templates/partials/navbar.html:12 templates/portfolio/home.html:31
 msgid "Disponible pour de nouvelles missions"
 msgstr "Available for new projects"
 
-#: templates/portfolio/security.html:41
+#: templates/portfolio/security.html:38
 msgid "Divulgation responsable"
 msgstr "Responsible disclosure"
 
-#: templates/portfolio/cv.html:76
+#: templates/portfolio/cv.html:78
 msgid "Domaines d'expertise"
 msgstr "Areas of expertise"
 
-#: portfolio/radar.py:26 templates/portfolio/home.html:180
+#: portfolio/radar.py:26 templates/portfolio/home.html:208
 msgid "Données"
 msgstr "Data"
 
-#: templates/portfolio/home.html:134
+#: templates/portfolio/home.html:164
 msgid ""
 "Du développement d'applications à l'installation de réseaux, des solutions fiables, de la "
 "conception à la maintenance."
@@ -673,11 +764,11 @@ msgstr ""
 msgid "Débutant"
 msgstr "Beginner"
 
-#: templates/partials/navbar.html:59 templates/partials/navbar.html:104
+#: templates/partials/navbar.html:99 templates/partials/navbar.html:139
 msgid "Déconnexion"
 msgstr "Log out"
 
-#: templates/partials/course_card.html:47
+#: templates/partials/course_card.html:46
 msgid "Découvrir"
 msgstr "Discover"
 
@@ -689,7 +780,7 @@ msgstr "Browse courses"
 msgid "Découvrir les cours"
 msgstr "Browse courses"
 
-#: templates/portfolio/home.html:55
+#: templates/portfolio/home.html:69
 msgid "Découvrir mes cours"
 msgstr "Explore my courses"
 
@@ -697,31 +788,35 @@ msgstr "Explore my courses"
 msgid "Déjà inscrit ?"
 msgstr "Already registered?"
 
-#: templates/partials/project_card.html:29
+#: templates/partials/project_card.html:35
 msgid "Démo"
 msgstr "Demo"
 
-#: portfolio/models.py:130
+#: portfolio/models.py:131
 msgid "Développement"
 msgstr "Development"
 
-#: templates/portfolio/home.html:410
+#: templates/portfolio/home.html:543
 msgid "Développement ou installation, avec des points d'étape réguliers."
 msgstr "Development or installation, with regular progress checkpoints."
 
-#: portfolio/models.py:189
+#: portfolio/models.py:190
 msgid "Développement web"
 msgstr "Web development"
 
-#: templates/portfolio/home.html:46
+#: templates/portfolio/home.html:125
+msgid "Développeur"
+msgstr "Developer"
+
+#: templates/portfolio/home.html:60
 msgid "Développeur &amp; formateur"
 msgstr "Developer &amp; instructor"
 
-#: portfolio/forms.py:13 templates/portfolio/home.html:273 templates/portfolio/home.html:552
+#: portfolio/forms.py:13 templates/portfolio/home.html:297 templates/portfolio/home.html:686
 msgid "E-mail"
 msgstr "Email"
 
-#: templates/portfolio/home.html:276 templates/portfolio/home.html:555
+#: templates/portfolio/home.html:300 templates/portfolio/home.html:689
 msgid "E-mail copié !"
 msgstr "Email copied!"
 
@@ -729,13 +824,25 @@ msgstr "Email copied!"
 msgid "E-mail envoyé"
 msgstr "Email sent"
 
-#: templates/blog/post_list.html:30
+#: templates/blog/post_list.html:33
 msgid "Effacer"
 msgstr "Clear"
 
-#: templates/courses/course_list.html:46
+#: templates/courses/course_list.html:49
 msgid "Effacer les filtres"
 msgstr "Clear filters"
+
+#: templates/portfolio/home.html:473
+msgid "Emplacement photo"
+msgstr "Photo slot"
+
+#: templates/partials/featured_project.html:11
+msgid "Emplacement photo du projet mis en avant — ajoutez une image dans Admin → Projets."
+msgstr "Featured project photo slot — add an image in Admin → Projects."
+
+#: templates/portfolio/home.html:412 templates/portfolio/home.html:426
+msgid "Emplacement projet"
+msgstr "Project slot"
 
 #: courses/models.py:149
 msgid "En attente"
@@ -761,7 +868,7 @@ msgstr "Save"
 msgid "Enregistrer les modifications"
 msgstr "Save changes"
 
-#: templates/partials/command_palette.html:59
+#: templates/partials/command_palette.html:60
 msgid "Entrée"
 msgstr "Enter"
 
@@ -773,31 +880,27 @@ msgstr "Sanitized input"
 msgid "Envoyer le lien"
 msgstr "Send the link"
 
-#: templates/portfolio/home.html:606
+#: templates/portfolio/home.html:746
 msgid "Envoyer le message"
 msgstr "Send message"
 
-#: templates/portfolio/home.html:533
+#: templates/portfolio/home.html:667
 msgid "Envoyer un message"
 msgstr "Send a message"
 
-#: templates/500.html:6
-msgid "Erreur serveur"
-msgstr "Server error"
-
-#: templates/courses/course_list.html:77
+#: templates/courses/course_list.html:80
 msgid "Essayez d'autres mots-clés ou retirez certains filtres."
 msgstr "Try other keywords or remove some filters."
 
-#: templates/blog/post_list.html:84
+#: templates/blog/post_list.html:87
 msgid "Essayez un autre mot-clé ou retirez le filtre."
 msgstr "Try another keyword or remove the filter."
 
-#: portfolio/models.py:215 templates/portfolio/cv.html:85 templates/portfolio/home.html:350
+#: portfolio/models.py:216 templates/portfolio/cv.html:87 templates/portfolio/home.html:374
 msgid "Expérience professionnelle"
 msgstr "Work experience"
 
-#: templates/portfolio/home.html:505
+#: templates/portfolio/home.html:638
 msgid "FAQ"
 msgstr "FAQ"
 
@@ -805,19 +908,23 @@ msgstr "FAQ"
 msgid "Facturé à"
 msgstr "Billed to"
 
-#: templates/base.html:132 templates/partials/messages.html:16
+#: templates/base.html:134 templates/partials/messages.html:16
 msgid "Fermer"
 msgstr "Close"
 
-#: templates/courses/course_detail.html:163
+#: templates/partials/navbar.html:109
+msgid "Fermer le menu"
+msgstr "Close menu"
+
+#: templates/courses/course_detail.html:160
 msgid "Fichier téléchargeable"
 msgstr "Downloadable file"
 
-#: templates/blog/post_detail.html:24 templates/courses/course_detail.html:17
+#: templates/blog/post_detail.html:21 templates/courses/course_detail.html:14
 msgid "Fil d'Ariane"
 msgstr "Breadcrumb"
 
-#: templates/blog/post_list.html:34
+#: templates/blog/post_list.html:37
 msgid "Filtrer par tag"
 msgstr "Filter by tag"
 
@@ -825,24 +932,50 @@ msgstr "Filter by tag"
 msgid "Finaliser ma commande"
 msgstr "Complete my order"
 
-#: templates/blog/post_list.html:20
+#: templates/blog/post_list.html:23
 msgid "Flux RSS"
 msgstr "RSS feed"
 
-#: portfolio/models.py:135 portfolio/models.py:216 templates/portfolio/cv.html:98
-#: templates/portfolio/home.html:351
+#: portfolio/models.py:136 portfolio/models.py:217 templates/portfolio/cv.html:100
+#: templates/portfolio/home.html:375
 msgid "Formation"
 msgstr "Education"
 
-#: templates/courses/checkout.html:74 templates/courses/course_detail.html:141
+#: portfolio/models.py:311
+msgid "Formation / événement"
+msgstr "Training / event"
+
+#: templates/partials/footer.html:32 templates/partials/navbar.html:39
+#: templates/partials/navbar.html:52 templates/partials/navbar.html:125
+#: templates/partials/side_index.html:8 templates/portfolio/home.html:445
+msgid "Galerie"
+msgstr "Gallery"
+
+#: templates/partials/command_palette.html:22
+msgid "Galerie photos"
+msgstr "Photo gallery"
+
+#: templates/courses/checkout.html:79 templates/courses/course_detail.html:138
 #: templates/courses/dashboard.html:88 templates/courses/receipt.html:54
-#: templates/partials/course_card.html:44
+#: templates/partials/course_card.html:43
 msgid "Gratuit"
 msgstr "Free"
 
-#: templates/courses/course_list.html:34
+#: templates/courses/course_list.html:37
 msgid "Gratuits"
 msgstr "Free"
+
+#: templates/portfolio/home.html:505
+msgid "Gérer la galerie"
+msgstr "Manage gallery"
+
+#: templates/portfolio/home.html:497
+msgid "Gérer les projets"
+msgstr "Manage projects"
+
+#: templates/partials/navbar.html:20
+msgid "Heure locale"
+msgstr "Local time"
 
 #: templates/courses/dashboard.html:76
 msgid "Historique des commandes"
@@ -853,9 +986,21 @@ msgstr "Order history"
 msgid "Identifiant de connexion : <strong>%(username)s</strong> · inscrit le %(joined)s"
 msgstr "Sign-in ID: <strong>%(username)s</strong> · joined %(joined)s"
 
-#: templates/portfolio/home.html:479
+#: templates/portfolio/home.html:612
 msgid "Ils m'ont fait confiance"
 msgstr "They trusted me"
+
+#: templates/partials/project_card.html:11
+msgid "Image à venir"
+msgstr "Image coming soon"
+
+#: courses/views.py:249
+msgid "Impossible de vérifier le paiement. Contactez le support si vous avez été débité."
+msgstr "Unable to verify the payment. Contact support if you were charged."
+
+#: templates/portfolio/cv.html:20
+msgid "Imprimer / Enregistrer en PDF"
+msgstr "Print / Save as PDF"
 
 #: templates/courses/receipt.html:10
 msgid "Imprimer / enregistrer en PDF"
@@ -865,7 +1010,7 @@ msgstr "Print / save as PDF"
 msgid "Indiquez votre adresse e-mail : nous vous enverrons un lien pour en choisir un nouveau."
 msgstr "Enter your email address and we’ll send a link to choose a new password."
 
-#: templates/courses/course_detail.html:154
+#: templates/courses/course_detail.html:151
 msgid "Inscrivez-vous"
 msgstr "Sign up"
 
@@ -877,11 +1022,11 @@ msgstr "Sign up to buy and follow your courses."
 msgid "Intermédiaire"
 msgstr "Intermediate"
 
-#: templates/portfolio/home.html:50
+#: templates/portfolio/home.html:64
 msgid "Je conçois des applications web et je partage mon savoir-faire à travers des cours en ligne."
 msgstr "I design web applications and share my expertise through online courses."
 
-#: templates/portfolio/home.html:404
+#: templates/portfolio/home.html:537
 msgid "Je vous présente une solution claire, un planning et un budget."
 msgstr "I present a clear solution, a timeline and a budget."
 
@@ -889,7 +1034,7 @@ msgstr "I present a clear solution, a timeline and a budget."
 msgid "La page que vous cherchez n'existe pas ou a été déplacée."
 msgstr "The page you are looking for does not exist or has been moved."
 
-#: templates/portfolio/security.html:19
+#: templates/portfolio/security.html:17
 msgid ""
 "La sécurité n'est pas un slogan. Voici, sans jargon, ce qui est réellement mis en place ici, et "
 "comment me signaler un problème si vous en trouvez un."
@@ -897,7 +1042,7 @@ msgstr ""
 "Security is not a slogan. Here is, without jargon, what is actually in place here, and how to "
 "report a problem if you find one."
 
-#: templates/portfolio/home.html:162
+#: templates/portfolio/home.html:190
 msgid "La sécurité, pensée dès le départ"
 msgstr "Security, designed from the start"
 
@@ -905,19 +1050,19 @@ msgstr "Security, designed from the start"
 msgid "Langages"
 msgstr "Languages"
 
-#: portfolio/models.py:188
+#: portfolio/models.py:189
 msgid "Langages de programmation"
 msgstr "Programming languages"
 
-#: templates/partials/navbar.html:28 templates/partials/navbar.html:88
+#: templates/partials/navbar.html:68
 msgid "Langue"
 msgstr "Language"
 
-#: templates/portfolio/cv.html:43 templates/portfolio/home.html:284
+#: templates/portfolio/cv.html:45 templates/portfolio/home.html:308
 msgid "Langues"
 msgstr "Languages"
 
-#: templates/courses/course_access.html:30
+#: templates/courses/course_access.html:29
 msgid "Le contenu de ce cours sera bientôt disponible."
 msgstr "This course content will be available soon."
 
@@ -925,9 +1070,17 @@ msgstr "This course content will be available soon."
 msgid "Le formulaire de contact utilise un piège invisible (honeypot) plutôt qu'un traceur publicitaire."
 msgstr "The contact form uses an invisible honeypot instead of an advertising tracker."
 
-#: courses/views.py:204
+#: courses/views.py:257
+msgid "Le montant payé ne correspond pas à la commande."
+msgstr "The amount paid does not match the order."
+
+#: courses/views.py:208 courses/views.py:214
 msgid "Le paiement a échoué. Veuillez réessayer."
 msgstr "Payment failed. Please try again."
+
+#: courses/views.py:244
+msgid "Le paiement n'a pas été confirmé. Vous pouvez réessayer."
+msgstr "The payment was not confirmed. You can try again."
 
 #: portfolio/security_info.py:92
 msgid ""
@@ -969,15 +1122,19 @@ msgstr ""
 "Passwords are never stored in plain text: only a salted PBKDF2 hash is kept, and weak or common "
 "passwords are rejected."
 
-#: templates/blog/post_list.html:84
+#: templates/blog/post_list.html:87
 msgid "Les premiers articles arrivent bientôt."
 msgstr "The first articles are coming soon."
 
-#: templates/portfolio/home.html:441
+#: templates/portfolio/home.html:574
 msgid "Les premiers cours arrivent bientôt."
 msgstr "The first courses are coming soon."
 
-#: templates/blog/post_detail.html:81
+#: templates/portfolio/home.html:433
+msgid "Les projets seront publiés ici prochainement."
+msgstr "Projects will be published here soon."
+
+#: templates/blog/post_detail.html:78
 msgid "Lien copié !"
 msgstr "Link copied!"
 
@@ -989,36 +1146,40 @@ msgstr "Invalid link"
 msgid "Limitation des tentatives de connexion"
 msgstr "Sign-in attempt limiting"
 
-#: templates/blog/post_list.html:69 templates/partials/post_card.html:25
+#: templates/blog/post_list.html:72 templates/partials/post_card.html:25
 msgid "Lire l'article"
 msgstr "Read the article"
 
-#: templates/portfolio/home.html:415
+#: templates/portfolio/home.html:548
 msgid "Livraison &amp; suivi"
 msgstr "Delivery &amp; follow-up"
 
-#: templates/portfolio/home.html:269 templates/portfolio/home.html:569
+#: templates/portfolio/home.html:293 templates/portfolio/home.html:703
 msgid "Localisation"
 msgstr "Location"
 
-#: templates/blog/post_detail.html:91 templates/courses/course_access.html:89
-#: templates/portfolio/home.html:290 templates/portfolio/security.html:52
+#: templates/partials/form.html:18
+msgid "Masquer le mot de passe"
+msgstr "Hide password"
+
+#: templates/blog/post_detail.html:88 templates/courses/course_access.html:88
+#: templates/portfolio/home.html:314 templates/portfolio/security.html:49
 msgid "Me contacter"
 msgstr "Contact me"
 
-#: courses/views.py:256
+#: courses/views.py:309
 msgid "Merci ! Votre avis a bien été enregistré."
 msgstr "Thank you! Your review has been saved."
 
-#: portfolio/views.py:134
+#: portfolio/views.py:153 templates/portfolio/home.html:722
 msgid "Merci ! Votre message a bien été envoyé, je vous répondrai rapidement."
 msgstr "Thank you! Your message has been sent — I’ll reply soon."
 
-#: portfolio/views.py:126
+#: portfolio/views.py:145
 msgid "Merci ! Votre message a bien été envoyé."
 msgstr "Thank you! Your message has been sent."
 
-#: templates/portfolio/security.html:44
+#: templates/portfolio/security.html:41
 msgid ""
 "Merci de me la signaler en privé avant toute publication, avec le plus de détails possible (page "
 "concernée, étapes pour reproduire). Je m'engage à accuser réception rapidement et à corriger le "
@@ -1032,8 +1193,8 @@ msgstr ""
 msgid "Merci pour votre confiance."
 msgstr "Thank you for your trust."
 
-#: templates/partials/command_palette.html:35 templates/partials/navbar.html:54
-#: templates/partials/navbar.html:100
+#: templates/partials/command_palette.html:36 templates/partials/navbar.html:94
+#: templates/partials/navbar.html:134
 msgid "Mes cours"
 msgstr "My courses"
 
@@ -1045,7 +1206,7 @@ msgstr "My purchased courses"
 msgid "Mes informations"
 msgstr "My details"
 
-#: templates/portfolio/home.html:365
+#: templates/portfolio/home.html:390
 msgid "Mes projets"
 msgstr "My projects"
 
@@ -1053,34 +1214,35 @@ msgstr "My projects"
 msgid "Message"
 msgstr "Message"
 
-#: templates/courses/course_access.html:79
+#: templates/courses/course_access.html:78
 msgid "Mettre à jour mon avis"
 msgstr "Update my review"
 
 #: courses/models.py:154
-msgid "Mobile Money (simulation)"
-msgstr "Mobile Money (simulation)"
+msgid "Mobile Money"
+msgstr "Mobile Money"
 
-#: templates/courses/checkout.html:23
-msgid "Mode démonstration :"
-msgstr "Demo mode:"
+#: templates/partials/featured_project.html:45
+msgid "Modifier"
+msgstr "Edit"
 
 #: templates/accounts/password_change.html:3 templates/accounts/password_change.html:12
 #: templates/accounts/profile.html:39
 msgid "Modifier le mot de passe"
 msgstr "Change password"
 
-#: templates/partials/footer.html:35 templates/partials/navbar.html:85 templates/portfolio/home.html:57
+#: templates/partials/footer.html:35 templates/partials/navbar.html:57
+#: templates/partials/navbar.html:128 templates/portfolio/home.html:70
 msgid "Mon CV"
 msgstr "My résumé"
 
-#: templates/partials/command_palette.html:24
+#: templates/partials/command_palette.html:25
 msgid "Mon CV (PDF)"
 msgstr "My résumé (PDF)"
 
 #: templates/accounts/profile.html:3 templates/accounts/profile.html:9
-#: templates/courses/dashboard.html:18 templates/partials/command_palette.html:36
-#: templates/partials/navbar.html:55 templates/partials/navbar.html:101
+#: templates/courses/dashboard.html:18 templates/partials/command_palette.html:37
+#: templates/partials/navbar.html:95 templates/partials/navbar.html:135
 msgid "Mon compte"
 msgstr "My account"
 
@@ -1092,7 +1254,7 @@ msgstr "My course"
 msgid "Mon espace"
 msgstr "My dashboard"
 
-#: templates/portfolio/home.html:229
+#: templates/portfolio/home.html:256
 msgid "Mon parcours et mes compétences"
 msgstr "My background and skills"
 
@@ -1120,15 +1282,15 @@ msgstr "Forgot password?"
 msgid "Mots de passe hachés"
 msgstr "Hashed passwords"
 
-#: templates/portfolio/home.html:171
+#: templates/portfolio/home.html:199
 msgid "Mots de passe robustes, mises à jour, segmentation et sauvegardes."
 msgstr "Strong passwords, updates, segmentation and backups."
 
-#: courses/forms.py:16 templates/courses/checkout.html:33 templates/courses/checkout.html:34
+#: courses/forms.py:16 templates/courses/checkout.html:38 templates/courses/checkout.html:39
 msgid "Moyen de paiement"
 msgstr "Payment method"
 
-#: templates/portfolio/home.html:385
+#: templates/partials/navbar.html:54 templates/portfolio/home.html:518
 msgid "Méthode"
 msgstr "Method"
 
@@ -1136,32 +1298,32 @@ msgstr "Method"
 msgid "Méthodes"
 msgstr "Methods"
 
-#: templates/partials/footer.html:27
+#: templates/partials/footer.html:26 templates/partials/navbar.html:118
 msgid "Navigation"
 msgstr "Navigation"
 
-#: templates/partials/navbar.html:4
+#: templates/partials/navbar.html:27
 msgid "Navigation principale"
 msgstr "Main navigation"
 
-#: templates/portfolio/home.html:587
+#: templates/portfolio/home.html:727
 msgid "Ne pas remplir"
 msgstr "Leave blank"
 
-#: templates/courses/course_list.html:24
+#: templates/courses/course_list.html:27
 msgid "Niveau"
 msgstr "Level"
 
-#: templates/courses/course_detail.html:160
+#: templates/courses/course_detail.html:157
 #, python-format
 msgid "Niveau %(level)s"
 msgstr "Level %(level)s"
 
-#: templates/portfolio/home.html:302
+#: templates/portfolio/home.html:326
 msgid "Niveau moyen par domaine :"
 msgstr "Average level by area:"
 
-#: accounts/forms.py:63 portfolio/forms.py:12
+#: accounts/forms.py:63
 msgid "Nom"
 msgstr "Last name"
 
@@ -1178,7 +1340,7 @@ msgstr "Rating"
 msgid "Note : %(rating)s sur 5"
 msgstr "Rating: %(rating)s out of 5"
 
-#: templates/courses/course_detail.html:29 templates/partials/course_card.html:19
+#: templates/courses/course_detail.html:26 templates/partials/course_card.html:18
 msgid "Nouveau"
 msgstr "New"
 
@@ -1190,31 +1352,39 @@ msgstr "New password"
 msgid "Objet de votre message"
 msgstr "Subject of your message"
 
-#: templates/courses/checkout.html:78
+#: templates/courses/checkout.html:83
 msgid "Obtenir le cours"
 msgstr "Get the course"
 
-#: templates/portfolio/home.html:398
+#: templates/portfolio/home.html:531
 msgid "On définit ensemble votre besoin, vos contraintes et vos délais."
 msgstr "Together we define your needs, constraints and deadlines."
 
-#: portfolio/models.py:193
+#: portfolio/models.py:194
 msgid "Outils & méthodes"
 msgstr "Tools & methods"
 
-#: templates/partials/course_card.html:47
+#: templates/partials/course_card.html:46
 msgid "Ouvrir"
 msgstr "Open"
 
-#: templates/courses/course_access.html:24
+#: templates/partials/content_slot.html:13
+msgid "Ouvrir l'admin"
+msgstr "Open admin"
+
+#: templates/courses/course_access.html:22
 msgid "Ouvrir le cours en ligne"
 msgstr "Open the online course"
 
-#: templates/partials/navbar.html:69
+#: templates/partials/navbar.html:109
 msgid "Ouvrir le menu"
 msgstr "Open menu"
 
-#: templates/blog/post_list.html:92 templates/courses/course_list.html:67
+#: templates/portfolio/home.html:489
+msgid "Ouvrir le profil"
+msgstr "Open profile"
+
+#: templates/blog/post_list.html:95 templates/courses/course_list.html:70
 #, python-format
 msgid "Page %(number)s sur %(pages)s"
 msgstr "Page %(number)s of %(pages)s"
@@ -1227,7 +1397,7 @@ msgstr "Page not found"
 msgid "Pages privées non indexées"
 msgstr "Private pages not indexed"
 
-#: templates/blog/post_list.html:90 templates/courses/course_list.html:63
+#: templates/blog/post_list.html:93 templates/courses/course_list.html:66
 msgid "Pagination"
 msgstr "Pagination"
 
@@ -1235,7 +1405,7 @@ msgstr "Pagination"
 msgid "Paiement"
 msgstr "Payment"
 
-#: courses/views.py:199
+#: courses/views.py:199 courses/views.py:264
 #, python-format
 msgid "Paiement confirmé ! Commande n° %(reference)s. Bon apprentissage !"
 msgstr "Payment confirmed! Order #%(reference)s. Happy learning!"
@@ -1243,6 +1413,14 @@ msgstr "Payment confirmed! Order #%(reference)s. Happy learning!"
 #: templates/courses/receipt.html:67
 msgid "Paiement effectué en mode démonstration : aucun montant n'a été réellement débité."
 msgstr "Payment completed in demo mode: no amount was actually charged."
+
+#: templates/courses/checkout.html:23
+msgid "Paiement en démonstration :"
+msgstr "Demo payment:"
+
+#: templates/courses/checkout.html:28
+msgid "Paiement sécurisé via Flutterwave (carte bancaire et Mobile Money selon votre réseau)."
+msgstr "Secure payment via Flutterwave (bank card and Mobile Money, depending on your network)."
 
 #: templates/partials/command_palette.html:3
 msgid "Palette de commandes"
@@ -1252,65 +1430,69 @@ msgstr "Command palette"
 msgid "Parcourez le catalogue pour commencer à apprendre."
 msgstr "Browse the catalog to start learning."
 
-#: templates/blog/post_detail.html:77 templates/courses/course_detail.html:44
+#: templates/blog/post_detail.html:74 templates/courses/course_detail.html:41
 msgid "Partager :"
 msgstr "Share:"
 
-#: templates/blog/post_detail.html:79 templates/courses/course_detail.html:46
+#: templates/blog/post_detail.html:76 templates/courses/course_detail.html:43
 msgid "Partager sur Facebook"
 msgstr "Share on Facebook"
 
-#: templates/blog/post_detail.html:80
+#: templates/blog/post_detail.html:77
 msgid "Partager sur LinkedIn"
 msgstr "Share on LinkedIn"
 
-#: templates/blog/post_detail.html:78 templates/courses/course_detail.html:45
+#: templates/blog/post_detail.html:75 templates/courses/course_detail.html:42
 msgid "Partager sur WhatsApp"
 msgstr "Share on WhatsApp"
 
-#: templates/courses/course_detail.html:132
+#: templates/courses/course_detail.html:129
 msgid ""
 "Pas encore d'avis sur ce cours. Les apprenants qui l'ont suivi peuvent donner le leur depuis leur"
 " espace."
 msgstr "No reviews for this course yet. Learners who took it can leave theirs from their dashboard."
 
-#: templates/accounts/login.html:21 templates/courses/course_detail.html:154
+#: templates/accounts/login.html:21 templates/courses/course_detail.html:151
 msgid "Pas encore de compte ?"
 msgstr "Don’t have an account yet?"
 
 #: courses/models.py:156
-msgid "PayPal (simulation)"
-msgstr "PayPal (simulation)"
+msgid "PayPal"
+msgstr "PayPal"
 
-#: templates/courses/course_list.html:35
+#: templates/courses/course_list.html:38
 msgid "Payants"
 msgstr "Paid"
-
-#: templates/courses/checkout.html:78
-#, python-format
-msgid "Payer %(price)s %(symbol)s"
-msgstr "Pay %(price)s %(symbol)s"
 
 #: courses/models.py:150
 msgid "Payée"
 msgstr "Paid"
 
-#: templates/blog/post_detail.html:86 templates/portfolio/cv.html:29 templates/portfolio/home.html:101
+#: templates/blog/post_detail.html:83 templates/portfolio/cv.html:29 templates/portfolio/home.html:18
+#: templates/portfolio/home.html:96
 msgid "Photo de"
 msgstr "Photo of"
 
-#: templates/partials/footer.html:26
+#: templates/portfolio/home.html:446
+msgid "Photos professionnelles"
+msgstr "Professional photos"
+
+#: templates/partials/footer.html:25
 msgid "Plan du site"
 msgstr "Sitemap"
+
+#: templates/partials/navbar.html:46
+msgid "Plus"
+msgstr "More"
 
 #: courses/views.py:31
 msgid "Plus récents"
 msgstr "Newest"
 
-#: templates/partials/command_palette.html:21 templates/partials/footer.html:7
-#: templates/partials/footer.html:32 templates/partials/footer.html:54 templates/partials/navbar.html:7
-#: templates/partials/navbar.html:15 templates/partials/navbar.html:82
-#: templates/portfolio/home.html:364
+#: templates/partials/command_palette.html:21 templates/partials/footer.html:6
+#: templates/partials/footer.html:31 templates/partials/footer.html:54
+#: templates/partials/navbar.html:15 templates/partials/navbar.html:30 templates/portfolio/home.html:38
+#: templates/portfolio/home.html:125 templates/portfolio/home.html:389
 msgid "Portfolio"
 msgstr "Portfolio"
 
@@ -1322,9 +1504,17 @@ msgstr "Portfolio &amp; online courses"
 msgid "Portfolio, projets et cours en ligne."
 msgstr "Portfolio, projects and online courses."
 
-#: templates/portfolio/home.html:240
+#: portfolio/models.py:309
+msgid "Portrait / profil"
+msgstr "Portrait / profile"
+
+#: templates/portfolio/home.html:266
 msgid "Portrait de"
 msgstr "Portrait of"
+
+#: templates/portfolio/home.html:447
+msgid "Portrait, cérémonie et travail au quotidien."
+msgstr "Portrait, ceremony and day-to-day work."
 
 #: templates/courses/dashboard.html:99
 msgid "Pour aller plus loin"
@@ -1336,7 +1526,7 @@ msgid ""
 "durée limitée."
 msgstr "For security reasons, a reset link works only once and for a limited time."
 
-#: templates/courses/checkout.html:74 templates/courses/course_list.html:31
+#: templates/courses/checkout.html:79 templates/courses/course_list.html:34
 msgid "Prix"
 msgstr "Price"
 
@@ -1348,11 +1538,20 @@ msgstr "Price: low to high"
 msgid "Prix décroissant"
 msgstr "Price: high to low"
 
-#: templates/portfolio/cv.html:122
+#: templates/partials/featured_project.html:17
+msgid "Projet phare"
+msgstr "Featured project"
+
+#: templates/partials/navbar.html:38 templates/partials/navbar.html:124
+#: templates/partials/side_index.html:7 templates/portfolio/cv.html:124
 msgid "Projets"
 msgstr "Projects"
 
-#: templates/portfolio/home.html:403
+#: portfolio/views.py:93
+msgid "Projets réalisés"
+msgstr "Completed projects"
+
+#: templates/portfolio/home.html:536
 msgid "Proposition"
 msgstr "Proposal"
 
@@ -1372,16 +1571,20 @@ msgstr ""
 msgid "Prénom"
 msgstr "First name"
 
-#: templates/courses/course_detail.html:84
+#: templates/courses/course_detail.html:81
 msgid "Prérequis"
 msgstr "Prerequisites"
 
-#: templates/courses/course_access.html:79
+#: templates/portfolio/home.html:288
+msgid "Présentation bientôt disponible."
+msgstr "Introduction coming soon."
+
+#: templates/courses/course_access.html:78
 msgid "Publier mon avis"
 msgstr "Publish my review"
 
-#: templates/partials/command_palette.html:26 templates/partials/footer.html:37
-#: templates/portfolio/home.html:506
+#: templates/partials/command_palette.html:27 templates/partials/footer.html:37
+#: templates/partials/navbar.html:55 templates/portfolio/home.html:639
 msgid "Questions fréquentes"
 msgstr "Frequently asked questions"
 
@@ -1389,31 +1592,31 @@ msgstr "Frequently asked questions"
 msgid "REÇU"
 msgstr "RECEIPT"
 
-#: templates/portfolio/home.html:301
+#: templates/portfolio/home.html:325
 msgid "Radar des compétences par domaine"
 msgstr "Skills radar by area"
 
-#: templates/partials/navbar.html:25
-msgid "Rechercher"
-msgstr "Search"
+#: templates/portfolio/home.html:75
+msgid "Recherche rapide"
+msgstr "Quick search"
 
-#: templates/partials/navbar.html:22
+#: templates/partials/navbar.html:21 templates/partials/navbar.html:64
 msgid "Rechercher (Ctrl+K)"
 msgstr "Search (Ctrl+K)"
 
-#: templates/blog/post_list.html:25
+#: templates/blog/post_list.html:28
 msgid "Rechercher un article"
 msgstr "Search articles"
 
-#: templates/blog/post_list.html:26
+#: templates/blog/post_list.html:29
 msgid "Rechercher un article…"
 msgstr "Search articles…"
 
-#: templates/courses/course_list.html:20
+#: templates/courses/course_list.html:23
 msgid "Rechercher un cours"
 msgstr "Search courses"
 
-#: templates/courses/course_list.html:21
+#: templates/courses/course_list.html:24
 msgid "Rechercher un cours…"
 msgstr "Search courses…"
 
@@ -1421,19 +1624,19 @@ msgstr "Search courses…"
 msgid "Rechercher une page ou une action"
 msgstr "Search a page or action"
 
-#: templates/partials/command_palette.html:49
+#: templates/partials/command_palette.html:50
 msgid "Remonter en haut de page"
 msgstr "Back to top"
 
-#: templates/portfolio/home.html:264
+#: templates/portfolio/home.html:288
 msgid "Renseignez votre présentation depuis l'espace d'administration."
 msgstr "Fill in your profile from the admin area."
 
-#: templates/base.html:139
+#: templates/base.html:141
 msgid "Retour en haut de page"
 msgstr "Back to top of page"
 
-#: templates/404.html:14 templates/500.html:18
+#: templates/404.html:14
 msgid "Retour à l'accueil"
 msgstr "Back to home"
 
@@ -1441,7 +1644,7 @@ msgstr "Back to home"
 msgid "Retour à la connexion"
 msgstr "Back to sign in"
 
-#: templates/portfolio/home.html:447
+#: templates/portfolio/home.html:580
 msgid "Retrouvez tout dans « Mes cours »"
 msgstr "Find everything in “My courses”"
 
@@ -1450,7 +1653,7 @@ msgstr "Find everything in “My courses”"
 msgid "Reçu"
 msgstr "Receipt"
 
-#: templates/courses/course_detail.html:165 templates/portfolio/home.html:446
+#: templates/courses/course_detail.html:162 templates/portfolio/home.html:579
 msgid "Reçu disponible pour chaque achat"
 msgstr "Receipt available for every purchase"
 
@@ -1458,11 +1661,11 @@ msgstr "Receipt available for every purchase"
 msgid "Reçus et commandes privés"
 msgstr "Private receipts and orders"
 
-#: templates/portfolio/home.html:409
+#: templates/portfolio/home.html:542
 msgid "Réalisation"
 msgstr "Delivery"
 
-#: templates/courses/checkout.html:61
+#: templates/courses/checkout.html:66
 msgid "Récapitulatif"
 msgstr "Summary"
 
@@ -1470,23 +1673,23 @@ msgstr "Summary"
 msgid "Référence"
 msgstr "Reference"
 
-#: templates/portfolio/cv.html:64
+#: templates/portfolio/cv.html:66
 msgid "Références disponibles sur demande."
 msgstr "References available on request."
 
-#: templates/courses/course_list.html:78
+#: templates/courses/course_list.html:81
 msgid "Réinitialiser les filtres"
 msgstr "Reset filters"
 
-#: portfolio/models.py:132
+#: portfolio/models.py:133
 msgid "Réseau / serveur"
 msgstr "Network / server"
 
-#: portfolio/radar.py:27 templates/portfolio/home.html:170
+#: portfolio/radar.py:27 templates/portfolio/home.html:198
 msgid "Réseaux"
 msgstr "Networks"
 
-#: portfolio/models.py:191
+#: portfolio/models.py:192
 msgid "Réseaux & systèmes"
 msgstr "Networks & systems"
 
@@ -1494,16 +1697,16 @@ msgstr "Networks & systems"
 msgid "Résultats"
 msgstr "Results"
 
-#: templates/blog/post_list.html:20
+#: templates/blog/post_list.html:23
 msgid "S'abonner avec un lecteur RSS"
 msgstr "Subscribe with an RSS reader"
 
-#: templates/accounts/register.html:12 templates/partials/command_palette.html:40
-#: templates/partials/navbar.html:65 templates/partials/navbar.html:108
+#: templates/accounts/register.html:12 templates/partials/command_palette.html:41
+#: templates/partials/navbar.html:105 templates/partials/navbar.html:143
 msgid "S'inscrire"
 msgstr "Sign up"
 
-#: templates/courses/course_detail.html:149
+#: templates/courses/course_detail.html:146
 msgid "S'inscrire gratuitement"
 msgstr "Sign up for free"
 
@@ -1516,17 +1719,21 @@ msgstr "Enter your current password, then the new one."
 msgid "Se connecter"
 msgstr "Sign in"
 
-#: templates/courses/course_detail.html:153
+#: templates/courses/course_detail.html:150
 msgid "Se connecter pour acheter"
 msgstr "Sign in to buy"
 
-#: templates/portfolio/home.html:186
+#: templates/partials/side_index.html:2
+msgid "Sections de la page"
+msgstr "On this page"
+
+#: templates/portfolio/home.html:214
 msgid "Sensibilisation au phishing et aux bonnes pratiques : le maillon humain compte."
 msgstr "Phishing awareness and best practices: the human factor matters."
 
-#: templates/partials/command_palette.html:18 templates/partials/footer.html:29
-#: templates/partials/navbar.html:12 templates/partials/navbar.html:79
-#: templates/portfolio/home.html:132
+#: templates/partials/command_palette.html:18 templates/partials/footer.html:28
+#: templates/partials/navbar.html:50 templates/partials/navbar.html:121
+#: templates/partials/side_index.html:4 templates/portfolio/home.html:162
 msgid "Services"
 msgstr "Services"
 
@@ -1534,7 +1741,7 @@ msgstr "Services"
 msgid "Sessions protégées"
 msgstr "Protected sessions"
 
-#: courses/views.py:245
+#: courses/views.py:298
 msgid "Seuls les acheteurs d'un cours peuvent laisser un avis."
 msgstr "Only course buyers can leave a review."
 
@@ -1542,12 +1749,12 @@ msgstr "Only course buyers can leave a review."
 msgid "Si un compte correspond à cette adresse, un e-mail vient d'être envoyé."
 msgstr "If an account matches this address, an email has just been sent."
 
-#: templates/portfolio/security.html:49
+#: templates/portfolio/security.html:46
 msgid "Signaler par e-mail"
 msgstr "Report by email"
 
-#: templates/blog/post_detail.html:58 templates/blog/post_detail.html:59
-#: templates/blog/post_detail.html:66 templates/blog/post_detail.html:68
+#: templates/blog/post_detail.html:55 templates/blog/post_detail.html:56
+#: templates/blog/post_detail.html:63 templates/blog/post_detail.html:65
 msgid "Sommaire"
 msgstr "Table of contents"
 
@@ -1555,7 +1762,7 @@ msgstr "Table of contents"
 msgid "Statut :"
 msgstr "Status:"
 
-#: templates/blog/post_list.html:93 templates/courses/course_list.html:69
+#: templates/blog/post_list.html:96 templates/courses/course_list.html:72
 msgid "Suivant &rarr;"
 msgstr "Next &rarr;"
 
@@ -1563,7 +1770,7 @@ msgstr "Next &rarr;"
 msgid "Sujet"
 msgstr "Subject"
 
-#: portfolio/models.py:136
+#: portfolio/models.py:137
 msgid "Support / maintenance"
 msgstr "Support / maintenance"
 
@@ -1571,16 +1778,17 @@ msgstr "Support / maintenance"
 msgid "Sécurité"
 msgstr "Security"
 
-#: templates/partials/command_palette.html:25 templates/partials/footer.html:36
+#: templates/partials/command_palette.html:26 templates/partials/footer.html:36
+#: templates/partials/navbar.html:58 templates/partials/navbar.html:129
 #: templates/portfolio/security.html:3 templates/portfolio/security.html:5
 msgid "Sécurité du site"
 msgstr "Site security"
 
-#: templates/portfolio/home.html:114
+#: templates/portfolio/home.html:144
 msgid "Technologies maîtrisées"
 msgstr "Technologies mastered"
 
-#: templates/portfolio/home.html:416
+#: templates/portfolio/home.html:549
 msgid "Tests, sécurisation, mise en service et assistance après livraison."
 msgstr "Testing, hardening, go-live and post-delivery support."
 
@@ -1588,7 +1796,7 @@ msgstr "Testing, hardening, go-live and post-delivery support."
 msgid "Titre (A → Z)"
 msgstr "Title (A → Z)"
 
-#: templates/courses/checkout.html:75
+#: templates/courses/checkout.html:80
 msgid "Total"
 msgstr "Total"
 
@@ -1600,19 +1808,23 @@ msgstr "Total invested"
 msgid "Total payé"
 msgstr "Total paid"
 
-#: templates/portfolio/home.html:462
+#: templates/portfolio/home.html:595
 msgid "Tous les articles"
 msgstr "All articles"
 
-#: templates/courses/course_list.html:26
+#: templates/courses/course_list.html:29
 msgid "Tous les niveaux"
 msgstr "All levels"
 
-#: templates/courses/course_list.html:33
+#: templates/courses/course_list.html:36
 msgid "Tous les prix"
 msgstr "All prices"
 
-#: templates/courses/course_list.html:39
+#: portfolio/models.py:310
+msgid "Travail / atelier"
+msgstr "Work / workshop"
+
+#: templates/courses/course_list.html:42
 msgid "Trier par"
 msgstr "Sort by"
 
@@ -1631,19 +1843,15 @@ msgstr[1] ""
 "Too many failed attempts. For security, sign-in is locked for another %(minutes)d minutes. You "
 "can also reset your password."
 
-#: templates/portfolio/cv.html:20
-msgid "Télécharger en PDF"
-msgstr "Download as PDF"
-
-#: templates/courses/course_access.html:27
+#: templates/courses/course_access.html:25
 msgid "Télécharger le fichier"
 msgstr "Download the file"
 
-#: templates/portfolio/home.html:281 templates/portfolio/home.html:563
+#: templates/portfolio/home.html:305 templates/portfolio/home.html:697
 msgid "Téléphone"
 msgstr "Phone"
 
-#: templates/portfolio/home.html:478
+#: templates/portfolio/home.html:611
 msgid "Témoignages"
 msgstr "Testimonials"
 
@@ -1651,11 +1859,11 @@ msgstr "Testimonials"
 msgid "Un compte existe déjà avec cette adresse e-mail."
 msgstr "An account already exists with this email address."
 
-#: templates/portfolio/home.html:387
+#: templates/portfolio/home.html:520
 msgid "Un déroulé simple et transparent, de la première discussion à la mise en service."
 msgstr "A simple, transparent process from the first discussion to go-live."
 
-#: templates/portfolio/home.html:530
+#: templates/portfolio/home.html:664
 msgid "Un projet en tête ? Parlons-en."
 msgstr "Got a project in mind? Let’s talk."
 
@@ -1665,7 +1873,7 @@ msgid ""
 "simplement pas."
 msgstr "A receipt is only visible to its owner. For anyone else, it simply does not exist."
 
-#: templates/portfolio/home.html:164
+#: templates/portfolio/home.html:192
 msgid ""
 "Un site, un réseau local ou un système de vidéosurveillance n'est fiable que s'il est protégé. "
 "J'intègre la sécurité à chaque projet : accès maîtrisés, configurations durcies, données "
@@ -1675,31 +1883,27 @@ msgstr ""
 "into every project: controlled access, hardened configurations, backed-up data and informed "
 "users."
 
-#: templates/500.html:17
-msgid "Une erreur est survenue de notre côté. Veuillez réessayer dans un instant."
-msgstr "Something went wrong on our side. Please try again in a moment."
-
-#: templates/courses/course_access.html:86
+#: templates/courses/course_access.html:85
 msgid "Une question sur ce cours ?"
 msgstr "A question about this course?"
 
-#: templates/portfolio/home.html:545
+#: templates/portfolio/home.html:679
 msgid "Une question sur un cours, une collaboration ou une opportunité ? Je lis chaque message."
 msgstr "A question about a course, a collaboration or an opportunity? I read every message."
 
-#: templates/blog/post_detail.html:90
+#: templates/blog/post_detail.html:87
 msgid "Une question, un besoin ? Parlons-en."
 msgstr "A question or a need? Let’s talk."
 
-#: templates/portfolio/home.html:366
+#: templates/portfolio/home.html:391
 msgid "Une sélection de projets réalisés pendant mes études, mes stages et à titre personnel."
 msgstr "A selection of projects completed during my studies, internships and personal work."
 
-#: templates/portfolio/home.html:185
+#: templates/portfolio/home.html:213
 msgid "Utilisateurs"
 msgstr "Users"
 
-#: templates/portfolio/home.html:176
+#: templates/portfolio/home.html:204
 msgid "Validation des données, authentification et protection contre les attaques courantes."
 msgstr "Input validation, authentication and protection against common attacks."
 
@@ -1711,11 +1915,23 @@ msgstr "Manual review"
 msgid "Version PDF d'origine"
 msgstr "Original PDF version"
 
-#: portfolio/models.py:133
+#: portfolio/models.py:134
 msgid "Vidéosurveillance"
 msgstr "Video surveillance"
 
-#: templates/courses/course_access.html:39 templates/courses/dashboard.html:59
+#: templates/partials/featured_project.html:11
+msgid "Visuel du projet à venir."
+msgstr "Project visual coming soon."
+
+#: templates/partials/featured_project.html:42
+msgid "Voir la démo"
+msgstr "View demo"
+
+#: templates/partials/featured_project.html:31
+msgid "Voir la photo"
+msgstr "View photo"
+
+#: templates/courses/course_access.html:38 templates/courses/dashboard.html:59
 msgid "Voir le reçu"
 msgstr "View receipt"
 
@@ -1723,19 +1939,19 @@ msgstr "View receipt"
 msgid "Voir les cours"
 msgstr "View courses"
 
-#: templates/portfolio/home.html:54
+#: templates/portfolio/home.html:68
 msgid "Voir mes projets"
 msgstr "View my projects"
 
-#: templates/portfolio/home.html:289
+#: templates/portfolio/home.html:313
 msgid "Voir mon CV complet"
 msgstr "View my full résumé"
 
-#: templates/blog/post_list.html:85
+#: templates/blog/post_list.html:88
 msgid "Voir tous les articles"
 msgstr "View all articles"
 
-#: templates/portfolio/home.html:431
+#: templates/portfolio/home.html:564
 msgid "Voir tout le catalogue"
 msgstr "View full catalog"
 
@@ -1743,15 +1959,15 @@ msgstr "View full catalog"
 msgid "Vos informations ont été mises à jour."
 msgstr "Your details have been updated."
 
-#: templates/courses/course_access.html:58
+#: templates/courses/course_access.html:57
 msgid "Votre avis"
 msgstr "Your review"
 
-#: courses/views.py:256
+#: courses/views.py:309
 msgid "Votre avis a été mis à jour."
 msgstr "Your review has been updated."
 
-#: courses/views.py:207
+#: courses/views.py:217
 msgid "Votre commande a déjà été enregistrée."
 msgstr "Your order has already been recorded."
 
@@ -1759,7 +1975,7 @@ msgstr "Your order has already been recorded."
 msgid "Votre commentaire (facultatif)"
 msgstr "Your comment (optional)"
 
-#: templates/courses/course_access.html:21
+#: templates/courses/course_access.html:19
 msgid "Votre contenu est disponible immédiatement et pour toujours."
 msgstr "Your content is available immediately and forever."
 
@@ -1771,31 +1987,31 @@ msgstr "Your dashboard, orders and receipts are excluded from search engines."
 msgid "Votre mot de passe a été modifié."
 msgstr "Your password has been changed."
 
-#: portfolio/forms.py:18
+#: portfolio/forms.py:12 portfolio/forms.py:18
 msgid "Votre nom"
 msgstr "Your name"
 
-#: templates/courses/course_access.html:64
+#: templates/courses/course_access.html:63
 msgid "Votre note"
 msgstr "Your rating"
 
-#: templates/courses/course_access.html:59
+#: templates/courses/course_access.html:58
 msgid "Votre retour aide les autres apprenants à choisir."
 msgstr "Your feedback helps other learners choose."
 
-#: templates/courses/course_detail.html:174
+#: templates/courses/course_detail.html:171
 msgid "Vous aimerez aussi"
 msgstr "You may also like"
 
-#: templates/portfolio/security.html:42
+#: templates/portfolio/security.html:39
 msgid "Vous avez trouvé une faille ?"
 msgstr "Found a vulnerability?"
 
-#: courses/views.py:274
+#: courses/views.py:327
 msgid "Vous devez acheter ce cours pour le télécharger."
 msgstr "You must buy this course to download it."
 
-#: courses/views.py:222
+#: courses/views.py:275
 msgid "Vous devez acheter ce cours pour y accéder."
 msgstr "You must buy this course to access it."
 
@@ -1807,7 +2023,7 @@ msgstr "You haven’t bought any courses yet"
 msgid "Vous possédez déjà ce cours."
 msgstr "You already own this course."
 
-#: templates/courses/course_access.html:59
+#: templates/courses/course_access.html:58
 msgid "Vous pouvez le modifier à tout moment."
 msgstr "You can update it at any time."
 
@@ -1823,11 +2039,11 @@ msgstr "Check your inbox"
 msgid "Web"
 msgstr "Web"
 
-#: templates/base.html:149 templates/portfolio/home.html:535
+#: templates/base.html:151 templates/portfolio/home.html:669
 msgid "WhatsApp"
 msgstr "WhatsApp"
 
-#: courses/urls.py:14
+#: courses/urls.py:15
 msgid "acces/"
 msgstr "access/"
 
@@ -1839,11 +2055,15 @@ msgstr "buy/"
 msgid "article"
 msgstr "article"
 
-#: courses/urls.py:16
+#: templates/courses/checkout.html:23
+msgid "aucun montant n'est débité — ajoutez vos clés Flutterwave pour activer Mobile Money et carte."
+msgstr "no amount is charged — add your Flutterwave keys to enable Mobile Money and cards."
+
+#: courses/urls.py:17
 msgid "avis/"
 msgstr "review/"
 
-#: courses/urls.py:17
+#: courses/urls.py:18
 msgid "commande/"
 msgstr "order/"
 
@@ -1859,8 +2079,8 @@ msgstr "login/"
 msgid "contact/"
 msgstr "contact/"
 
-#: courses/urls.py:11 courses/urls.py:12 courses/urls.py:13 courses/urls.py:14 courses/urls.py:15
-#: courses/urls.py:16
+#: courses/urls.py:11 courses/urls.py:12 courses/urls.py:13 courses/urls.py:15 courses/urls.py:16
+#: courses/urls.py:17
 msgid "cours/"
 msgstr "courses/"
 
@@ -1868,7 +2088,7 @@ msgstr "courses/"
 msgid "cv/"
 msgstr "cv/"
 
-#: templates/blog/post_list.html:51
+#: templates/blog/post_list.html:54
 #, python-format
 msgid "dans « <strong>%(tag)s</strong> »"
 msgstr "in “<strong>%(tag)s</strong>”"
@@ -1877,19 +2097,19 @@ msgstr "in “<strong>%(tag)s</strong>”"
 msgid "deconnexion/"
 msgstr "logout/"
 
-#: templates/portfolio/home.html:83
+#: templates/portfolio/home.html:122
 msgid "developer.py"
 msgstr "developer.py"
 
-#: templates/portfolio/home.html:83
+#: templates/portfolio/home.html:122
 msgid "developpeur.py"
 msgstr "developer.py"
 
-#: templates/portfolio/home.html:30
+#: templates/portfolio/home.html:46
 msgid "développeur &amp; formateur"
 msgstr "developer &amp; instructor"
 
-#: templates/courses/checkout.html:48
+#: templates/courses/checkout.html:53
 msgid "gratuit"
 msgstr "free"
 
@@ -1897,11 +2117,7 @@ msgstr "free"
 msgid "inscription/"
 msgstr "register/"
 
-#: templates/courses/checkout.html:23
-msgid "le paiement est simulé, aucun montant n'est réellement débité."
-msgstr "payment is simulated — no amount is actually charged."
-
-#: courses/urls.py:18
+#: courses/urls.py:19
 msgid "mon-espace/"
 msgstr "my-space/"
 
@@ -1925,19 +2141,31 @@ msgstr "password/reset/done/"
 msgid "mot-de-passe/reinitialiser/"
 msgstr "password/reset/"
 
-#: templates/partials/command_palette.html:59
+#: portfolio/forms.py:19
+msgid "name@domaine.com"
+msgstr "name@domain.com"
+
+#: templates/partials/command_palette.html:60
 msgid "naviguer ·"
 msgstr "navigate ·"
 
-#: templates/partials/command_palette.html:59
+#: templates/partials/command_palette.html:60
 msgid "ouvrir"
 msgstr "open"
 
-#: templates/partials/command_palette.html:60
+#: courses/urls.py:14
+msgid "paiement/retour/"
+msgstr "payment/return/"
+
+#: templates/partials/project_card.html:19
+msgid "photo(s)"
+msgstr "photo(s)"
+
+#: templates/partials/command_palette.html:61
 msgid "pour l'ouvrir partout"
 msgstr "to open it anywhere"
 
-#: templates/blog/post_list.html:51 templates/courses/course_list.html:54
+#: templates/blog/post_list.html:54 templates/courses/course_list.html:57
 #, python-format
 msgid "pour « <strong>%(q)s</strong> »"
 msgstr "for “<strong>%(q)s</strong>”"
@@ -1946,11 +2174,11 @@ msgstr "for “<strong>%(q)s</strong>”"
 msgid "profil/"
 msgstr "profile/"
 
-#: courses/urls.py:17
+#: courses/urls.py:18
 msgid "recu/"
 msgstr "receipt/"
 
-#: templates/portfolio/home.html:199
+#: templates/portfolio/home.html:226
 msgid "securite.sh"
 msgstr "security.sh"
 
@@ -1958,38 +2186,34 @@ msgstr "security.sh"
 msgid "securite/"
 msgstr "security/"
 
-#: courses/urls.py:15
+#: courses/urls.py:16
 msgid "telecharger/"
 msgstr "download/"
 
-#: portfolio/forms.py:19
-msgid "vous@exemple.com"
-msgstr "you@example.com"
-
-#: courses/views.py:30 templates/blog/post_list.html:65 templates/partials/course_card.html:17
-#: templates/partials/project_card.html:14
+#: courses/views.py:30 templates/blog/post_list.html:68 templates/partials/course_card.html:16
+#: templates/partials/featured_project.html:20 templates/partials/project_card.html:15
 msgid "À la une"
 msgstr "Featured"
 
-#: templates/blog/post_detail.html:112
+#: templates/blog/post_detail.html:109
 msgid "À lire aussi"
 msgstr "Also read"
 
-#: templates/partials/command_palette.html:20 templates/partials/footer.html:31
-#: templates/partials/navbar.html:14 templates/partials/navbar.html:81
-#: templates/portfolio/home.html:228
+#: templates/partials/command_palette.html:20 templates/partials/footer.html:30
+#: templates/partials/navbar.html:37 templates/partials/navbar.html:123
+#: templates/partials/side_index.html:6 templates/portfolio/home.html:255
 msgid "À propos"
 msgstr "About"
 
-#: templates/courses/course_access.html:52
+#: templates/courses/course_access.html:51
 msgid "À propos de ce cours"
 msgstr "About this course"
 
-#: templates/blog/post_detail.html:85
+#: templates/blog/post_detail.html:82
 msgid "À propos de l'auteur"
 msgstr "About the author"
 
-#: templates/portfolio/home.html:397
+#: templates/portfolio/home.html:530
 msgid "Échange"
 msgstr "Discovery"
 
@@ -1997,35 +2221,35 @@ msgstr "Discovery"
 msgid "Échap"
 msgstr "Esc"
 
-#: templates/partials/command_palette.html:51
+#: templates/partials/command_palette.html:52
 msgid "Écrire un e-mail"
 msgstr "Write an email"
 
-#: templates/blog/post_detail.html:88
+#: templates/blog/post_detail.html:85
 msgid "Écrit par"
 msgstr "Written by"
 
-#: templates/portfolio/home.html:544
+#: templates/portfolio/home.html:678
 msgid "Écrivez-moi"
 msgstr "Write to me"
 
-#: templates/courses/course_access.html:87
+#: templates/courses/course_access.html:86
 msgid "Écrivez-moi, je vous répondrai rapidement."
 msgstr "Write to me — I’ll reply quickly."
 
-#: templates/portfolio/home.html:396
+#: templates/portfolio/home.html:529
 msgid "Étape 1"
 msgstr "Step 1"
 
-#: templates/portfolio/home.html:402
+#: templates/portfolio/home.html:535
 msgid "Étape 2"
 msgstr "Step 2"
 
-#: templates/portfolio/home.html:408
+#: templates/portfolio/home.html:541
 msgid "Étape 3"
 msgstr "Step 3"
 
-#: templates/portfolio/home.html:414
+#: templates/portfolio/home.html:547
 msgid "Étape 4"
 msgstr "Step 4"
 

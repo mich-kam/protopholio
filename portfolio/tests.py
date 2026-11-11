@@ -361,7 +361,7 @@ class ContactTests(TestCase):
 
     def test_valid_message_is_saved(self):
         response = self.client.post(reverse("portfolio:contact"), self.payload)
-        self.assertRedirects(response, f"{reverse('portfolio:home')}#contact", fetch_redirect_response=False)
+        self.assertRedirects(response, f"{reverse('portfolio:home')}?sent=1#formulaire", fetch_redirect_response=False)
         self.assertEqual(ContactMessage.objects.count(), 1)
 
     @override_settings(CONTACT_RECIPIENT="moi@example.com")
@@ -377,7 +377,7 @@ class ContactTests(TestCase):
         self.assertEqual(ContactMessage.objects.count(), 0)
 
     def test_honeypot_silently_drops_spam(self):
-        response = self.client.post(reverse("portfolio:contact"), {**self.payload, "website": "http://spam"})
+        response = self.client.post(reverse("portfolio:contact"), {**self.payload, "hp_token": "http://spam"})
         self.assertEqual(response.status_code, 302)
         self.assertEqual(ContactMessage.objects.count(), 0)
 

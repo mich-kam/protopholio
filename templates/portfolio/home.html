@@ -7,6 +7,9 @@
   <div class="hero-mesh pointer-events-none absolute inset-0 -z-10" aria-hidden="true"></div>
   <div class="aurora-a pointer-events-none absolute -left-24 top-0 -z-10 h-80 w-80 rounded-full bg-teal-400/20 blur-3xl dark:bg-teal-500/15" aria-hidden="true"></div>
   <div class="aurora-b pointer-events-none absolute -right-20 top-24 -z-10 h-96 w-96 rounded-full bg-cyan-400/15 blur-3xl dark:bg-cyan-500/10" aria-hidden="true"></div>
+  <div class="hero-grid pointer-events-none absolute inset-0 -z-10" aria-hidden="true"></div>
+  <div class="hero-spot pointer-events-none absolute inset-0 -z-10" aria-hidden="true"></div>
+  <div class="hero-corners" aria-hidden="true"></div>
 
   <div class="mx-auto grid max-w-6xl items-center gap-10 px-4 pb-14 pt-10 sm:gap-12 sm:px-6 sm:pb-20 sm:pt-14 lg:grid-cols-12 lg:gap-16 lg:pb-24 lg:pt-18">
     <div class="min-w-0 lg:col-span-7">
@@ -29,7 +32,13 @@
         </span>
       {% endif %}
 
-      <h1 class="reveal mt-5 text-[2.25rem] font-bold leading-[1.1] tracking-tight text-slate-900 sm:mt-6 sm:text-5xl lg:text-[3.25rem] dark:text-white" style="--d: 80ms">
+      <p class="reveal mt-5 flex items-center gap-3 font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400" style="--d: 40ms">
+        <span class="text-teal-700 dark:text-teal-400">01</span>
+        <span class="h-px w-8 bg-teal-700/40 dark:bg-teal-400/40" aria-hidden="true"></span>
+        <span class="truncate">{% if profile.location %}{{ profile.location }}{% else %}{% trans "Portfolio" %}{% endif %}</span>
+      </p>
+
+      <h1 class="reveal mt-3 text-[2.25rem] font-bold leading-[1.1] tracking-tight text-slate-900 sm:mt-4 sm:text-5xl lg:text-[3.25rem] dark:text-white" style="--d: 80ms">
         <span class="block text-sm font-medium tracking-wide text-slate-500 sm:text-base dark:text-slate-400">{% trans "Bonjour, je suis" %}</span>
         {% if profile %}
           <span class="mt-1 block text-slate-900 dark:text-white">{{ profile.full_name }}</span>
@@ -60,6 +69,11 @@
         <a href="{% url 'courses:list' %}" data-magnetic class="btn btn-secondary btn-lg w-full sm:w-auto">{% trans "Découvrir mes cours" %}</a>
         <a href="{% url 'portfolio:cv' %}" data-magnetic class="btn btn-secondary btn-lg w-full sm:w-auto">{% icon "file-text" "h-5 w-5" %} {% trans "Mon CV" %}</a>
       </div>
+      <button type="button" data-cmdk-open class="reveal mt-4 hidden items-center gap-2 self-start font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400 transition hover:text-teal-700 sm:inline-flex dark:hover:text-teal-300" style="--d: 360ms">
+        <kbd class="rounded border border-slate-200 bg-white/70 px-1.5 py-0.5 text-[10px] text-slate-500 dark:border-slate-700 dark:bg-slate-900/70">Ctrl</kbd>
+        <kbd class="rounded border border-slate-200 bg-white/70 px-1.5 py-0.5 text-[10px] text-slate-500 dark:border-slate-700 dark:bg-slate-900/70">K</kbd>
+        <span>{% trans "Recherche rapide" %}</span>
+      </button>
 
       {% if stats %}
         <dl class="reveal stat-pop mt-10 grid max-w-xl grid-cols-2 gap-x-6 gap-y-4 border-t border-slate-200 pt-8 sm:grid-cols-4 dark:border-slate-800" style="--d: 380ms">
@@ -430,19 +444,19 @@
       <div>
         <p class="eyebrow">{% trans "Galerie" %}</p>
         <h2 class="section-title">{% trans "Photos professionnelles" %}</h2>
-        <p class="section-lead">{% if user.is_staff %}{% trans "Portrait, atelier, formations ou interventions. Ajoutez vos photos dans Admin → Galerie photos." %}{% else %}{% trans "Portrait, atelier, formations et interventions." %}{% endif %}</p>
+        <p class="section-lead">{% trans "Portrait, cérémonie et travail au quotidien." %}</p>
       </div>
       {% if user.is_staff %}
         <a href="{% url 'admin:portfolio_galleryphoto_add' %}" class="btn btn-secondary">{% icon "camera" "h-4 w-4" %} {% trans "Ajouter une photo" %}</a>
       {% endif %}
     </div>
 
-    <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {% for photo in gallery_photos %}
         <figure class="reveal group overflow-hidden rounded-xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900" style="--d: {% widthratio forloop.counter0 1 60 %}ms">
           <button type="button" data-lightbox="{{ photo.image.url }}" data-lightbox-alt="{{ photo.title }}"
-                  class="relative block aspect-[4/3] w-full cursor-zoom-in overflow-hidden text-left" aria-label="{% trans "Agrandir" %} {{ photo.title }}">
-            <img src="{{ photo.image.url }}" alt="{{ photo.title }}" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105">
+                  class="relative block aspect-[3/4] w-full cursor-zoom-in overflow-hidden text-left" aria-label="{% trans "Agrandir" %} {{ photo.title }}">
+            <img src="{{ photo.image.url }}" alt="{{ photo.title }}" loading="lazy" class="photo-frame h-full w-full object-cover transition duration-500 group-hover:scale-105 {% if photo.kind == 'work' %}photo-frame-work{% endif %}">
           </button>
           <figcaption class="border-t border-slate-100 px-4 py-3 dark:border-slate-800">
             <p class="text-sm font-semibold text-slate-900 dark:text-white">{{ photo.title }}</p>
@@ -702,10 +716,16 @@
 
       <form method="post" action="{% url 'portfolio:contact' %}" class="reveal card relative space-y-5 p-6 sm:p-8 lg:col-span-3" style="--d: 120ms" novalidate data-lock>
         {% csrf_token %}
+        {% if request.GET.sent %}
+          <p class="flex items-start gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-2.5 text-sm text-emerald-800 dark:border-emerald-500/30 dark:bg-emerald-500/10 dark:text-emerald-200" role="status">
+            {% icon "check-circle" "mt-0.5 h-4 w-4 shrink-0" %}
+            {% trans "Merci ! Votre message a bien été envoyé, je vous répondrai rapidement." %}
+          </p>
+        {% endif %}
         {# Honeypot anti-spam : invisible pour les humains #}
-        <div class="absolute -left-[9999px]" aria-hidden="true">
-          <label for="id_website">{% trans "Ne pas remplir" %}</label>
-          <input type="text" id="id_website" name="website" tabindex="-1" autocomplete="off">
+        <div class="absolute -left-[9999px] h-0 w-0 overflow-hidden" aria-hidden="true">
+          <label for="id_hp_token">{% trans "Ne pas remplir" %}</label>
+          <input type="text" id="id_hp_token" name="hp_token" tabindex="-1" autocomplete="off">
         </div>
         <div class="grid gap-5 sm:grid-cols-2">
           {% for field in contact_form.visible_fields|slice:":2" %}

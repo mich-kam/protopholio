@@ -9,7 +9,7 @@ class ContactForm(forms.ModelForm):
         model = ContactMessage
         fields = ("name", "email", "subject", "message")
         labels = {
-            "name": _("Nom"),
+            "name": _("Votre nom"),
             "email": _("E-mail"),
             "subject": _("Sujet"),
             "message": _("Message"),

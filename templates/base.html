@@ -92,8 +92,7 @@
         @apply flex h-11 w-11 items-center justify-center rounded-lg bg-teal-800 text-white dark:bg-teal-600;
       }
       .nav-link {
-        @apply rounded-md px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white;
-        &[aria-current] { @apply bg-slate-900 text-white dark:bg-teal-600 dark:text-white; }
+        @apply inline-flex items-center gap-2 whitespace-nowrap rounded-md px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white;
       }
       .menu-item {
         @apply flex w-full cursor-pointer items-center gap-2.5 rounded-md px-3 py-2 text-left text-sm font-medium text-slate-700 transition hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800;
@@ -106,7 +105,7 @@
       .field.has-toggle input { @apply pr-11; }
     }
   </style>
-  <link rel="stylesheet" href="{% static 'css/site.css' %}?v=20261111c">
+  <link rel="stylesheet" href="{% static 'css/site.css' %}?v=20261111i">
   {% block extra_head %}{% endblock %}
 </head>
 <body class="min-h-screen bg-white font-sans text-slate-600 antialiased dark:bg-slate-950 dark:text-slate-300">
@@ -114,6 +113,9 @@
   <a href="#contenu" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[70] focus:rounded-lg focus:bg-teal-700 focus:px-4 focus:py-2 focus:text-white">{% trans "Aller au contenu" %}</a>
 
   {% include "partials/navbar.html" %}
+  {% if request.resolver_match.app_name == "portfolio" and request.resolver_match.url_name == "home" %}
+    {% include "partials/side_index.html" %}
+  {% endif %}
   {% include "partials/messages.html" %}
 
   <main id="contenu">
@@ -151,7 +153,7 @@
     {% endif %}
   </div>
 
-  <script src="{% static 'js/main.js' %}?v=20261111c" defer></script>
+  <script src="{% static 'js/main.js' %}?v=20261111g" defer></script>
   {% block extra_js %}{% endblock %}
 </body>
 </html>

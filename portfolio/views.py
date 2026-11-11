@@ -141,9 +141,9 @@ def home(request):
 def contact(request):
     # Honeypot : champ invisible que seuls les robots remplissent.
     # On feint le succès pour ne rien révéler au robot.
-    if request.POST.get("website"):
+    if request.POST.get("hp_token") or request.POST.get("website"):
         messages.success(request, _("Merci ! Votre message a bien été envoyé."))
-        return redirect(f"{reverse('portfolio:home')}#contact")
+        return redirect(f"{reverse('portfolio:home')}?sent=1#formulaire")
 
     form = ContactForm(request.POST)
     if not form.is_valid():
@@ -172,7 +172,7 @@ def contact(request):
         except Exception:  # un e-mail raté ne doit jamais perdre le message (déjà en base)
             logger.exception("Échec d'envoi de la notification de contact.")
 
-    return redirect(f"{reverse('portfolio:home')}#contact")
+    return redirect(f"{reverse('portfolio:home')}?sent=1#formulaire")
 
 
 # Ordre des domaines dans le CV : la cybersécurité remonte en 2e position (visible dès la première page).

@@ -30,29 +30,54 @@
   // --- Menu mobile ----------------------------------------------------------
   var menuBtn = document.querySelector("[data-menu-toggle]");
   var menu = document.getElementById("mobile-menu");
+  var iconOpen = menuBtn && menuBtn.querySelector("[data-icon-open]");
+  var iconClose = menuBtn && menuBtn.querySelector("[data-icon-close]");
+  function setMenu(open) {
+    if (!menuBtn || !menu) return;
+    menu.classList.toggle("hidden", !open);
+    menuBtn.setAttribute("aria-expanded", String(open));
+    menuBtn.setAttribute("aria-label", open ? (menuBtn.getAttribute("data-label-close") || "Fermer le menu") : (menuBtn.getAttribute("data-label-open") || "Ouvrir le menu"));
+    if (iconOpen) iconOpen.classList.toggle("hidden", open);
+    if (iconClose) iconClose.classList.toggle("hidden", !open);
+    document.body.classList.toggle("nav-open", open);
+    var header = document.querySelector("[data-site-header]");
+    if (open && header) header.classList.remove("is-hidden");
+  }
   if (menuBtn && menu) {
     menuBtn.addEventListener("click", function () {
-      var open = menu.classList.toggle("hidden") === false;
-      menuBtn.setAttribute("aria-expanded", String(open));
+      setMenu(menu.classList.contains("hidden"));
     });
     $all("a", menu).forEach(function (link) {
-      link.addEventListener("click", function () {
-        menu.classList.add("hidden");
-        menuBtn.setAttribute("aria-expanded", "false");
-      });
+      link.addEventListener("click", function () { setMenu(false); });
+    });
+    window.addEventListener("resize", function () {
+      if (window.innerWidth >= 1024) setMenu(false);
     });
   }
 
-  // --- Menu utilisateur (<details>) : fermeture au clic extérieur / Échap ---
+  // --- Menus <details> : un seul ouvert, fermeture au clic extérieur / Échap ---
   document.addEventListener("click", function (e) {
     $all("details[data-dropdown][open]").forEach(function (d) {
       if (!d.contains(e.target)) d.removeAttribute("open");
     });
   });
+  document.addEventListener("toggle", function (e) {
+    var opened = e.target;
+    if (!opened.matches || !opened.matches("details[data-dropdown]") || !opened.open) return;
+    $all("details[data-dropdown][open]").forEach(function (other) {
+      if (other !== opened) other.removeAttribute("open");
+    });
+  }, true);
+  $all("details[data-dropdown] a").forEach(function (link) {
+    link.addEventListener("click", function () {
+      var parent = link.closest("details");
+      if (parent) parent.removeAttribute("open");
+    });
+  });
   document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") {
-      $all("details[data-dropdown][open]").forEach(function (d) { d.removeAttribute("open"); });
-    }
+    if (e.key !== "Escape") return;
+    $all("details[data-dropdown][open]").forEach(function (d) { d.removeAttribute("open"); });
+    setMenu(false);
   });
 
   // --- Notifications (messages flash) ---------------------------------------
@@ -187,25 +212,41 @@
     });
   }
 
-  // --- Scroll-spy : met en évidence la section visible dans la navigation ----
+  // --- Scroll-spy : la section la plus haute encore au-dessus du repère ------
   var spyLinks = $all("a[data-spy]");
+  var seenSpy = {};
   var spySections = [];
   spyLinks.forEach(function (link) {
-    var section = document.getElementById(link.getAttribute("data-spy"));
-    if (section && spySections.indexOf(section) === -1) spySections.push(section);
+    var id = link.getAttribute("data-spy");
+    if (!id || seenSpy[id]) return;
+    var section = document.getElementById(id);
+    if (!section) return;
+    seenSpy[id] = true;
+    spySections.push(section);
   });
-  if (spySections.length && "IntersectionObserver" in window) {
-    var spyObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        spyLinks.forEach(function (link) {
-          var active = link.getAttribute("data-spy") === entry.target.id;
-          if (active) link.setAttribute("aria-current", "true");
-          else link.removeAttribute("aria-current");
-        });
-      });
-    }, { rootMargin: "-45% 0px -50% 0px" });
-    spySections.forEach(function (section) { spyObserver.observe(section); });
+  spySections.sort(function (a, b) { return a.offsetTop - b.offsetTop; });
+  var sectionLabel = document.querySelector("[data-nav-section]");
+  function updateSpy() {
+    if (!spySections.length) return;
+    var marker = window.innerHeight * 0.34;
+    var current = null;
+    spySections.forEach(function (section) {
+      if (section.getBoundingClientRect().top <= marker) current = section.id;
+    });
+    spyLinks.forEach(function (link) {
+      var spy = link.getAttribute("data-spy");
+      var isPage = link.hasAttribute("data-page-current");
+      if (current && spy === current) link.setAttribute("aria-current", "true");
+      else if (isPage && !current) link.setAttribute("aria-current", "page");
+      else link.removeAttribute("aria-current");
+    });
+    $all("details.nav-more").forEach(function (menu) {
+      menu.classList.toggle("has-active", !!menu.querySelector('a[aria-current]:not([data-spy="accueil"])'));
+    });
+    if (sectionLabel) {
+      var sample = current && document.querySelector('[data-spy="' + current + '"][data-label]');
+      sectionLabel.textContent = sample ? sample.getAttribute("data-label") : "";
+    }
   }
 
   // --- Barre de progression + bouton « retour en haut » + navbar intelligente -
@@ -225,13 +266,19 @@
       toTop.classList.toggle("translate-y-2", !show);
     }
     if (header) {
-      var goingDown = scrollTop > lastScrollY + 4;
-      var goingUp = scrollTop < lastScrollY - 4;
-      if (scrollTop < 80) header.classList.remove("is-hidden");
-      else if (goingDown && scrollTop > 160) header.classList.add("is-hidden");
+      var menuOpen = document.body.classList.contains("nav-open");
+      var dropdownOpen = document.querySelector("details[data-dropdown][open]");
+      var goingDown = scrollTop > lastScrollY + 6;
+      var goingUp = scrollTop < lastScrollY - 6;
+      header.classList.toggle("is-scrolled", scrollTop > 12);
+      if (menuOpen || dropdownOpen || header.matches(":hover") || header.contains(document.activeElement)) {
+        header.classList.remove("is-hidden");
+      } else if (scrollTop < 80) header.classList.remove("is-hidden");
+      else if (goingDown && scrollTop > 280) header.classList.add("is-hidden");
       else if (goingUp) header.classList.remove("is-hidden");
       lastScrollY = scrollTop;
     }
+    updateSpy();
     ticking = false;
   }
   window.addEventListener("scroll", function () {
@@ -241,6 +288,34 @@
   if (toTop) {
     toTop.addEventListener("click", function () {
       window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+    });
+  }
+
+  var headerEl = document.querySelector("[data-site-header]");
+  if (headerEl) {
+    headerEl.addEventListener("mouseenter", function () { headerEl.classList.remove("is-hidden"); });
+    headerEl.addEventListener("focusin", function () { headerEl.classList.remove("is-hidden"); });
+  }
+
+  var clock = document.querySelector("[data-clock]");
+  function tickClock() {
+    if (!clock) return;
+    var now = new Date();
+    clock.dateTime = now.toISOString();
+    clock.textContent = now.toLocaleTimeString(document.documentElement.lang || "fr", {
+      hour: "2-digit",
+      minute: "2-digit"
+    });
+  }
+  tickClock();
+  setInterval(tickClock, 30000);
+
+  var hero = document.getElementById("accueil");
+  if (hero && !reduceMotion && window.matchMedia("(pointer: fine)").matches) {
+    hero.addEventListener("pointermove", function (e) {
+      var rect = hero.getBoundingClientRect();
+      hero.style.setProperty("--sx", (e.clientX - rect.left) + "px");
+      hero.style.setProperty("--sy", (e.clientY - rect.top) + "px");
     });
   }
 
@@ -269,12 +344,6 @@
     form.addEventListener("submit", function (e) {
       if (form.dataset.submitting) { e.preventDefault(); return; }
       form.dataset.submitting = "1";
-      $all('button[type="submit"]', form).forEach(function (b) {
-        setTimeout(function () {
-          b.disabled = true;
-          b.classList.add("opacity-60", "cursor-wait");
-        }, 0);
-      });
     });
   });
   // Retour arrière du navigateur (cache bfcache) : on réactive les formulaires.

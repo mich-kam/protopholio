@@ -58,8 +58,57 @@ BLOG_DEMO_IMAGES = {
     "Django : 7 réglages de sécurité à vérifier avant le déploiement": "blog-django.jpg",
 }
 
-# Galerie photos d'exemple : (titre, fichier, type, légende_fr, légende_en, titre_en)
+# Galerie photos : d'abord les photos réelles, puis les visuels d'exemple.
+# (titre, fichier, type, légende_fr, titre_en, légende_en)
 GALLERY_DEMO = [
+    (
+        "Portrait professionnel",
+        "gallery-portrait-standing.jpg",
+        GalleryPhoto.Kind.PORTRAIT,
+        "Portrait en extérieur, tenue professionnelle.",
+        "Professional portrait",
+        "Outdoor portrait in professional attire.",
+    ),
+    (
+        "Portrait sur la terrasse",
+        "gallery-portrait-seated.jpg",
+        GalleryPhoto.Kind.PORTRAIT,
+        "Portrait assis, en tenue de ville.",
+        "Terrace portrait",
+        "Seated portrait in city attire.",
+    ),
+    (
+        "Remise de diplôme",
+        "gallery-graduation.jpg",
+        GalleryPhoto.Kind.EVENT,
+        "Jour de la remise de diplôme.",
+        "Graduation day",
+        "Graduation day.",
+    ),
+    (
+        "Cérémonie de graduation",
+        "gallery-ceremony.jpg",
+        GalleryPhoto.Kind.EVENT,
+        "Moment de la cérémonie de graduation.",
+        "Graduation ceremony",
+        "A moment from the graduation ceremony.",
+    ),
+    (
+        "Session de développement",
+        "gallery-coding-night.jpg",
+        GalleryPhoto.Kind.WORK,
+        "Session de code sur un projet Django.",
+        "Development session",
+        "Coding session on a Django project.",
+    ),
+    (
+        "En déplacement",
+        "gallery-on-the-move.jpg",
+        GalleryPhoto.Kind.OTHER,
+        "Portrait en déplacement.",
+        "On the move",
+        "Portrait while travelling.",
+    ),
     (
         "Espace de travail",
         "gallery-workspace.jpg",

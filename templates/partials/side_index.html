@@ -1,0 +1,11 @@
+{% url 'portfolio:home' as home_url %}
+<nav class="side-index no-print" aria-label="{% trans "Sections de la page" %}">
+  <a href="{{ home_url }}#accueil" data-spy="accueil" data-label="{% trans "Accueil" %}" title="{% trans "Accueil" %}"><span class="sr-only">{% trans "Accueil" %}</span></a>
+  <a href="{{ home_url }}#services" data-spy="services" data-label="{% trans "Services" %}" title="{% trans "Services" %}"><span class="sr-only">{% trans "Services" %}</span></a>
+  {% if nav_show_security %}<a href="{{ home_url }}#cybersecurite" data-spy="cybersecurite" data-label="{% trans "Cybersécurité" %}" title="{% trans "Cybersécurité" %}"><span class="sr-only">{% trans "Cybersécurité" %}</span></a>{% endif %}
+  <a href="{{ home_url }}#a-propos" data-spy="a-propos" data-label="{% trans "À propos" %}" title="{% trans "À propos" %}"><span class="sr-only">{% trans "À propos" %}</span></a>
+  <a href="{{ home_url }}#portfolio" data-spy="portfolio" data-label="{% trans "Projets" %}" title="{% trans "Projets" %}"><span class="sr-only">{% trans "Projets" %}</span></a>
+  {% if nav_show_gallery %}<a href="{{ home_url }}#galerie" data-spy="galerie" data-label="{% trans "Galerie" %}" title="{% trans "Galerie" %}"><span class="sr-only">{% trans "Galerie" %}</span></a>{% endif %}
+  <a href="{{ home_url }}#cours" data-spy="cours" data-label="{% trans "Cours" %}" title="{% trans "Cours" %}"><span class="sr-only">{% trans "Cours" %}</span></a>
+  <a href="{{ home_url }}#contact" data-spy="contact" data-label="{% trans "Contact" %}" title="{% trans "Contact" %}"><span class="sr-only">{% trans "Contact" %}</span></a>
+</nav>
