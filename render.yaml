@@ -39,6 +39,22 @@ services:
         value: "USD"
       - key: CURRENCY_SYMBOL
         value: "$"
+      # Messages du formulaire de contact → ta boîte Gmail
+      - key: CONTACT_RECIPIENT
+        value: "michk2216@gmail.com"
+      - key: DEFAULT_FROM_EMAIL
+        value: "michk2216@gmail.com"
+      # SMTP Gmail (mot de passe d'application, pas le mot de passe du compte) :
+      - key: EMAIL_HOST
+        value: "smtp.gmail.com"
+      - key: EMAIL_PORT
+        value: "587"
+      - key: EMAIL_USE_TLS
+        value: "true"
+      - key: EMAIL_HOST_USER
+        value: "michk2216@gmail.com"
+      - key: EMAIL_HOST_PASSWORD
+        sync: false
       # Ajoutez vos clés Flutterwave dans le dashboard Render pour activer les vrais paiements :
       - key: FLUTTERWAVE_PUBLIC_KEY
         sync: false

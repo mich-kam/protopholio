@@ -152,13 +152,21 @@ def contact(request):
     message = form.save()
     messages.success(request, _("Merci ! Votre message a bien été envoyé, je vous répondrai rapidement."))
 
-    if settings.CONTACT_RECIPIENT:
+    # Destinataire : variable d'env, sinon e-mail du profil public.
+    profile = get_profile(request)
+    recipient = (settings.CONTACT_RECIPIENT or (profile.email if profile else "") or "").strip()
+    if recipient:
         try:
             EmailMessage(
                 subject=f"[Portfolio] {message.subject}",
-                body=f"De : {message.name} <{message.email}>\n\n{message.message}",
+                body=(
+                    f"De : {message.name} <{message.email}>\n"
+                    f"Sujet : {message.subject}\n\n"
+                    f"{message.message}\n\n"
+                    f"— Répondre directement à cet e-mail pour contacter {message.name}."
+                ),
                 from_email=settings.DEFAULT_FROM_EMAIL,
-                to=[settings.CONTACT_RECIPIENT],
+                to=[recipient],
                 reply_to=[message.email],
             ).send()
         except Exception:  # un e-mail raté ne doit jamais perdre le message (déjà en base)

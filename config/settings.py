@@ -235,9 +235,11 @@ if EMAIL_HOST:
 else:
     # Sans serveur SMTP configuré, les e-mails sont simplement écrits dans les logs.
     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+# Expéditeur par défaut : idéalement la même boîte que CONTACT_RECIPIENT (Gmail / SMTP).
 DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL", "no-reply@localhost")
 
-# Adresse qui reçoit les messages du formulaire de contact (optionnel).
+# Adresse qui reçoit les messages du formulaire de contact.
+# Si vide, la vue utilise l'e-mail du profil (ex. michk2216@gmail.com).
 CONTACT_RECIPIENT = os.environ.get("CONTACT_RECIPIENT", "")
 
 
