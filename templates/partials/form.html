@@ -1,0 +1,33 @@
+{# Rendu générique d'un formulaire Django. Usage : {% include "partials/form.html" with form=form %} #}
+{% if form.non_field_errors %}
+  <div class="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-500/30 dark:bg-red-500/10 dark:text-red-300" role="alert">
+    {% for error in form.non_field_errors %}<p>{{ error }}</p>{% endfor %}
+  </div>
+{% endif %}
+
+{% for field in form.visible_fields %}
+  {% with is_password=field.field.widget.input_type|default:"" %}
+  <div class="field{% if is_password == 'password' %} has-toggle{% endif %}">
+    <label for="{{ field.id_for_label }}" class="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-200">{{ field.label }}</label>
+    {% if is_password == "password" %}
+      <div class="relative">
+        {{ field }}
+        <button type="button" data-toggle-password aria-label="{% trans "Afficher le mot de passe" %}"
+                class="absolute inset-y-0 right-0 flex items-center px-3.5 text-slate-400 transition hover:text-slate-600 dark:hover:text-slate-200">
+          <span data-eye>{% icon "eye" "h-4 w-4" %}</span>
+          <span data-eye-off class="hidden">{% icon "eye-off" "h-4 w-4" %}</span>
+        </button>
+      </div>
+    {% else %}
+      {{ field }}
+    {% endif %}
+    {% if field.help_text %}
+      <div class="mt-1.5 text-xs leading-5 text-slate-500 dark:text-slate-400">{{ field.help_text|safe }}</div>
+    {% endif %}
+    {% for error in field.errors %}
+      <p class="mt-1.5 text-sm text-red-600 dark:text-red-400">{{ error }}</p>
+    {% endfor %}
+  </div>
+  {% endwith %}
+{% endfor %}
+{% for hidden in form.hidden_fields %}{{ hidden }}{% endfor %}

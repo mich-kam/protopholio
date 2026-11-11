@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% trans "Erreur serveur" %}</title>
+  <style>
+    body { font-family: system-ui, sans-serif; background: #0f172a; color: #e2e8f0; display: grid; place-items: center; min-height: 100vh; margin: 0; text-align: center; }
+    h1 { font-size: 4rem; margin: 0; color: #818cf8; }
+    a { color: #818cf8; }
+  </style>
+</head>
+<body>
+  {# Page volontairement autonome : elle ne dépend d'aucun contexte ni de la base de données. #}
+  <div>
+    <h1>500</h1>
+    <p>{% trans "Une erreur est survenue de notre côté. Veuillez réessayer dans un instant." %}</p>
+    <p><a href="/">{% trans "Retour à l'accueil" %}</a></p>
+  </div>
+</body>
+</html>

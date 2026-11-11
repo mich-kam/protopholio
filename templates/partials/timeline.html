@@ -1,0 +1,22 @@
+{# Usage : {% include "partials/timeline.html" with heading="Expérience" items=experiences icon_name="tool" %} #}
+<div class="card p-6">
+  <h3 class="flex items-center gap-2.5 text-base font-bold text-slate-900 dark:text-white">
+    <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-teal-50 text-teal-600 dark:bg-teal-500/10 dark:text-teal-300">{% icon icon_name "h-4 w-4" %}</span>
+    {{ heading }}
+  </h3>
+  {% if items %}
+    <ol class="mt-6 space-y-6 border-l-2 border-slate-200 pl-6 dark:border-slate-800">
+      {% for item in items %}
+        <li class="relative">
+          <span class="absolute -left-[31px] top-1.5 h-3 w-3 rounded-full bg-teal-600 ring-4 ring-white dark:ring-slate-900"></span>
+          {% if item.period %}<p class="text-xs font-bold uppercase tracking-wide text-teal-600 dark:text-teal-400">{{ item.period }}</p>{% endif %}
+          <p class="mt-1 font-semibold leading-snug text-slate-900 dark:text-white">{{ item.title }}</p>
+          {% if item.organization %}<p class="text-sm">{{ item.organization }}</p>{% endif %}
+          {% if item.description %}<p class="mt-1.5 text-sm leading-6 text-slate-500 dark:text-slate-400">{{ item.description|linebreaksbr }}</p>{% endif %}
+        </li>
+      {% endfor %}
+    </ol>
+  {% else %}
+    <p class="mt-4 text-sm text-slate-500">{% trans "Aucun élément pour le moment." %}</p>
+  {% endif %}
+</div>

@@ -1,0 +1,3 @@
+# Outils de développement uniquement (non nécessaires en production).
+-r requirements.txt
+Babel==2.18.0   # python manage.py i18n_sync : extraction/compilation des traductions sans GNU gettext

@@ -1,0 +1,2035 @@
+# Traductions en — textes sources en français.
+# Généré par `manage.py i18n_sync`.
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Portfolio VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-11-10 12:37+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: templates/blog/post_list.html:51
+#, python-format
+msgid "%(counter)s article"
+msgid_plural "%(counter)s articles"
+msgstr[0] "%(counter)s article"
+msgstr[1] "%(counter)s articles"
+
+#: templates/courses/course_detail.html:39 templates/courses/course_detail.html:101
+#: templates/partials/course_card.html:34
+#, python-format
+msgid "%(counter)s avis"
+msgid_plural "%(counter)s avis"
+msgstr[0] "%(counter)s review"
+msgstr[1] "%(counter)s reviews"
+
+#: templates/courses/course_list.html:54
+#, python-format
+msgid "%(counter)s cours"
+msgid_plural "%(counter)s cours"
+msgstr[0] "%(counter)s course"
+msgstr[1] "%(counter)s courses"
+
+#: templates/courses/course_access.html:68
+#, python-format
+msgid "%(counter)s étoile"
+msgid_plural "%(counter)s étoiles"
+msgstr[0] "%(counter)s star"
+msgstr[1] "%(counter)s stars"
+
+#: templates/partials/post_card.html:18
+#, python-format
+msgid "%(minutes)s min"
+msgstr "%(minutes)s min"
+
+#: templates/blog/post_detail.html:43 templates/blog/post_list.html:68
+#, python-format
+msgid "%(minutes)s min de lecture"
+msgstr "%(minutes)s min read"
+
+#: templates/courses/course_access.html:68
+#, python-format
+msgid "%(n)s sur 5"
+msgstr "%(n)s out of 5"
+
+#: templates/base.html:7
+#, python-format
+msgid "%(name)s, %(headline)s. Découvrez mes projets, mes services et mes cours en ligne."
+msgstr "%(name)s, %(headline)s. Discover my projects, services and online courses."
+
+#: templates/blog/post_detail.html:99
+msgid "&larr; Article précédent"
+msgstr "&larr; Previous article"
+
+#: templates/accounts/profile.html:8 templates/courses/course_access.html:8
+#: templates/courses/receipt.html:9
+msgid "&larr; Mes cours"
+msgstr "&larr; My courses"
+
+#: templates/blog/post_list.html:91 templates/courses/course_list.html:65
+msgid "&larr; Précédent"
+msgstr "&larr; Previous"
+
+#: templates/courses/checkout.html:8
+msgid "&larr; Retour au cours"
+msgstr "&larr; Back to course"
+
+#: templates/portfolio/cv.html:15
+msgid "&larr; Retour au site"
+msgstr "&larr; Back to site"
+
+#: templates/accounts/password_reset_form.html:17
+msgid "&larr; Retour à la connexion"
+msgstr "&larr; Back to sign in"
+
+#: templates/accounts/password_change.html:17
+msgid "&larr; Retour à mon compte"
+msgstr "&larr; Back to my account"
+
+#: templates/courses/checkout.html:78
+msgid "(simulation)"
+msgstr "(simulation)"
+
+#: templates/partials/footer.html:54
+msgid ". Tous droits réservés."
+msgstr ". All rights reserved."
+
+#: templates/courses/checkout.html:54
+msgid ". Une confirmation sera envoyée à cette adresse."
+msgstr ". A confirmation will be sent to this address."
+
+#: templates/portfolio/home.html:202
+msgid "./verifier --domaines-de-securite"
+msgstr "./check --security-domains"
+
+#: templates/courses/checkout.html:48
+msgid ": aucun paiement n'est nécessaire. Confirmez simplement votre inscription."
+msgstr ": no payment is required. Simply confirm your enrollment."
+
+#: templates/blog/post_detail.html:25 templates/courses/course_detail.html:18
+#: templates/partials/command_palette.html:17 templates/partials/navbar.html:78
+msgid "Accueil"
+msgstr "Home"
+
+#: templates/courses/checkout.html:17
+msgid "Accès"
+msgstr "Access"
+
+#: templates/courses/course_detail.html:164 templates/portfolio/home.html:445
+msgid "Accès immédiat après la commande"
+msgstr "Instant access after purchase"
+
+#: templates/courses/checkout.html:80
+msgid "Accès immédiat après validation."
+msgstr "Instant access after confirmation."
+
+#: templates/courses/dashboard.html:58
+msgid "Accéder"
+msgstr "Open"
+
+#: templates/courses/course_access.html:20
+msgid "Accéder au contenu"
+msgstr "Access the content"
+
+#: templates/courses/course_detail.html:146
+msgid "Accéder au cours"
+msgstr "Access the course"
+
+#: templates/courses/course_detail.html:149
+msgid "Acheter ce cours"
+msgstr "Buy this course"
+
+#: templates/courses/course_list.html:16
+msgid "Achetez un cours et retrouvez-le à vie dans votre espace « Mes cours »."
+msgstr "Buy a course and keep lifetime access in your “My courses” area."
+
+#: templates/courses/dashboard.html:56
+#, python-format
+msgid "Acheté le %(date)s"
+msgstr "Purchased on %(date)s"
+
+#: templates/partials/course_card.html:15
+msgid "Acquis"
+msgstr "Owned"
+
+#: templates/partials/command_palette.html:46
+msgid "Actions"
+msgstr "Actions"
+
+#: templates/partials/command_palette.html:37 templates/partials/navbar.html:56
+msgid "Administration"
+msgstr "Administration"
+
+#: accounts/forms.py:42 accounts/forms.py:58
+msgid "Adresse e-mail"
+msgstr "Email address"
+
+#: templates/partials/form.html:15
+msgid "Afficher le mot de passe"
+msgstr "Show password"
+
+#: templates/blog/post_detail.html:53
+msgid "Agrandir l'image"
+msgstr "Enlarge image"
+
+#: templates/partials/project_card.html:5
+msgid "Agrandir la capture"
+msgstr "Enlarge screenshot"
+
+#: templates/base.html:114
+msgid "Aller au contenu"
+msgstr "Skip to content"
+
+#: templates/partials/command_palette.html:15
+msgid "Aller à"
+msgstr "Go to"
+
+#: templates/partials/command_palette.html:8
+msgid "Aller à… une section, une page, une action"
+msgstr "Go to… a section, page, or action"
+
+#: courses/models.py:151
+msgid "Annulée"
+msgstr "Cancelled"
+
+#: portfolio/security_info.py:67
+msgid "Anti-spam sans espionnage"
+msgstr "Anti-spam without tracking"
+
+#: templates/base.html:128
+msgid "Aperçu de l'image"
+msgstr "Image preview"
+
+#: templates/blog/post_detail.html:15
+msgid "Aperçu réservé à l'administration : cet article n'est pas (encore) visible du public."
+msgstr "Admin preview only: this article is not (yet) visible to the public."
+
+#: templates/portfolio/home.html:531
+msgid ""
+"Application web, réseau, vidéosurveillance ou formation : décrivez votre besoin, je vous réponds "
+"rapidement."
+msgstr "Web app, network, CCTV or training: describe your need and I’ll reply quickly."
+
+#: templates/portfolio/home.html:175
+msgid "Applications web"
+msgstr "Web applications"
+
+#: templates/portfolio/home.html:428
+msgid "Apprenez avec moi"
+msgstr "Learn with me"
+
+#: portfolio/security_info.py:32
+msgid ""
+"Après plusieurs échecs, la connexion à un compte est temporairement bloquée : cela rend les "
+"attaques par force brute inefficaces."
+msgstr ""
+"After several failed attempts, sign-in is temporarily locked: that makes brute-force attacks "
+"ineffective."
+
+#: templates/blog/post_detail.html:102
+msgid "Article suivant &rarr;"
+msgstr "Next article &rarr;"
+
+#: templates/blog/post_list.html:17
+msgid "Articles &amp; tutoriels"
+msgstr "Articles &amp; tutorials"
+
+#: templates/blog/post_list.html:6
+msgid "Articles et tutoriels sur la cybersécurité, le développement web et les réseaux."
+msgstr "Articles and tutorials on cybersecurity, web development and networking."
+
+#: templates/blog/post_list.html:4
+msgid ""
+"Articles et tutoriels sur la cybersécurité, le développement web, les réseaux et les bonnes "
+"pratiques numériques."
+msgstr "Articles and tutorials on cybersecurity, web development, networking and digital best practices."
+
+#: blog/feeds.py:16
+msgid "Articles sur la cybersécurité, le développement web et les réseaux."
+msgstr "Articles on cybersecurity, web development and networking."
+
+#: templates/blog/post_list.html:51
+msgid "Aucun article"
+msgstr "No articles"
+
+#: templates/blog/post_list.html:83
+msgid "Aucun article pour le moment"
+msgstr "No articles yet"
+
+#: templates/courses/course_list.html:76
+msgid "Aucun cours ne correspond à votre recherche"
+msgstr "No courses match your search"
+
+#: templates/portfolio/home.html:376
+msgid "Aucun projet publié pour le moment."
+msgstr "No projects published yet."
+
+#: templates/courses/course_list.html:54
+msgid "Aucun résultat"
+msgstr "No results"
+
+#: templates/partials/command_palette.html:55
+msgid "Aucun résultat. Essayez un autre mot."
+msgstr "No results. Try another keyword."
+
+#: templates/portfolio/security.html:59
+msgid ""
+"Aucun système n'est invulnérable : la sécurité est un travail continu, fait de mises à jour et de"
+" vigilance."
+msgstr "No system is invulnerable: security is ongoing work of updates and vigilance."
+
+#: templates/partials/timeline.html:20
+msgid "Aucun élément pour le moment."
+msgstr "Nothing here yet."
+
+#: templates/portfolio/home.html:342
+msgid "Aucune compétence renseignée pour le moment."
+msgstr "No skills listed yet."
+
+#: portfolio/security_info.py:72
+msgid "Aucune donnée bancaire"
+msgstr "No card data stored"
+
+#: templates/blog/post_detail.html:97
+msgid "Autres articles"
+msgstr "More articles"
+
+#: courses/models.py:41
+msgid "Avancé"
+msgstr "Advanced"
+
+#: templates/courses/course_detail.html:95
+msgid "Avis des apprenants"
+msgstr "Learner reviews"
+
+#: templates/partials/command_palette.html:48
+msgid "Basculer le thème clair / sombre"
+msgstr "Toggle light / dark theme"
+
+#: portfolio/models.py:131
+msgid "Base de données"
+msgstr "Database"
+
+#: portfolio/models.py:190
+msgid "Bases de données & données"
+msgstr "Databases & data"
+
+#: accounts/views.py:27
+#, python-format
+msgid "Bienvenue %(username)s ! Votre compte a bien été créé."
+msgstr "Welcome %(username)s! Your account has been created."
+
+#: blog/feeds.py:20 templates/blog/post_detail.html:26 templates/blog/post_list.html:3
+#: templates/blog/post_list.html:5 templates/blog/post_list.html:16 templates/partials/footer.html:34
+#: templates/partials/navbar.html:17 templates/partials/navbar.html:84
+#: templates/portfolio/home.html:458
+msgid "Blog"
+msgstr "Blog"
+
+#: templates/partials/command_palette.html:23
+msgid "Blog &amp; articles"
+msgstr "Blog &amp; articles"
+
+#: blog/feeds.py:20
+#, python-format
+msgid "Blog — %(name)s"
+msgstr "Blog — %(name)s"
+
+#: templates/base.html:16
+msgid "Blog — flux RSS"
+msgstr "Blog — RSS feed"
+
+#: templates/courses/dashboard.html:14
+#, python-format
+msgid "Bonjour %(name)s"
+msgstr "Hello %(name)s"
+
+#: templates/portfolio/home.html:26
+msgid "Bonjour, je suis"
+msgstr "Hello, I am"
+
+#: templates/base.html:144
+msgid "Bonjour, je vous contacte depuis votre site."
+msgstr "Hello, I’m reaching out from your website."
+
+#: templates/partials/project_card.html:4 templates/partials/project_card.html:6
+msgid "Capture d'écran du projet"
+msgstr "Project screenshot"
+
+#: courses/models.py:155
+msgid "Carte bancaire (simulation)"
+msgstr "Bank card (simulation)"
+
+#: templates/courses/course_list.html:6
+msgid "Catalogue de cours en ligne : programmation, bases de données, web."
+msgstr "Online course catalog: programming, databases, web."
+
+#: templates/courses/course_list.html:4
+msgid ""
+"Catalogue de cours en ligne : programmation, bases de données, web. Achetez un cours et "
+"retrouvez-le à vie dans votre espace personnel."
+msgstr ""
+"Online course catalog: programming, databases, web. Buy a course and keep lifetime access in your"
+" personal dashboard."
+
+#: templates/courses/course_list.html:15 templates/partials/command_palette.html:22
+msgid "Catalogue des cours"
+msgstr "Course catalog"
+
+#: templates/courses/checkout.html:48
+msgid "Ce cours est"
+msgstr "This course is"
+
+#: templates/courses/course_detail.html:158
+msgid "Ce cours inclut"
+msgstr "This course includes"
+
+#: templates/courses/course_access.html:58
+msgid "Ce cours vous a plu ?"
+msgstr "Did you enjoy this course?"
+
+#: templates/accounts/password_reset_confirm.html:7
+msgid "Ce lien a expiré ou a déjà été utilisé."
+msgstr "This link has expired or has already been used."
+
+#: templates/portfolio/home.html:133
+msgid "Ce que je peux faire pour vous"
+msgstr "What I can do for you"
+
+#: templates/courses/course_access.html:44 templates/courses/course_detail.html:65
+msgid "Ce que vous allez apprendre"
+msgstr "What you will learn"
+
+#: courses/forms.py:41
+msgid "Ce que vous avez aimé, ce qui pourrait être amélioré…"
+msgstr "What you liked, what could be improved…"
+
+#: portfolio/security_info.py:73
+msgid "Ce site ne collecte ni ne stocke aucun numéro de carte bancaire."
+msgstr "This site never collects or stores any card numbers."
+
+#: portfolio/models.py:217
+msgid "Certification"
+msgstr "Certification"
+
+#: templates/portfolio/home.html:352
+msgid "Certifications"
+msgstr "Certifications"
+
+#: templates/portfolio/cv.html:110
+msgid "Certifications &amp; formations courtes"
+msgstr "Certifications &amp; short courses"
+
+#: accounts/forms.py:68
+msgid "Cette adresse e-mail est déjà utilisée par un autre compte."
+msgstr "This email address is already used by another account."
+
+#: templates/404.html:11
+msgid "Cette page est introuvable"
+msgstr "This page could not be found"
+
+#: templates/partials/navbar.html:39
+msgid "Changer de thème"
+msgstr "Change theme"
+
+#: templates/accounts/profile.html:37
+msgid "Changez-le régulièrement pour protéger votre compte."
+msgstr "Change it regularly to protect your account."
+
+#: portfolio/security_info.py:39
+msgid "Chaque formulaire embarque un jeton unique qui empêche un site tiers d'agir à votre place."
+msgstr "Every form embeds a unique token that stops a third-party site from acting on your behalf."
+
+#: templates/blog/post_list.html:29 templates/courses/course_list.html:45
+msgid "Chercher"
+msgstr "Search"
+
+#: templates/accounts/password_reset_confirm.html:3
+msgid "Choisir un nouveau mot de passe"
+msgstr "Choose a new password"
+
+#: templates/accounts/password_reset_confirm.html:7
+msgid "Choisissez un mot de passe solide."
+msgstr "Choose a strong password."
+
+#: courses/forms.py:30
+msgid "Choisissez une note de 1 à 5 étoiles."
+msgstr "Choose a rating from 1 to 5 stars."
+
+#: templates/accounts/password_reset_done.html:9
+msgid ""
+"Cliquez sur le lien reçu pour choisir un nouveau mot de passe. Pensez à vérifier vos courriers "
+"indésirables si vous ne voyez rien arriver dans quelques minutes."
+msgstr ""
+"Click the link you receive to choose a new password. Check your spam folder if nothing arrives "
+"within a few minutes."
+
+#: templates/partials/project_card.html:26
+msgid "Code source"
+msgstr "Source code"
+
+#: templates/courses/checkout.html:3 templates/courses/course_access.html:38
+msgid "Commande"
+msgstr "Order"
+
+#: templates/courses/checkout.html:54
+msgid "Commande au nom de"
+msgstr "Order for"
+
+#: templates/portfolio/security.html:17
+msgid "Comment ce site protège vos données"
+msgstr "How this site protects your data"
+
+#: templates/portfolio/home.html:386
+msgid "Comment je travaille"
+msgstr "How I work"
+
+#: portfolio/forms.py:21
+msgid "Comment puis-je vous aider ?"
+msgstr "How can I help you?"
+
+#: templates/partials/command_palette.html:32
+msgid "Compte"
+msgstr "Account"
+
+#: templates/portfolio/cv.html:49 templates/portfolio/home.html:297
+msgid "Compétences"
+msgstr "Skills"
+
+#: courses/emails.py:34
+#, python-format
+msgid "Confirmation de votre commande %(reference)s"
+msgstr "Confirmation of your order %(reference)s"
+
+#: templates/accounts/login.html:5
+msgid "Connectez-vous pour accéder à vos cours."
+msgstr "Sign in to access your courses."
+
+#: templates/accounts/login.html:3 templates/partials/command_palette.html:39
+#: templates/partials/navbar.html:64 templates/partials/navbar.html:107
+msgid "Connexion"
+msgstr "Sign in"
+
+#: portfolio/security_info.py:14
+msgid "Connexion chiffrée (HTTPS)"
+msgstr "Encrypted connection (HTTPS)"
+
+#: templates/partials/command_palette.html:27 templates/partials/footer.html:38
+#: templates/partials/footer.html:43 templates/partials/navbar.html:18
+#: templates/partials/navbar.html:86 templates/portfolio/cv.html:32 templates/portfolio/home.html:543
+msgid "Contact"
+msgstr "Contact"
+
+#: templates/accounts/login.html:4
+msgid "Content de vous revoir"
+msgstr "Welcome back"
+
+#: templates/courses/course_detail.html:162
+msgid "Contenu à suivre en ligne"
+msgstr "Content to follow online"
+
+#: templates/portfolio/home.html:181
+msgid "Contrôle des accès et protection des informations sensibles."
+msgstr "Access control and protection of sensitive information."
+
+#: templates/partials/footer.html:55
+msgid "Conçu avec Django &amp; Tailwind CSS"
+msgstr "Built with Django &amp; Tailwind CSS"
+
+#: templates/portfolio/home.html:276 templates/portfolio/home.html:555
+msgid "Copier"
+msgstr "Copy"
+
+#: templates/portfolio/home.html:276 templates/portfolio/home.html:555
+msgid "Copier l'e-mail"
+msgstr "Copy email"
+
+#: templates/blog/post_detail.html:81 templates/courses/course_detail.html:48
+msgid "Copier le lien"
+msgstr "Copy link"
+
+#: templates/courses/checkout.html:13 templates/courses/course_detail.html:20
+#: templates/courses/dashboard.html:80 templates/partials/navbar.html:16
+msgid "Cours"
+msgstr "Courses"
+
+#: templates/courses/dashboard.html:27
+msgid "Cours achetés"
+msgstr "Courses purchased"
+
+#: templates/courses/course_access.html:13 templates/courses/course_detail.html:30
+msgid "Cours acquis"
+msgstr "Courses owned"
+
+#: templates/courses/course_list.html:3 templates/courses/course_list.html:5
+#: templates/courses/course_list.html:14 templates/courses/receipt.html:52
+#: templates/partials/footer.html:33 templates/partials/navbar.html:83
+#: templates/portfolio/home.html:427
+msgid "Cours en ligne"
+msgstr "Online courses"
+
+#: courses/models.py:157
+msgid "Cours gratuit"
+msgstr "Free course"
+
+#: portfolio/security_info.py:51
+msgid "Cours réservés aux acheteurs"
+msgstr "Courses reserved for buyers"
+
+#: templates/accounts/login.html:22 templates/accounts/register.html:3
+#: templates/accounts/register.html:4
+msgid "Créer un compte"
+msgstr "Create an account"
+
+#: templates/portfolio/cv.html:4
+#, python-format
+msgid "Curriculum vitae de %(name)s : %(headline)s. Compétences, expériences, formations et projets."
+msgstr "Curriculum vitae of %(name)s: %(headline)s. Skills, experience, education and projects."
+
+#: portfolio/models.py:134 portfolio/models.py:192 templates/partials/command_palette.html:19
+#: templates/partials/footer.html:30 templates/partials/navbar.html:13
+#: templates/partials/navbar.html:80 templates/portfolio/home.html:161
+#: templates/portfolio/home.html:249
+msgid "Cybersécurité"
+msgstr "Cybersecurity"
+
+#: templates/portfolio/home.html:460
+msgid "Cybersécurité, développement web, réseaux : des conseils concrets à appliquer tout de suite."
+msgstr "Cybersecurity, web development, networking: practical advice you can apply right away."
+
+#: templates/blog/post_list.html:18
+msgid "Cybersécurité, développement web, réseaux : des conseils concrets, sans jargon inutile."
+msgstr "Cybersecurity, web development, networking: practical advice, without useless jargon."
+
+#: templates/courses/dashboard.html:80
+msgid "Date"
+msgstr "Date"
+
+#: templates/accounts/password_reset_confirm.html:18
+msgid "Demander un nouveau lien"
+msgstr "Request a new link"
+
+#: templates/courses/dashboard.html:35
+msgid "Dernier achat"
+msgstr "Latest purchase"
+
+#: templates/portfolio/home.html:459
+msgid "Derniers articles"
+msgstr "Latest articles"
+
+#: templates/portfolio/home.html:429
+msgid "Des cours pratiques, accessibles à vie depuis votre espace personnel après achat."
+msgstr "Practical courses with lifetime access from your personal dashboard after purchase."
+
+#: templates/partials/footer.html:10
+msgid "Des projets concrets et des cours en ligne pour apprendre à votre rythme."
+msgstr "Real projects and online courses to learn at your own pace."
+
+#: templates/courses/receipt.html:46
+msgid "Description"
+msgstr "Description"
+
+#: templates/courses/course_detail.html:78
+msgid "Description du cours"
+msgstr "Course description"
+
+#: templates/base.html:146 templates/partials/command_palette.html:50
+msgid "Discuter sur WhatsApp"
+msgstr "Chat on WhatsApp"
+
+#: templates/portfolio/home.html:21
+msgid "Disponible pour de nouvelles missions"
+msgstr "Available for new projects"
+
+#: templates/portfolio/security.html:41
+msgid "Divulgation responsable"
+msgstr "Responsible disclosure"
+
+#: templates/portfolio/cv.html:76
+msgid "Domaines d'expertise"
+msgstr "Areas of expertise"
+
+#: portfolio/radar.py:26 templates/portfolio/home.html:180
+msgid "Données"
+msgstr "Data"
+
+#: templates/portfolio/home.html:134
+msgid ""
+"Du développement d'applications à l'installation de réseaux, des solutions fiables, de la "
+"conception à la maintenance."
+msgstr ""
+"From application development to network installation — reliable solutions from design to "
+"maintenance."
+
+#: courses/models.py:39
+msgid "Débutant"
+msgstr "Beginner"
+
+#: templates/partials/navbar.html:59 templates/partials/navbar.html:104
+msgid "Déconnexion"
+msgstr "Log out"
+
+#: templates/partials/course_card.html:47
+msgid "Découvrir"
+msgstr "Discover"
+
+#: templates/courses/dashboard.html:19
+msgid "Découvrir des cours"
+msgstr "Browse courses"
+
+#: templates/courses/dashboard.html:70
+msgid "Découvrir les cours"
+msgstr "Browse courses"
+
+#: templates/portfolio/home.html:55
+msgid "Découvrir mes cours"
+msgstr "Explore my courses"
+
+#: templates/accounts/register.html:18
+msgid "Déjà inscrit ?"
+msgstr "Already registered?"
+
+#: templates/partials/project_card.html:29
+msgid "Démo"
+msgstr "Demo"
+
+#: portfolio/models.py:130
+msgid "Développement"
+msgstr "Development"
+
+#: templates/portfolio/home.html:410
+msgid "Développement ou installation, avec des points d'étape réguliers."
+msgstr "Development or installation, with regular progress checkpoints."
+
+#: portfolio/models.py:189
+msgid "Développement web"
+msgstr "Web development"
+
+#: templates/portfolio/home.html:46
+msgid "Développeur &amp; formateur"
+msgstr "Developer &amp; instructor"
+
+#: portfolio/forms.py:13 templates/portfolio/home.html:273 templates/portfolio/home.html:552
+msgid "E-mail"
+msgstr "Email"
+
+#: templates/portfolio/home.html:276 templates/portfolio/home.html:555
+msgid "E-mail copié !"
+msgstr "Email copied!"
+
+#: templates/accounts/password_reset_done.html:3
+msgid "E-mail envoyé"
+msgstr "Email sent"
+
+#: templates/blog/post_list.html:30
+msgid "Effacer"
+msgstr "Clear"
+
+#: templates/courses/course_list.html:46
+msgid "Effacer les filtres"
+msgstr "Clear filters"
+
+#: courses/models.py:149
+msgid "En attente"
+msgstr "Pending"
+
+#: portfolio/security_info.py:16
+msgid ""
+"En production, toutes les pages sont servies en HTTPS et le navigateur est invité à ne plus "
+"jamais utiliser HTTP (HSTS)."
+msgstr ""
+"In production, every page is served over HTTPS and the browser is told never to use HTTP again "
+"(HSTS)."
+
+#: portfolio/security_info.py:82
+msgid "En-têtes de sécurité"
+msgstr "Security headers"
+
+#: templates/accounts/password_reset_confirm.html:14
+msgid "Enregistrer"
+msgstr "Save"
+
+#: templates/accounts/profile.html:31
+msgid "Enregistrer les modifications"
+msgstr "Save changes"
+
+#: templates/partials/command_palette.html:59
+msgid "Entrée"
+msgstr "Enter"
+
+#: portfolio/security_info.py:90
+msgid "Entrées nettoyées"
+msgstr "Sanitized input"
+
+#: templates/accounts/password_reset_form.html:12
+msgid "Envoyer le lien"
+msgstr "Send the link"
+
+#: templates/portfolio/home.html:606
+msgid "Envoyer le message"
+msgstr "Send message"
+
+#: templates/portfolio/home.html:533
+msgid "Envoyer un message"
+msgstr "Send a message"
+
+#: templates/500.html:6
+msgid "Erreur serveur"
+msgstr "Server error"
+
+#: templates/courses/course_list.html:77
+msgid "Essayez d'autres mots-clés ou retirez certains filtres."
+msgstr "Try other keywords or remove some filters."
+
+#: templates/blog/post_list.html:84
+msgid "Essayez un autre mot-clé ou retirez le filtre."
+msgstr "Try another keyword or remove the filter."
+
+#: portfolio/models.py:215 templates/portfolio/cv.html:85 templates/portfolio/home.html:350
+msgid "Expérience professionnelle"
+msgstr "Work experience"
+
+#: templates/portfolio/home.html:505
+msgid "FAQ"
+msgstr "FAQ"
+
+#: templates/courses/receipt.html:33
+msgid "Facturé à"
+msgstr "Billed to"
+
+#: templates/base.html:132 templates/partials/messages.html:16
+msgid "Fermer"
+msgstr "Close"
+
+#: templates/courses/course_detail.html:163
+msgid "Fichier téléchargeable"
+msgstr "Downloadable file"
+
+#: templates/blog/post_detail.html:24 templates/courses/course_detail.html:17
+msgid "Fil d'Ariane"
+msgstr "Breadcrumb"
+
+#: templates/blog/post_list.html:34
+msgid "Filtrer par tag"
+msgstr "Filter by tag"
+
+#: templates/courses/checkout.html:9
+msgid "Finaliser ma commande"
+msgstr "Complete my order"
+
+#: templates/blog/post_list.html:20
+msgid "Flux RSS"
+msgstr "RSS feed"
+
+#: portfolio/models.py:135 portfolio/models.py:216 templates/portfolio/cv.html:98
+#: templates/portfolio/home.html:351
+msgid "Formation"
+msgstr "Education"
+
+#: templates/courses/checkout.html:74 templates/courses/course_detail.html:141
+#: templates/courses/dashboard.html:88 templates/courses/receipt.html:54
+#: templates/partials/course_card.html:44
+msgid "Gratuit"
+msgstr "Free"
+
+#: templates/courses/course_list.html:34
+msgid "Gratuits"
+msgstr "Free"
+
+#: templates/courses/dashboard.html:76
+msgid "Historique des commandes"
+msgstr "Order history"
+
+#: templates/accounts/profile.html:11
+#, python-format
+msgid "Identifiant de connexion : <strong>%(username)s</strong> · inscrit le %(joined)s"
+msgstr "Sign-in ID: <strong>%(username)s</strong> · joined %(joined)s"
+
+#: templates/portfolio/home.html:479
+msgid "Ils m'ont fait confiance"
+msgstr "They trusted me"
+
+#: templates/courses/receipt.html:10
+msgid "Imprimer / enregistrer en PDF"
+msgstr "Print / save as PDF"
+
+#: templates/accounts/password_reset_form.html:6
+msgid "Indiquez votre adresse e-mail : nous vous enverrons un lien pour en choisir un nouveau."
+msgstr "Enter your email address and we’ll send a link to choose a new password."
+
+#: templates/courses/course_detail.html:154
+msgid "Inscrivez-vous"
+msgstr "Sign up"
+
+#: templates/accounts/register.html:5
+msgid "Inscrivez-vous pour acheter et suivre vos cours."
+msgstr "Sign up to buy and follow your courses."
+
+#: courses/models.py:40
+msgid "Intermédiaire"
+msgstr "Intermediate"
+
+#: templates/portfolio/home.html:50
+msgid "Je conçois des applications web et je partage mon savoir-faire à travers des cours en ligne."
+msgstr "I design web applications and share my expertise through online courses."
+
+#: templates/portfolio/home.html:404
+msgid "Je vous présente une solution claire, un planning et un budget."
+msgstr "I present a clear solution, a timeline and a budget."
+
+#: templates/404.html:12
+msgid "La page que vous cherchez n'existe pas ou a été déplacée."
+msgstr "The page you are looking for does not exist or has been moved."
+
+#: templates/portfolio/security.html:19
+msgid ""
+"La sécurité n'est pas un slogan. Voici, sans jargon, ce qui est réellement mis en place ici, et "
+"comment me signaler un problème si vous en trouvez un."
+msgstr ""
+"Security is not a slogan. Here is, without jargon, what is actually in place here, and how to "
+"report a problem if you find one."
+
+#: templates/portfolio/home.html:162
+msgid "La sécurité, pensée dès le départ"
+msgstr "Security, designed from the start"
+
+#: portfolio/radar.py:24
+msgid "Langages"
+msgstr "Languages"
+
+#: portfolio/models.py:188
+msgid "Langages de programmation"
+msgstr "Programming languages"
+
+#: templates/partials/navbar.html:28 templates/partials/navbar.html:88
+msgid "Langue"
+msgstr "Language"
+
+#: templates/portfolio/cv.html:43 templates/portfolio/home.html:284
+msgid "Langues"
+msgstr "Languages"
+
+#: templates/courses/course_access.html:30
+msgid "Le contenu de ce cours sera bientôt disponible."
+msgstr "This course content will be available soon."
+
+#: portfolio/security_info.py:68
+msgid "Le formulaire de contact utilise un piège invisible (honeypot) plutôt qu'un traceur publicitaire."
+msgstr "The contact form uses an invisible honeypot instead of an advertising tracker."
+
+#: courses/views.py:204
+msgid "Le paiement a échoué. Veuillez réessayer."
+msgstr "Payment failed. Please try again."
+
+#: portfolio/security_info.py:92
+msgid ""
+"Les contenus saisis sont échappés à l'affichage et le contenu des articles est filtré pour "
+"bloquer tout code malveillant."
+msgstr "User input is escaped on display and article content is filtered to block malicious code."
+
+#: portfolio/security_info.py:45
+msgid ""
+"Les cookies de session ne sont pas lisibles par JavaScript (HttpOnly), sont limités au même site "
+"(SameSite) et marqués « Secure » en production."
+msgstr ""
+"Session cookies are not readable by JavaScript (HttpOnly), limited to the same site (SameSite) "
+"and marked “Secure” in production."
+
+#: portfolio/security_info.py:53
+msgid ""
+"Les fichiers de cours ne sont jamais accessibles par une URL publique : ils sont envoyés "
+"uniquement après vérification de l'achat."
+msgstr "Course files are never available via a public URL: they are sent only after purchase is verified."
+
+#: templates/portfolio/security.html:4
+msgid ""
+"Les mesures de sécurité appliquées à ce site : chiffrement, mots de passe, protection des "
+"comptes, des cours et des commandes. Comment signaler une vulnérabilité."
+msgstr ""
+"Security measures on this site: encryption, passwords, account, course and order protection. How "
+"to report a vulnerability."
+
+#: templates/portfolio/security.html:6
+msgid "Les mesures de sécurité réellement appliquées à ce site, et comment signaler une vulnérabilité."
+msgstr "The security measures actually applied on this site, and how to report a vulnerability."
+
+#: portfolio/security_info.py:24
+msgid ""
+"Les mots de passe ne sont jamais stockés en clair : seul un hachage PBKDF2 salé est conservé, et "
+"les mots de passe trop faibles ou courants sont refusés."
+msgstr ""
+"Passwords are never stored in plain text: only a salted PBKDF2 hash is kept, and weak or common "
+"passwords are rejected."
+
+#: templates/blog/post_list.html:84
+msgid "Les premiers articles arrivent bientôt."
+msgstr "The first articles are coming soon."
+
+#: templates/portfolio/home.html:441
+msgid "Les premiers cours arrivent bientôt."
+msgstr "The first courses are coming soon."
+
+#: templates/blog/post_detail.html:81
+msgid "Lien copié !"
+msgstr "Link copied!"
+
+#: templates/accounts/password_reset_confirm.html:6
+msgid "Lien invalide"
+msgstr "Invalid link"
+
+#: portfolio/security_info.py:30
+msgid "Limitation des tentatives de connexion"
+msgstr "Sign-in attempt limiting"
+
+#: templates/blog/post_list.html:69 templates/partials/post_card.html:25
+msgid "Lire l'article"
+msgstr "Read the article"
+
+#: templates/portfolio/home.html:415
+msgid "Livraison &amp; suivi"
+msgstr "Delivery &amp; follow-up"
+
+#: templates/portfolio/home.html:269 templates/portfolio/home.html:569
+msgid "Localisation"
+msgstr "Location"
+
+#: templates/blog/post_detail.html:91 templates/courses/course_access.html:89
+#: templates/portfolio/home.html:290 templates/portfolio/security.html:52
+msgid "Me contacter"
+msgstr "Contact me"
+
+#: courses/views.py:256
+msgid "Merci ! Votre avis a bien été enregistré."
+msgstr "Thank you! Your review has been saved."
+
+#: portfolio/views.py:134
+msgid "Merci ! Votre message a bien été envoyé, je vous répondrai rapidement."
+msgstr "Thank you! Your message has been sent — I’ll reply soon."
+
+#: portfolio/views.py:126
+msgid "Merci ! Votre message a bien été envoyé."
+msgstr "Thank you! Your message has been sent."
+
+#: templates/portfolio/security.html:44
+msgid ""
+"Merci de me la signaler en privé avant toute publication, avec le plus de détails possible (page "
+"concernée, étapes pour reproduire). Je m'engage à accuser réception rapidement et à corriger le "
+"problème dans les meilleurs délais. Merci de ne pas accéder aux données d'autres utilisateurs."
+msgstr ""
+"Please report it privately before any publication, with as much detail as possible (page "
+"involved, steps to reproduce). I commit to acknowledging receipt quickly and fixing the issue as "
+"soon as possible. Please do not access other users’ data."
+
+#: templates/courses/receipt.html:70
+msgid "Merci pour votre confiance."
+msgstr "Thank you for your trust."
+
+#: templates/partials/command_palette.html:35 templates/partials/navbar.html:54
+#: templates/partials/navbar.html:100
+msgid "Mes cours"
+msgstr "My courses"
+
+#: templates/courses/dashboard.html:3 templates/courses/dashboard.html:40
+msgid "Mes cours achetés"
+msgstr "My purchased courses"
+
+#: templates/accounts/profile.html:10
+msgid "Mes informations"
+msgstr "My details"
+
+#: templates/portfolio/home.html:365
+msgid "Mes projets"
+msgstr "My projects"
+
+#: portfolio/forms.py:15
+msgid "Message"
+msgstr "Message"
+
+#: templates/courses/course_access.html:79
+msgid "Mettre à jour mon avis"
+msgstr "Update my review"
+
+#: courses/models.py:154
+msgid "Mobile Money (simulation)"
+msgstr "Mobile Money (simulation)"
+
+#: templates/courses/checkout.html:23
+msgid "Mode démonstration :"
+msgstr "Demo mode:"
+
+#: templates/accounts/password_change.html:3 templates/accounts/password_change.html:12
+#: templates/accounts/profile.html:39
+msgid "Modifier le mot de passe"
+msgstr "Change password"
+
+#: templates/partials/footer.html:35 templates/partials/navbar.html:85 templates/portfolio/home.html:57
+msgid "Mon CV"
+msgstr "My résumé"
+
+#: templates/partials/command_palette.html:24
+msgid "Mon CV (PDF)"
+msgstr "My résumé (PDF)"
+
+#: templates/accounts/profile.html:3 templates/accounts/profile.html:9
+#: templates/courses/dashboard.html:18 templates/partials/command_palette.html:36
+#: templates/partials/navbar.html:55 templates/partials/navbar.html:101
+msgid "Mon compte"
+msgstr "My account"
+
+#: templates/courses/course_access.html:3
+msgid "Mon cours"
+msgstr "My course"
+
+#: templates/courses/dashboard.html:13
+msgid "Mon espace"
+msgstr "My dashboard"
+
+#: templates/portfolio/home.html:229
+msgid "Mon parcours et mes compétences"
+msgstr "My background and skills"
+
+#: templates/courses/dashboard.html:80 templates/courses/receipt.html:46
+msgid "Montant"
+msgstr "Amount"
+
+#: templates/accounts/profile.html:36
+msgid "Mot de passe"
+msgstr "Password"
+
+#: templates/accounts/password_reset_complete.html:3 templates/accounts/password_reset_complete.html:5
+msgid "Mot de passe modifié"
+msgstr "Password changed"
+
+#: templates/accounts/password_reset_form.html:3
+msgid "Mot de passe oublié"
+msgstr "Forgot password"
+
+#: templates/accounts/login.html:13 templates/accounts/password_reset_form.html:5
+msgid "Mot de passe oublié ?"
+msgstr "Forgot password?"
+
+#: portfolio/security_info.py:22
+msgid "Mots de passe hachés"
+msgstr "Hashed passwords"
+
+#: templates/portfolio/home.html:171
+msgid "Mots de passe robustes, mises à jour, segmentation et sauvegardes."
+msgstr "Strong passwords, updates, segmentation and backups."
+
+#: courses/forms.py:16 templates/courses/checkout.html:33 templates/courses/checkout.html:34
+msgid "Moyen de paiement"
+msgstr "Payment method"
+
+#: templates/portfolio/home.html:385
+msgid "Méthode"
+msgstr "Method"
+
+#: portfolio/radar.py:29
+msgid "Méthodes"
+msgstr "Methods"
+
+#: templates/partials/footer.html:27
+msgid "Navigation"
+msgstr "Navigation"
+
+#: templates/partials/navbar.html:4
+msgid "Navigation principale"
+msgstr "Main navigation"
+
+#: templates/portfolio/home.html:587
+msgid "Ne pas remplir"
+msgstr "Leave blank"
+
+#: templates/courses/course_list.html:24
+msgid "Niveau"
+msgstr "Level"
+
+#: templates/courses/course_detail.html:160
+#, python-format
+msgid "Niveau %(level)s"
+msgstr "Level %(level)s"
+
+#: templates/portfolio/home.html:302
+msgid "Niveau moyen par domaine :"
+msgstr "Average level by area:"
+
+#: accounts/forms.py:63 portfolio/forms.py:12
+msgid "Nom"
+msgstr "Last name"
+
+#: accounts/forms.py:17
+msgid "Nom d’utilisateur ou e-mail"
+msgstr "Username or email"
+
+#: courses/forms.py:27
+msgid "Note"
+msgstr "Rating"
+
+#: templates/partials/stars.html:2
+#, python-format
+msgid "Note : %(rating)s sur 5"
+msgstr "Rating: %(rating)s out of 5"
+
+#: templates/courses/course_detail.html:29 templates/partials/course_card.html:19
+msgid "Nouveau"
+msgstr "New"
+
+#: templates/accounts/password_change.html:5 templates/accounts/password_reset_confirm.html:6
+msgid "Nouveau mot de passe"
+msgstr "New password"
+
+#: portfolio/forms.py:20
+msgid "Objet de votre message"
+msgstr "Subject of your message"
+
+#: templates/courses/checkout.html:78
+msgid "Obtenir le cours"
+msgstr "Get the course"
+
+#: templates/portfolio/home.html:398
+msgid "On définit ensemble votre besoin, vos contraintes et vos délais."
+msgstr "Together we define your needs, constraints and deadlines."
+
+#: portfolio/models.py:193
+msgid "Outils & méthodes"
+msgstr "Tools & methods"
+
+#: templates/partials/course_card.html:47
+msgid "Ouvrir"
+msgstr "Open"
+
+#: templates/courses/course_access.html:24
+msgid "Ouvrir le cours en ligne"
+msgstr "Open the online course"
+
+#: templates/partials/navbar.html:69
+msgid "Ouvrir le menu"
+msgstr "Open menu"
+
+#: templates/blog/post_list.html:92 templates/courses/course_list.html:67
+#, python-format
+msgid "Page %(number)s sur %(pages)s"
+msgstr "Page %(number)s of %(pages)s"
+
+#: templates/404.html:3
+msgid "Page introuvable"
+msgstr "Page not found"
+
+#: portfolio/security_info.py:77
+msgid "Pages privées non indexées"
+msgstr "Private pages not indexed"
+
+#: templates/blog/post_list.html:90 templates/courses/course_list.html:63
+msgid "Pagination"
+msgstr "Pagination"
+
+#: templates/courses/checkout.html:15 templates/courses/receipt.html:38
+msgid "Paiement"
+msgstr "Payment"
+
+#: courses/views.py:199
+#, python-format
+msgid "Paiement confirmé ! Commande n° %(reference)s. Bon apprentissage !"
+msgstr "Payment confirmed! Order #%(reference)s. Happy learning!"
+
+#: templates/courses/receipt.html:67
+msgid "Paiement effectué en mode démonstration : aucun montant n'a été réellement débité."
+msgstr "Payment completed in demo mode: no amount was actually charged."
+
+#: templates/partials/command_palette.html:3
+msgid "Palette de commandes"
+msgstr "Command palette"
+
+#: templates/courses/dashboard.html:69
+msgid "Parcourez le catalogue pour commencer à apprendre."
+msgstr "Browse the catalog to start learning."
+
+#: templates/blog/post_detail.html:77 templates/courses/course_detail.html:44
+msgid "Partager :"
+msgstr "Share:"
+
+#: templates/blog/post_detail.html:79 templates/courses/course_detail.html:46
+msgid "Partager sur Facebook"
+msgstr "Share on Facebook"
+
+#: templates/blog/post_detail.html:80
+msgid "Partager sur LinkedIn"
+msgstr "Share on LinkedIn"
+
+#: templates/blog/post_detail.html:78 templates/courses/course_detail.html:45
+msgid "Partager sur WhatsApp"
+msgstr "Share on WhatsApp"
+
+#: templates/courses/course_detail.html:132
+msgid ""
+"Pas encore d'avis sur ce cours. Les apprenants qui l'ont suivi peuvent donner le leur depuis leur"
+" espace."
+msgstr "No reviews for this course yet. Learners who took it can leave theirs from their dashboard."
+
+#: templates/accounts/login.html:21 templates/courses/course_detail.html:154
+msgid "Pas encore de compte ?"
+msgstr "Don’t have an account yet?"
+
+#: courses/models.py:156
+msgid "PayPal (simulation)"
+msgstr "PayPal (simulation)"
+
+#: templates/courses/course_list.html:35
+msgid "Payants"
+msgstr "Paid"
+
+#: templates/courses/checkout.html:78
+#, python-format
+msgid "Payer %(price)s %(symbol)s"
+msgstr "Pay %(price)s %(symbol)s"
+
+#: courses/models.py:150
+msgid "Payée"
+msgstr "Paid"
+
+#: templates/blog/post_detail.html:86 templates/portfolio/cv.html:29 templates/portfolio/home.html:101
+msgid "Photo de"
+msgstr "Photo of"
+
+#: templates/partials/footer.html:26
+msgid "Plan du site"
+msgstr "Sitemap"
+
+#: courses/views.py:31
+msgid "Plus récents"
+msgstr "Newest"
+
+#: templates/partials/command_palette.html:21 templates/partials/footer.html:7
+#: templates/partials/footer.html:32 templates/partials/footer.html:54 templates/partials/navbar.html:7
+#: templates/partials/navbar.html:15 templates/partials/navbar.html:82
+#: templates/portfolio/home.html:364
+msgid "Portfolio"
+msgstr "Portfolio"
+
+#: templates/base.html:6
+msgid "Portfolio &amp; cours en ligne"
+msgstr "Portfolio &amp; online courses"
+
+#: templates/base.html:7
+msgid "Portfolio, projets et cours en ligne."
+msgstr "Portfolio, projects and online courses."
+
+#: templates/portfolio/home.html:240
+msgid "Portrait de"
+msgstr "Portrait of"
+
+#: templates/courses/dashboard.html:99
+msgid "Pour aller plus loin"
+msgstr "Go further"
+
+#: templates/accounts/password_reset_confirm.html:17
+msgid ""
+"Pour des raisons de sécurité, un lien de réinitialisation ne fonctionne qu'une fois et pour une "
+"durée limitée."
+msgstr "For security reasons, a reset link works only once and for a limited time."
+
+#: templates/courses/checkout.html:74 templates/courses/course_list.html:31
+msgid "Prix"
+msgstr "Price"
+
+#: courses/views.py:32
+msgid "Prix croissant"
+msgstr "Price: low to high"
+
+#: courses/views.py:33
+msgid "Prix décroissant"
+msgstr "Price: high to low"
+
+#: templates/portfolio/cv.html:122
+msgid "Projets"
+msgstr "Projects"
+
+#: templates/portfolio/home.html:403
+msgid "Proposition"
+msgstr "Proposal"
+
+#: portfolio/security_info.py:38
+msgid "Protection CSRF"
+msgstr "CSRF protection"
+
+#: portfolio/security_info.py:84
+msgid ""
+"Protection contre le détournement de clic, l'interprétation erronée de fichiers, les fuites de "
+"référent et l'accès non sollicité à la caméra, au micro ou à la position."
+msgstr ""
+"Protection against clickjacking, MIME sniffing, referrer leaks and unsolicited access to the "
+"camera, microphone or location."
+
+#: accounts/forms.py:63
+msgid "Prénom"
+msgstr "First name"
+
+#: templates/courses/course_detail.html:84
+msgid "Prérequis"
+msgstr "Prerequisites"
+
+#: templates/courses/course_access.html:79
+msgid "Publier mon avis"
+msgstr "Publish my review"
+
+#: templates/partials/command_palette.html:26 templates/partials/footer.html:37
+#: templates/portfolio/home.html:506
+msgid "Questions fréquentes"
+msgstr "Frequently asked questions"
+
+#: templates/courses/receipt.html:25
+msgid "REÇU"
+msgstr "RECEIPT"
+
+#: templates/portfolio/home.html:301
+msgid "Radar des compétences par domaine"
+msgstr "Skills radar by area"
+
+#: templates/partials/navbar.html:25
+msgid "Rechercher"
+msgstr "Search"
+
+#: templates/partials/navbar.html:22
+msgid "Rechercher (Ctrl+K)"
+msgstr "Search (Ctrl+K)"
+
+#: templates/blog/post_list.html:25
+msgid "Rechercher un article"
+msgstr "Search articles"
+
+#: templates/blog/post_list.html:26
+msgid "Rechercher un article…"
+msgstr "Search articles…"
+
+#: templates/courses/course_list.html:20
+msgid "Rechercher un cours"
+msgstr "Search courses"
+
+#: templates/courses/course_list.html:21
+msgid "Rechercher un cours…"
+msgstr "Search courses…"
+
+#: templates/partials/command_palette.html:7
+msgid "Rechercher une page ou une action"
+msgstr "Search a page or action"
+
+#: templates/partials/command_palette.html:49
+msgid "Remonter en haut de page"
+msgstr "Back to top"
+
+#: templates/portfolio/home.html:264
+msgid "Renseignez votre présentation depuis l'espace d'administration."
+msgstr "Fill in your profile from the admin area."
+
+#: templates/base.html:139
+msgid "Retour en haut de page"
+msgstr "Back to top of page"
+
+#: templates/404.html:14 templates/500.html:18
+msgid "Retour à l'accueil"
+msgstr "Back to home"
+
+#: templates/accounts/password_reset_done.html:10
+msgid "Retour à la connexion"
+msgstr "Back to sign in"
+
+#: templates/portfolio/home.html:447
+msgid "Retrouvez tout dans « Mes cours »"
+msgstr "Find everything in “My courses”"
+
+#: templates/courses/dashboard.html:80 templates/courses/dashboard.html:89
+#: templates/courses/receipt.html:3
+msgid "Reçu"
+msgstr "Receipt"
+
+#: templates/courses/course_detail.html:165 templates/portfolio/home.html:446
+msgid "Reçu disponible pour chaque achat"
+msgstr "Receipt available for every purchase"
+
+#: portfolio/security_info.py:59
+msgid "Reçus et commandes privés"
+msgstr "Private receipts and orders"
+
+#: templates/portfolio/home.html:409
+msgid "Réalisation"
+msgstr "Delivery"
+
+#: templates/courses/checkout.html:61
+msgid "Récapitulatif"
+msgstr "Summary"
+
+#: templates/courses/dashboard.html:80
+msgid "Référence"
+msgstr "Reference"
+
+#: templates/portfolio/cv.html:64
+msgid "Références disponibles sur demande."
+msgstr "References available on request."
+
+#: templates/courses/course_list.html:78
+msgid "Réinitialiser les filtres"
+msgstr "Reset filters"
+
+#: portfolio/models.py:132
+msgid "Réseau / serveur"
+msgstr "Network / server"
+
+#: portfolio/radar.py:27 templates/portfolio/home.html:170
+msgid "Réseaux"
+msgstr "Networks"
+
+#: portfolio/models.py:191
+msgid "Réseaux & systèmes"
+msgstr "Networks & systems"
+
+#: templates/partials/command_palette.html:13
+msgid "Résultats"
+msgstr "Results"
+
+#: templates/blog/post_list.html:20
+msgid "S'abonner avec un lecteur RSS"
+msgstr "Subscribe with an RSS reader"
+
+#: templates/accounts/register.html:12 templates/partials/command_palette.html:40
+#: templates/partials/navbar.html:65 templates/partials/navbar.html:108
+msgid "S'inscrire"
+msgstr "Sign up"
+
+#: templates/courses/course_detail.html:149
+msgid "S'inscrire gratuitement"
+msgstr "Sign up for free"
+
+#: templates/accounts/password_change.html:6
+msgid "Saisissez votre mot de passe actuel puis le nouveau."
+msgstr "Enter your current password, then the new one."
+
+#: templates/accounts/login.html:15 templates/accounts/password_reset_complete.html:9
+#: templates/accounts/register.html:19
+msgid "Se connecter"
+msgstr "Sign in"
+
+#: templates/courses/course_detail.html:153
+msgid "Se connecter pour acheter"
+msgstr "Sign in to buy"
+
+#: templates/portfolio/home.html:186
+msgid "Sensibilisation au phishing et aux bonnes pratiques : le maillon humain compte."
+msgstr "Phishing awareness and best practices: the human factor matters."
+
+#: templates/partials/command_palette.html:18 templates/partials/footer.html:29
+#: templates/partials/navbar.html:12 templates/partials/navbar.html:79
+#: templates/portfolio/home.html:132
+msgid "Services"
+msgstr "Services"
+
+#: portfolio/security_info.py:43
+msgid "Sessions protégées"
+msgstr "Protected sessions"
+
+#: courses/views.py:245
+msgid "Seuls les acheteurs d'un cours peuvent laisser un avis."
+msgstr "Only course buyers can leave a review."
+
+#: templates/accounts/password_reset_done.html:6
+msgid "Si un compte correspond à cette adresse, un e-mail vient d'être envoyé."
+msgstr "If an account matches this address, an email has just been sent."
+
+#: templates/portfolio/security.html:49
+msgid "Signaler par e-mail"
+msgstr "Report by email"
+
+#: templates/blog/post_detail.html:58 templates/blog/post_detail.html:59
+#: templates/blog/post_detail.html:66 templates/blog/post_detail.html:68
+msgid "Sommaire"
+msgstr "Table of contents"
+
+#: templates/courses/receipt.html:40
+msgid "Statut :"
+msgstr "Status:"
+
+#: templates/blog/post_list.html:93 templates/courses/course_list.html:69
+msgid "Suivant &rarr;"
+msgstr "Next &rarr;"
+
+#: portfolio/forms.py:14
+msgid "Sujet"
+msgstr "Subject"
+
+#: portfolio/models.py:136
+msgid "Support / maintenance"
+msgstr "Support / maintenance"
+
+#: portfolio/radar.py:28
+msgid "Sécurité"
+msgstr "Security"
+
+#: templates/partials/command_palette.html:25 templates/partials/footer.html:36
+#: templates/portfolio/security.html:3 templates/portfolio/security.html:5
+msgid "Sécurité du site"
+msgstr "Site security"
+
+#: templates/portfolio/home.html:114
+msgid "Technologies maîtrisées"
+msgstr "Technologies mastered"
+
+#: templates/portfolio/home.html:416
+msgid "Tests, sécurisation, mise en service et assistance après livraison."
+msgstr "Testing, hardening, go-live and post-delivery support."
+
+#: courses/views.py:34
+msgid "Titre (A → Z)"
+msgstr "Title (A → Z)"
+
+#: templates/courses/checkout.html:75
+msgid "Total"
+msgstr "Total"
+
+#: templates/courses/dashboard.html:31
+msgid "Total investi"
+msgstr "Total invested"
+
+#: templates/courses/receipt.html:59
+msgid "Total payé"
+msgstr "Total paid"
+
+#: templates/portfolio/home.html:462
+msgid "Tous les articles"
+msgstr "All articles"
+
+#: templates/courses/course_list.html:26
+msgid "Tous les niveaux"
+msgstr "All levels"
+
+#: templates/courses/course_list.html:33
+msgid "Tous les prix"
+msgstr "All prices"
+
+#: templates/courses/course_list.html:39
+msgid "Trier par"
+msgstr "Sort by"
+
+#: accounts/forms.py:27
+#, python-format
+msgid ""
+"Trop de tentatives échouées. Par sécurité, la connexion est bloquée pendant encore %(minutes)d "
+"minute. Vous pouvez aussi réinitialiser votre mot de passe."
+msgid_plural ""
+"Trop de tentatives échouées. Par sécurité, la connexion est bloquée pendant encore %(minutes)d "
+"minutes. Vous pouvez aussi réinitialiser votre mot de passe."
+msgstr[0] ""
+"Too many failed attempts. For security, sign-in is locked for another %(minutes)d minute. You can"
+" also reset your password."
+msgstr[1] ""
+"Too many failed attempts. For security, sign-in is locked for another %(minutes)d minutes. You "
+"can also reset your password."
+
+#: templates/portfolio/cv.html:20
+msgid "Télécharger en PDF"
+msgstr "Download as PDF"
+
+#: templates/courses/course_access.html:27
+msgid "Télécharger le fichier"
+msgstr "Download the file"
+
+#: templates/portfolio/home.html:281 templates/portfolio/home.html:563
+msgid "Téléphone"
+msgstr "Phone"
+
+#: templates/portfolio/home.html:478
+msgid "Témoignages"
+msgstr "Testimonials"
+
+#: accounts/forms.py:51
+msgid "Un compte existe déjà avec cette adresse e-mail."
+msgstr "An account already exists with this email address."
+
+#: templates/portfolio/home.html:387
+msgid "Un déroulé simple et transparent, de la première discussion à la mise en service."
+msgstr "A simple, transparent process from the first discussion to go-live."
+
+#: templates/portfolio/home.html:530
+msgid "Un projet en tête ? Parlons-en."
+msgstr "Got a project in mind? Let’s talk."
+
+#: portfolio/security_info.py:61
+msgid ""
+"Un reçu n'est consultable que par son propriétaire. Pour tout autre visiteur, il n'existe tout "
+"simplement pas."
+msgstr "A receipt is only visible to its owner. For anyone else, it simply does not exist."
+
+#: templates/portfolio/home.html:164
+msgid ""
+"Un site, un réseau local ou un système de vidéosurveillance n'est fiable que s'il est protégé. "
+"J'intègre la sécurité à chaque projet : accès maîtrisés, configurations durcies, données "
+"sauvegardées et utilisateurs sensibilisés."
+msgstr ""
+"A website, local network or CCTV system is only reliable if it is protected. I build security "
+"into every project: controlled access, hardened configurations, backed-up data and informed "
+"users."
+
+#: templates/500.html:17
+msgid "Une erreur est survenue de notre côté. Veuillez réessayer dans un instant."
+msgstr "Something went wrong on our side. Please try again in a moment."
+
+#: templates/courses/course_access.html:86
+msgid "Une question sur ce cours ?"
+msgstr "A question about this course?"
+
+#: templates/portfolio/home.html:545
+msgid "Une question sur un cours, une collaboration ou une opportunité ? Je lis chaque message."
+msgstr "A question about a course, a collaboration or an opportunity? I read every message."
+
+#: templates/blog/post_detail.html:90
+msgid "Une question, un besoin ? Parlons-en."
+msgstr "A question or a need? Let’s talk."
+
+#: templates/portfolio/home.html:366
+msgid "Une sélection de projets réalisés pendant mes études, mes stages et à titre personnel."
+msgstr "A selection of projects completed during my studies, internships and personal work."
+
+#: templates/portfolio/home.html:185
+msgid "Utilisateurs"
+msgstr "Users"
+
+#: templates/portfolio/home.html:176
+msgid "Validation des données, authentification et protection contre les attaques courantes."
+msgstr "Input validation, authentication and protection against common attacks."
+
+#: courses/models.py:158
+msgid "Validation manuelle"
+msgstr "Manual review"
+
+#: templates/portfolio/cv.html:18
+msgid "Version PDF d'origine"
+msgstr "Original PDF version"
+
+#: portfolio/models.py:133
+msgid "Vidéosurveillance"
+msgstr "Video surveillance"
+
+#: templates/courses/course_access.html:39 templates/courses/dashboard.html:59
+msgid "Voir le reçu"
+msgstr "View receipt"
+
+#: templates/404.html:15
+msgid "Voir les cours"
+msgstr "View courses"
+
+#: templates/portfolio/home.html:54
+msgid "Voir mes projets"
+msgstr "View my projects"
+
+#: templates/portfolio/home.html:289
+msgid "Voir mon CV complet"
+msgstr "View my full résumé"
+
+#: templates/blog/post_list.html:85
+msgid "Voir tous les articles"
+msgstr "View all articles"
+
+#: templates/portfolio/home.html:431
+msgid "Voir tout le catalogue"
+msgstr "View full catalog"
+
+#: accounts/views.py:44
+msgid "Vos informations ont été mises à jour."
+msgstr "Your details have been updated."
+
+#: templates/courses/course_access.html:58
+msgid "Votre avis"
+msgstr "Your review"
+
+#: courses/views.py:256
+msgid "Votre avis a été mis à jour."
+msgstr "Your review has been updated."
+
+#: courses/views.py:207
+msgid "Votre commande a déjà été enregistrée."
+msgstr "Your order has already been recorded."
+
+#: courses/forms.py:45
+msgid "Votre commentaire (facultatif)"
+msgstr "Your comment (optional)"
+
+#: templates/courses/course_access.html:21
+msgid "Votre contenu est disponible immédiatement et pour toujours."
+msgstr "Your content is available immediately and forever."
+
+#: portfolio/security_info.py:78
+msgid "Votre espace, vos commandes et vos reçus sont exclus des moteurs de recherche."
+msgstr "Your dashboard, orders and receipts are excluded from search engines."
+
+#: accounts/views.py:52
+msgid "Votre mot de passe a été modifié."
+msgstr "Your password has been changed."
+
+#: portfolio/forms.py:18
+msgid "Votre nom"
+msgstr "Your name"
+
+#: templates/courses/course_access.html:64
+msgid "Votre note"
+msgstr "Your rating"
+
+#: templates/courses/course_access.html:59
+msgid "Votre retour aide les autres apprenants à choisir."
+msgstr "Your feedback helps other learners choose."
+
+#: templates/courses/course_detail.html:174
+msgid "Vous aimerez aussi"
+msgstr "You may also like"
+
+#: templates/portfolio/security.html:42
+msgid "Vous avez trouvé une faille ?"
+msgstr "Found a vulnerability?"
+
+#: courses/views.py:274
+msgid "Vous devez acheter ce cours pour le télécharger."
+msgstr "You must buy this course to download it."
+
+#: courses/views.py:222
+msgid "Vous devez acheter ce cours pour y accéder."
+msgstr "You must buy this course to access it."
+
+#: templates/courses/dashboard.html:68
+msgid "Vous n'avez encore acheté aucun cours"
+msgstr "You haven’t bought any courses yet"
+
+#: courses/views.py:171
+msgid "Vous possédez déjà ce cours."
+msgstr "You already own this course."
+
+#: templates/courses/course_access.html:59
+msgid "Vous pouvez le modifier à tout moment."
+msgstr "You can update it at any time."
+
+#: templates/accounts/password_reset_complete.html:6
+msgid "Vous pouvez maintenant vous connecter avec votre nouveau mot de passe."
+msgstr "You can now sign in with your new password."
+
+#: templates/accounts/password_reset_done.html:5
+msgid "Vérifiez votre boîte mail"
+msgstr "Check your inbox"
+
+#: portfolio/radar.py:25
+msgid "Web"
+msgstr "Web"
+
+#: templates/base.html:149 templates/portfolio/home.html:535
+msgid "WhatsApp"
+msgstr "WhatsApp"
+
+#: courses/urls.py:14
+msgid "acces/"
+msgstr "access/"
+
+#: courses/urls.py:13
+msgid "acheter/"
+msgstr "buy/"
+
+#: templates/blog/post_detail.html:7 templates/courses/course_detail.html:5
+msgid "article"
+msgstr "article"
+
+#: courses/urls.py:16
+msgid "avis/"
+msgstr "review/"
+
+#: courses/urls.py:17
+msgid "commande/"
+msgstr "order/"
+
+#: config/urls.py:35
+msgid "comptes/"
+msgstr "accounts/"
+
+#: accounts/urls.py:15
+msgid "connexion/"
+msgstr "login/"
+
+#: portfolio/urls.py:10
+msgid "contact/"
+msgstr "contact/"
+
+#: courses/urls.py:11 courses/urls.py:12 courses/urls.py:13 courses/urls.py:14 courses/urls.py:15
+#: courses/urls.py:16
+msgid "cours/"
+msgstr "courses/"
+
+#: portfolio/urls.py:11
+msgid "cv/"
+msgstr "cv/"
+
+#: templates/blog/post_list.html:51
+#, python-format
+msgid "dans « <strong>%(tag)s</strong> »"
+msgstr "in “<strong>%(tag)s</strong>”"
+
+#: accounts/urls.py:24
+msgid "deconnexion/"
+msgstr "logout/"
+
+#: templates/portfolio/home.html:83
+msgid "developer.py"
+msgstr "developer.py"
+
+#: templates/portfolio/home.html:83
+msgid "developpeur.py"
+msgstr "developer.py"
+
+#: templates/portfolio/home.html:30
+msgid "développeur &amp; formateur"
+msgstr "developer &amp; instructor"
+
+#: templates/courses/checkout.html:48
+msgid "gratuit"
+msgstr "free"
+
+#: accounts/urls.py:13
+msgid "inscription/"
+msgstr "register/"
+
+#: templates/courses/checkout.html:23
+msgid "le paiement est simulé, aucun montant n'est réellement débité."
+msgstr "payment is simulated — no amount is actually charged."
+
+#: courses/urls.py:18
+msgid "mon-espace/"
+msgstr "my-space/"
+
+#: accounts/urls.py:27
+msgid "mot-de-passe/modifier/"
+msgstr "password/change/"
+
+#: accounts/urls.py:30
+msgid "mot-de-passe/oublie/"
+msgstr "password/forgot/"
+
+#: accounts/urls.py:40
+msgid "mot-de-passe/oublie/envoye/"
+msgstr "password/forgot/sent/"
+
+#: accounts/urls.py:53
+msgid "mot-de-passe/reinitialise/"
+msgstr "password/reset/done/"
+
+#: accounts/urls.py:45
+msgid "mot-de-passe/reinitialiser/"
+msgstr "password/reset/"
+
+#: templates/partials/command_palette.html:59
+msgid "naviguer ·"
+msgstr "navigate ·"
+
+#: templates/partials/command_palette.html:59
+msgid "ouvrir"
+msgstr "open"
+
+#: templates/partials/command_palette.html:60
+msgid "pour l'ouvrir partout"
+msgstr "to open it anywhere"
+
+#: templates/blog/post_list.html:51 templates/courses/course_list.html:54
+#, python-format
+msgid "pour « <strong>%(q)s</strong> »"
+msgstr "for “<strong>%(q)s</strong>”"
+
+#: accounts/urls.py:26
+msgid "profil/"
+msgstr "profile/"
+
+#: courses/urls.py:17
+msgid "recu/"
+msgstr "receipt/"
+
+#: templates/portfolio/home.html:199
+msgid "securite.sh"
+msgstr "security.sh"
+
+#: portfolio/urls.py:12
+msgid "securite/"
+msgstr "security/"
+
+#: courses/urls.py:15
+msgid "telecharger/"
+msgstr "download/"
+
+#: portfolio/forms.py:19
+msgid "vous@exemple.com"
+msgstr "you@example.com"
+
+#: courses/views.py:30 templates/blog/post_list.html:65 templates/partials/course_card.html:17
+#: templates/partials/project_card.html:14
+msgid "À la une"
+msgstr "Featured"
+
+#: templates/blog/post_detail.html:112
+msgid "À lire aussi"
+msgstr "Also read"
+
+#: templates/partials/command_palette.html:20 templates/partials/footer.html:31
+#: templates/partials/navbar.html:14 templates/partials/navbar.html:81
+#: templates/portfolio/home.html:228
+msgid "À propos"
+msgstr "About"
+
+#: templates/courses/course_access.html:52
+msgid "À propos de ce cours"
+msgstr "About this course"
+
+#: templates/blog/post_detail.html:85
+msgid "À propos de l'auteur"
+msgstr "About the author"
+
+#: templates/portfolio/home.html:397
+msgid "Échange"
+msgstr "Discovery"
+
+#: templates/partials/command_palette.html:10
+msgid "Échap"
+msgstr "Esc"
+
+#: templates/partials/command_palette.html:51
+msgid "Écrire un e-mail"
+msgstr "Write an email"
+
+#: templates/blog/post_detail.html:88
+msgid "Écrit par"
+msgstr "Written by"
+
+#: templates/portfolio/home.html:544
+msgid "Écrivez-moi"
+msgstr "Write to me"
+
+#: templates/courses/course_access.html:87
+msgid "Écrivez-moi, je vous répondrai rapidement."
+msgstr "Write to me — I’ll reply quickly."
+
+#: templates/portfolio/home.html:396
+msgid "Étape 1"
+msgstr "Step 1"
+
+#: templates/portfolio/home.html:402
+msgid "Étape 2"
+msgstr "Step 2"
+
+#: templates/portfolio/home.html:408
+msgid "Étape 3"
+msgstr "Step 3"
+
+#: templates/portfolio/home.html:414
+msgid "Étape 4"
+msgstr "Step 4"
+
+#: templates/courses/checkout.html:12
+msgid "Étapes de la commande"
+msgstr "Checkout steps"
+

@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% load blog_tags %}
+
+{% block title %}{{ post.title }}{% endblock %}
+{% block meta_description %}{{ post.excerpt }}{% endblock %}
+{% block robots %}{% if post.is_live %}index, follow{% else %}noindex, nofollow{% endif %}{% endblock %}
+{% block og_type %}{% trans "article" %}{% endblock %}
+{% block og_title %}{{ post.title }}{% endblock %}
+{% block og_description %}{{ post.excerpt }}{% endblock %}
+{% block og_image_tag %}{% if post.cover %}<meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ post.cover.url }}">{% elif og_image %}<meta property="og:image" content="{{ og_image }}">{% endif %}{% endblock %}
+
+{% block content %}
+{% if not post.is_live %}
+  <div class="border-b border-amber-200 bg-amber-50 px-4 py-3 text-center text-sm font-medium text-amber-800 dark:border-amber-500/30 dark:bg-amber-500/10 dark:text-amber-300">
+    {% trans "Aperçu réservé à l'administration : cet article n'est pas (encore) visible du public." %}
+  </div>
+{% endif %}
+
+<section class="relative isolate overflow-hidden border-b border-slate-200 dark:border-slate-800">
+  <div class="mx-auto max-w-3xl px-4 pb-10 pt-10 sm:px-6">
+    <nav class="flex flex-wrap items-center gap-2 text-sm text-slate-500" aria-label="{% trans "Fil d'Ariane" %}">
+      <a href="{% url 'portfolio:home' %}" class="hover:text-teal-600 dark:hover:text-teal-400">{% trans "Accueil" %}</a><span aria-hidden="true">/</span>
+      <a href="{% url 'blog:list' %}" class="hover:text-teal-600 dark:hover:text-teal-400">{% trans "Blog" %}</a>
+    </nav>
+
+    {% if post.tag_list %}
+      <ul class="mt-6 flex flex-wrap gap-2">
+        {% for t in post.tag_list %}<li><a href="{% url 'blog:list' %}?tag={{ t|urlencode }}" class="badge hover:bg-teal-100 dark:hover:bg-teal-500/20">{{ t }}</a></li>{% endfor %}
+      </ul>
+    {% endif %}
+    <h1 class="mt-4 text-3xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-4xl lg:text-5xl dark:text-white">{{ post.title }}</h1>
+    <p class="mt-4 text-lg leading-8 text-slate-600 dark:text-slate-400">{{ post.excerpt }}</p>
+
+    <div class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-slate-500">
+      <span class="flex items-center gap-2">
+        {% if profile.photo_url %}<img src="{{ profile.photo_url }}" alt="" class="h-8 w-8 rounded-full object-cover object-top ring-2 ring-white dark:ring-slate-800">{% endif %}
+        <span class="font-medium text-slate-700 dark:text-slate-300">{{ profile.full_name }}</span>
+      </span>
+      <time datetime="{{ post.published_at|date:'c' }}">{{ post.published_at|date:"j F Y" }}</time>
+      <span class="inline-flex items-center gap-1.5">{% icon "clock" "h-4 w-4" %} {% blocktrans with minutes=post.reading_time %}{{ minutes }} min de lecture{% endblocktrans %}</span>
+    </div>
+  </div>
+</section>
+
+<article class="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+  <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_14rem] lg:items-start">
+    <div class="mx-auto w-full max-w-3xl lg:mx-0">
+      {% if post.cover %}
+        <button type="button" data-lightbox="{{ post.cover.url }}" data-lightbox-alt="{{ post.title }}"
+                class="mb-10 block w-full cursor-zoom-in overflow-hidden rounded-2xl text-left shadow-xl" aria-label="{% trans "Agrandir l'image" %}">
+          <img src="{{ post.cover.url }}" alt="" class="img-fade aspect-[16/9] w-full object-cover transition duration-500 hover:scale-[1.02]">
+        </button>
+      {% endif %}
+
+      <nav data-toc class="mb-10 rounded-2xl border border-slate-200 bg-slate-50/80 p-5 lg:hidden dark:border-slate-800 dark:bg-slate-900/50" hidden aria-label="{% trans "Sommaire" %}">
+        <p class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">{% trans "Sommaire" %}</p>
+        <ol data-toc-list class="mt-3 space-y-2 text-sm"></ol>
+      </nav>
+
+      <div class="prose-custom" data-article-body>{{ post.content|markdown_safe }}</div>
+    </div>
+
+    <aside class="reveal sticky top-24 hidden lg:block" aria-label="{% trans "Sommaire" %}">
+      <nav data-toc class="rounded-2xl border border-slate-200 bg-white/80 p-5 backdrop-blur dark:border-slate-800 dark:bg-slate-900/70" hidden>
+        <p class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">{% trans "Sommaire" %}</p>
+        <ol data-toc-list class="mt-3 space-y-2 text-sm leading-6"></ol>
+      </nav>
+    </aside>
+  </div>
+
+  <div class="mx-auto mt-12 max-w-3xl">
+    {# Partage #}
+    <div class="flex flex-wrap items-center gap-2.5 border-t border-slate-200 pt-6 text-sm dark:border-slate-800">
+      <span class="text-slate-500">{% trans "Partager :" %}</span>
+      <a href="https://wa.me/?text={{ post.title|urlencode:'' }}%20{{ canonical_url|urlencode:'' }}" target="_blank" rel="noopener noreferrer" aria-label="{% trans "Partager sur WhatsApp" %}" class="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 transition hover:border-emerald-300 hover:text-emerald-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">{% icon "whatsapp" "h-4 w-4" %}</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u={{ canonical_url|urlencode:'' }}" target="_blank" rel="noopener noreferrer" aria-label="{% trans "Partager sur Facebook" %}" class="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 transition hover:border-teal-300 hover:text-teal-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">{% icon "facebook" "h-4 w-4" %}</a>
+      <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ canonical_url|urlencode:'' }}" target="_blank" rel="noopener noreferrer" aria-label="{% trans "Partager sur LinkedIn" %}" class="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 transition hover:border-teal-300 hover:text-teal-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">{% icon "linkedin" "h-4 w-4" %}</a>
+      <button type="button" data-copy-link class="inline-flex h-9 items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 text-slate-600 transition hover:border-teal-300 hover:text-teal-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">{% icon "link" "h-4 w-4" %} <span data-copy-label data-copied="{% trans "Lien copié !" %}" data-toast="{% trans "Lien copié !" %}">{% trans "Copier le lien" %}</span></button>
+    </div>
+
+    {# Auteur #}
+    <aside class="card mt-10 flex flex-col items-center gap-5 p-6 text-center sm:flex-row sm:text-left" aria-label="{% trans "À propos de l'auteur" %}">
+      {% if profile.photo_url %}<img src="{{ profile.photo_url }}" alt="{% trans "Photo de" %} {{ profile.full_name }}" class="h-24 w-24 shrink-0 rounded-2xl object-cover object-top shadow-lg ring-4 ring-white dark:ring-slate-800">{% endif %}
+      <div>
+        <p class="text-xs font-bold uppercase tracking-widest text-teal-600 dark:text-teal-400">{% trans "Écrit par" %}</p>
+        <p class="mt-1 text-lg font-bold text-slate-900 dark:text-white">{{ profile.full_name }}</p>
+        <p class="mt-1 text-sm leading-6">{{ profile.headline }}. {% trans "Une question, un besoin ? Parlons-en." %}</p>
+        <a href="{% url 'portfolio:home' %}#contact" class="btn btn-secondary mt-3 !py-2">{% icon "mail" "h-4 w-4" %} {% trans "Me contacter" %}</a>
+      </div>
+    </aside>
+
+    {# Précédent / suivant #}
+    {% if previous_post or next_post %}
+      <nav class="mt-10 grid gap-4 sm:grid-cols-2" aria-label="{% trans "Autres articles" %}">
+        {% if previous_post %}
+          <a href="{{ previous_post.get_absolute_url }}" class="card card-hover p-5"><span class="text-xs font-semibold uppercase tracking-wide text-slate-500">{% trans "&larr; Article précédent" %}</span><span class="mt-1 block font-bold text-slate-900 dark:text-white">{{ previous_post.title }}</span></a>
+        {% else %}<span></span>{% endif %}
+        {% if next_post %}
+          <a href="{{ next_post.get_absolute_url }}" class="card card-hover p-5 sm:text-right"><span class="text-xs font-semibold uppercase tracking-wide text-slate-500">{% trans "Article suivant &rarr;" %}</span><span class="mt-1 block font-bold text-slate-900 dark:text-white">{{ next_post.title }}</span></a>
+        {% endif %}
+      </nav>
+    {% endif %}
+  </div>
+</article>
+
+{% if related_posts %}
+  <section class="border-t border-slate-200 bg-slate-50 py-16 dark:border-slate-800 dark:bg-slate-900/40">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6">
+      <h2 class="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white">{% trans "À lire aussi" %}</h2>
+      <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {% for post in related_posts %}{% include "partials/post_card.html" %}{% endfor %}
+      </div>
+    </div>
+  </section>
+{% endif %}
+{% endblock %}

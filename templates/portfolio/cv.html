@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block title %}CV — {{ profile.full_name }}{% endblock %}
+{% block meta_description %}{% blocktrans trimmed with name=profile.full_name headline=profile.headline %}Curriculum vitae de {{ name }} : {{ headline }}. Compétences, expériences, formations et projets.{% endblocktrans %}{% endblock %}
+{% block og_title %}CV — {{ profile.full_name }}{% endblock %}
+{% block extra_head %}
+  {# Impression : feuille A4 sans marges (les marges sont gérées par la mise en page de la feuille) #}
+  <style media="print">@page { size: A4; margin: 0; }</style>
+{% endblock %}
+
+{% block content %}
+<section class="bg-slate-100 px-3 py-10 print:bg-white print:p-0 dark:bg-slate-900/60">
+  {# Barre d'actions (masquée à l'impression) #}
+  <div class="no-print mx-auto mb-6 flex max-w-[210mm] flex-wrap items-center justify-between gap-3">
+    <a href="{% url 'portfolio:home' %}" class="inline-flex items-center gap-1.5 text-sm text-teal-600 hover:underline dark:text-teal-400">{% trans "&larr; Retour au site" %}</a>
+    <div class="flex flex-wrap gap-2">
+      {% if profile.cv_file %}
+        <a href="{{ profile.cv_file.url }}" target="_blank" rel="noopener" class="btn btn-secondary">{% icon "download" "h-4 w-4" %} {% trans "Version PDF d'origine" %}</a>
+      {% endif %}
+      <button type="button" data-print class="btn btn-primary">{% icon "printer" "h-4 w-4" %} {% trans "Télécharger en PDF" %}</button>
+    </div>
+  </div>
+
+  <article class="cv-sheet mx-auto grid max-w-[210mm] overflow-hidden bg-white text-[11.5px] leading-[1.45] text-slate-700 shadow-2xl md:grid-cols-[68mm_1fr] print:w-[210mm] print:max-w-none print:grid-cols-[68mm_1fr] print:shadow-none">
+
+    {# ============ COLONNE GAUCHE ============ #}
+    <aside class="bg-slate-900 px-5 py-6 text-slate-300 print:px-5">
+      {% if profile.photo_url %}
+        <img src="{{ profile.photo_url }}" alt="{% trans "Photo de" %} {{ profile.full_name }}" class="mx-auto aspect-[4/5] w-full max-w-[42mm] rounded-2xl object-cover object-top ring-4 ring-white/15">
+      {% endif %}
+
+      <h2 class="mt-5 flex items-center gap-2 text-[10.5px] font-bold uppercase tracking-[0.18em] text-teal-300">{% trans "Contact" %}</h2>
+      <ul class="mt-2.5 space-y-2">
+        {% if profile.email %}<li class="flex items-start gap-2.5">{% icon "mail" "mt-0.5 h-3.5 w-3.5 shrink-0 text-teal-300" %}<span class="break-all">{{ profile.email }}</span></li>{% endif %}
+        {% if profile.phone %}<li class="flex items-start gap-2.5">{% icon "phone" "mt-0.5 h-3.5 w-3.5 shrink-0 text-teal-300" %}<span>{{ profile.phone }}</span></li>{% endif %}
+        {% if profile.location %}<li class="flex items-start gap-2.5">{% icon "pin" "mt-0.5 h-3.5 w-3.5 shrink-0 text-teal-300" %}<span>{{ profile.location }}</span></li>{% endif %}
+        {% for icon_name, label, url in profile.social_links %}
+          <li class="flex items-start gap-2.5">{% icon icon_name "mt-0.5 h-3.5 w-3.5 shrink-0 text-teal-300" %}<span class="break-all">{{ url|cut:"https://"|cut:"www." }}</span></li>
+        {% endfor %}
+      </ul>
+
+      {% if profile.languages_list %}
+        <h2 class="mt-5 text-[10.5px] font-bold uppercase tracking-[0.18em] text-teal-300">{% trans "Langues" %}</h2>
+        <ul class="mt-2.5 space-y-1">
+          {% for language in profile.languages_list %}<li>{{ language }}</li>{% endfor %}
+        </ul>
+      {% endif %}
+
+      <h2 class="mt-5 text-[10.5px] font-bold uppercase tracking-[0.18em] text-teal-300">{% trans "Compétences" %}</h2>
+      {% regroup skills by get_category_display as skill_groups %}
+      <div class="mt-2.5 space-y-3">
+        {% for group in skill_groups %}
+          <div class="break-inside-avoid">
+            <p class="text-[10.5px] font-semibold text-white">{{ group.grouper }}</p>
+            <ul class="mt-1 flex flex-wrap gap-1">
+              {% for skill in group.list %}
+                <li class="rounded-md bg-white/10 px-1.5 py-0.5 text-[10px] {% if group.list.0.category == 'security' %}text-emerald-300{% endif %}">{{ skill.name }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endfor %}
+      </div>
+
+      <p class="mt-5 border-t border-white/10 pt-3 text-[10px] leading-4 text-slate-400">{% trans "Références disponibles sur demande." %}</p>
+    </aside>
+
+    {# ============ COLONNE PRINCIPALE ============ #}
+    <div class="px-6 py-6 print:px-6">
+      <header class="border-b border-slate-200 pb-4">
+        <h1 class="font-display text-[26px] font-extrabold leading-tight tracking-tight text-slate-900">{{ profile.full_name }}</h1>
+        <p class="mt-0.5 text-[14px] font-semibold text-teal-600">{{ profile.headline }}</p>
+        {% if profile.tagline %}<p class="mt-2.5 leading-5">{{ profile.tagline }}</p>{% endif %}
+      </header>
+
+      {% if services %}
+        <h2 class="cv-title">{% trans "Domaines d'expertise" %}</h2>
+        <ul class="mt-2.5 grid gap-x-5 gap-y-1 sm:grid-cols-2 print:grid-cols-2">
+          {% for service in services %}
+            <li class="flex items-start gap-2"><span class="mt-0.5 text-teal-600">{% icon "check" "h-3.5 w-3.5" %}</span> {{ service.title }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+      {% if experiences %}
+        <h2 class="cv-title">{% trans "Expérience professionnelle" %}</h2>
+        <ol class="mt-2.5 space-y-3">
+          {% for item in experiences %}
+            <li class="break-inside-avoid">
+              <div class="flex items-baseline justify-between gap-3"><p class="font-semibold text-slate-900">{{ item.title }}</p><p class="shrink-0 text-[11px] font-semibold text-teal-600">{{ item.period }}</p></div>
+              {% if item.organization %}<p class="text-slate-500">{{ item.organization }}</p>{% endif %}
+              {% if item.description %}<p class="mt-1">{{ item.description }}</p>{% endif %}
+            </li>
+          {% endfor %}
+        </ol>
+      {% endif %}
+
+      {% if education %}
+        <h2 class="cv-title">{% trans "Formation" %}</h2>
+        <ol class="mt-2.5 space-y-2">
+          {% for item in education %}
+            <li class="break-inside-avoid">
+              <div class="flex items-baseline justify-between gap-3"><p class="font-semibold text-slate-900">{{ item.title }}</p><p class="shrink-0 text-[11px] font-semibold text-teal-600">{{ item.period }}</p></div>
+              {% if item.organization %}<p class="text-slate-500">{{ item.organization }}</p>{% endif %}
+            </li>
+          {% endfor %}
+        </ol>
+      {% endif %}
+
+      {% if certifications %}
+        <h2 class="cv-title">{% trans "Certifications &amp; formations courtes" %}</h2>
+        <ul class="mt-2.5 space-y-1.5">
+          {% for item in certifications %}
+            <li class="break-inside-avoid flex items-baseline justify-between gap-3">
+              <p><span class="font-medium text-slate-900">{{ item.title }}</span>{% if item.organization %} <span class="text-slate-500">— {{ item.organization }}</span>{% endif %}</p>
+              <p class="shrink-0 text-[10.5px] font-semibold text-teal-600">{{ item.period }}</p>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+      {% if projects %}
+        <h2 class="cv-title">{% trans "Projets" %}</h2>
+        <ul class="mt-2.5 space-y-2">
+          {% for project in projects %}
+            <li class="break-inside-avoid">
+              <p><span class="font-semibold text-slate-900">{{ project.title }}</span> <span class="text-[10.5px] text-slate-500">· {{ project.tech_list|join:" · " }}</span></p>
+              <p>{{ project.description|truncatewords:14 }}</p>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+    </div>
+  </article>
+</section>
+{% endblock %}

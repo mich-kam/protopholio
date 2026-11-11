@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+
+{% block title %}{{ course.title }}{% endblock %}
+{% block meta_description %}{{ course.short_description }}{% endblock %}
+{% block og_type %}{% trans "article" %}{% endblock %}
+{% block og_title %}{{ course.title }}{% endblock %}
+{% block og_description %}{{ course.short_description }}{% endblock %}
+{% block og_image_tag %}{% if course.image %}<meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ course.image.url }}">{% endif %}{% endblock %}
+
+{% block content %}
+{# --- Bandeau d'en-tête --- #}
+<section class="relative isolate overflow-hidden border-b border-slate-200 dark:border-slate-800">
+  <div class="mx-auto max-w-6xl px-4 pb-10 pt-10 sm:px-6">
+    <nav class="flex flex-wrap items-center gap-2 text-sm text-slate-500" aria-label="{% trans "Fil d'Ariane" %}">
+      <a href="{% url 'portfolio:home' %}" class="hover:text-teal-600 dark:hover:text-teal-400">{% trans "Accueil" %}</a>
+      <span aria-hidden="true">/</span>
+      <a href="{% url 'courses:list' %}" class="hover:text-teal-600 dark:hover:text-teal-400">{% trans "Cours" %}</a>
+      <span aria-hidden="true">/</span>
+      <span class="truncate text-slate-700 dark:text-slate-300" aria-current="page">{{ course.title }}</span>
+    </nav>
+
+    <div class="mt-6 max-w-3xl">
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="badge">{% icon "layers" "h-3.5 w-3.5" %} {{ course.get_level_display }}</span>
+        {% if course.duration %}<span class="badge">{% icon "clock" "h-3.5 w-3.5" %} {{ course.duration }}</span>{% endif %}
+        {% if course.is_new %}<span class="rounded-full bg-teal-600 px-3 py-1 text-xs font-semibold text-white">{% trans "Nouveau" %}</span>{% endif %}
+        {% if has_access %}<span class="rounded-full bg-emerald-500 px-3 py-1 text-xs font-semibold text-white">{% trans "Cours acquis" %}</span>{% endif %}
+      </div>
+      <h1 class="mt-4 text-3xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-4xl lg:text-5xl dark:text-white">{{ course.title }}</h1>
+      <p class="mt-4 text-lg leading-8 text-slate-600 dark:text-slate-400">{{ course.short_description }}</p>
+
+      {% if rating.count %}
+        <a href="#avis" class="mt-4 inline-flex items-center gap-2 text-sm">
+          {% include "partials/stars.html" with value=rating.avg size="h-4 w-4" %}
+          <span class="font-bold text-slate-900 dark:text-white">{{ rating.avg }}</span>
+          <span class="text-slate-500 underline-offset-2 hover:underline">({% blocktrans count counter=rating.count %}{{ counter }} avis{% plural %}{{ counter }} avis{% endblocktrans %})</span>
+        </a>
+      {% endif %}
+
+      <div class="mt-6 flex flex-wrap items-center gap-2.5 text-sm">
+        <span class="text-slate-500">{% trans "Partager :" %}</span>
+        <a href="https://wa.me/?text={{ course.title|urlencode:'' }}%20{{ canonical_url|urlencode:'' }}" target="_blank" rel="noopener noreferrer" aria-label="{% trans "Partager sur WhatsApp" %}" class="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 transition hover:border-emerald-300 hover:text-emerald-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">{% icon "whatsapp" "h-4 w-4" %}</a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ canonical_url|urlencode:'' }}" target="_blank" rel="noopener noreferrer" aria-label="{% trans "Partager sur Facebook" %}" class="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 transition hover:border-teal-300 hover:text-teal-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">{% icon "facebook" "h-4 w-4" %}</a>
+        <button type="button" data-copy-link class="inline-flex h-9 items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 text-slate-600 transition hover:border-teal-300 hover:text-teal-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">
+          {% icon "link" "h-4 w-4" %} <span data-copy-label>{% trans "Copier le lien" %}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+  <div class="grid gap-10 lg:grid-cols-3">
+    {# --- Contenu --- #}
+    <div class="space-y-12 lg:col-span-2">
+      {% if course.image %}
+        <img src="{{ course.image.url }}" alt="{{ course.title }}" class="aspect-[16/9] w-full rounded-2xl object-cover shadow-xl">
+      {% endif %}
+
+      {% if course.outcomes_list %}
+        <div class="card p-7">
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white">{% trans "Ce que vous allez apprendre" %}</h2>
+          <ul class="mt-5 grid gap-3 sm:grid-cols-2">
+            {% for item in course.outcomes_list %}
+              <li class="flex items-start gap-3 text-sm leading-6">
+                <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-500/15 dark:text-emerald-400">{% icon "check" "h-3 w-3" %}</span>
+                {{ item }}
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white">{% trans "Description du cours" %}</h2>
+        <div class="mt-4 space-y-4 leading-7">{{ course.description|linebreaks }}</div>
+      </div>
+
+      {% if course.requirements_list %}
+        <div>
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white">{% trans "Prérequis" %}</h2>
+          <ul class="mt-4 space-y-2.5">
+            {% for item in course.requirements_list %}
+              <li class="flex items-start gap-3 text-sm leading-6"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-teal-500"></span> {{ item }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+
+      {# --- Avis des apprenants (uniquement de vrais avis d'acheteurs) --- #}
+      <div id="avis" class="scroll-mt-24">
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white">{% trans "Avis des apprenants" %}</h2>
+        {% if rating.count %}
+          <div class="card mt-5 grid gap-6 p-6 sm:grid-cols-[auto_1fr] sm:items-center">
+            <div class="text-center sm:px-6">
+              <p class="font-display text-5xl font-extrabold text-slate-900 dark:text-white">{{ rating.avg }}</p>
+              <div class="mt-2">{% include "partials/stars.html" with value=rating.avg size="h-4 w-4" %}</div>
+              <p class="mt-1 text-xs text-slate-500">{% blocktrans count counter=rating.count %}{{ counter }} avis{% plural %}{{ counter }} avis{% endblocktrans %}</p>
+            </div>
+            <ul class="space-y-1.5">
+              {% for bar in rating.bars %}
+                <li class="flex items-center gap-3 text-xs">
+                  <span class="w-10 shrink-0 text-slate-500">{{ bar.stars }} ★</span>
+                  <span class="h-2 flex-1 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-800"><span class="block h-full rounded-full bg-amber-400" style="width: {{ bar.pct }}%"></span></span>
+                  <span class="w-6 shrink-0 text-right text-slate-500">{{ bar.n }}</span>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+
+          <ul class="mt-6 space-y-4">
+            {% for review in reviews %}
+              <li class="card p-5">
+                <div class="flex items-center justify-between gap-3">
+                  <div class="flex items-center gap-3">
+                    <span class="flex h-9 w-9 items-center justify-center rounded-full bg-slate-900 text-sm font-bold text-white dark:bg-teal-700">{{ review.author_name|slice:":1"|upper }}</span>
+                    <div>
+                      <p class="text-sm font-semibold text-slate-900 dark:text-white">{{ review.author_name }}</p>
+                      <p class="text-xs text-slate-500">{{ review.created_at|date:"j F Y" }}</p>
+                    </div>
+                  </div>
+                  {% include "partials/stars.html" with value=review.rating size="h-3.5 w-3.5" %}
+                </div>
+                {% if review.comment %}<p class="mt-3 text-sm leading-6">{{ review.comment|linebreaksbr }}</p>{% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="card mt-5 p-6 text-sm text-slate-500">{% trans "Pas encore d'avis sur ce cours. Les apprenants qui l'ont suivi peuvent donner le leur depuis leur espace." %}</p>
+        {% endif %}
+      </div>
+    </div>
+
+    {# --- Carte d'achat --- #}
+    <aside class="lg:col-span-1">
+      <div class="card sticky top-24 p-6">
+        <p class="font-display text-4xl font-extrabold text-slate-900 dark:text-white">
+          {% if course.is_free %}{% trans "Gratuit" %}{% else %}{{ course.price|floatformat:"-2" }} {{ CURRENCY_SYMBOL }}{% endif %}
+        </p>
+
+        <div class="mt-6">
+          {% if has_access %}
+            <a href="{% url 'courses:access' course.slug %}" class="btn btn-primary btn-lg w-full">{% icon "play" "h-5 w-5" %} {% trans "Accéder au cours" %}</a>
+          {% elif user.is_authenticated %}
+            <a href="{% url 'courses:checkout' course.slug %}" class="btn btn-primary btn-lg w-full">
+              {% if course.is_free %}{% trans "S'inscrire gratuitement" %}{% else %}{% trans "Acheter ce cours" %}{% endif %}
+            </a>
+          {% else %}
+            {% url 'courses:checkout' course.slug as checkout_url %}
+            <a href="{% url 'accounts:login' %}?next={{ checkout_url }}" class="btn btn-primary btn-lg w-full">{% trans "Se connecter pour acheter" %}</a>
+            <p class="mt-3 text-center text-xs text-slate-500">{% trans "Pas encore de compte ?" %} <a class="font-semibold text-teal-600 hover:underline dark:text-teal-400" href="{% url 'accounts:register' %}?next={{ checkout_url }}">{% trans "Inscrivez-vous" %}</a></p>
+          {% endif %}
+        </div>
+
+        <h3 class="mt-7 text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white">{% trans "Ce cours inclut" %}</h3>
+        <ul class="mt-4 space-y-3 text-sm">
+          <li class="flex items-center gap-3">{% icon "layers" "h-4 w-4 text-teal-500" %} {% blocktrans with level=course.get_level_display|lower %}Niveau {{ level }}{% endblocktrans %}</li>
+          {% if course.duration %}<li class="flex items-center gap-3">{% icon "clock" "h-4 w-4 text-teal-500" %} {{ course.duration }}</li>{% endif %}
+          {% if course.course_url %}<li class="flex items-center gap-3">{% icon "play" "h-4 w-4 text-teal-500" %} {% trans "Contenu à suivre en ligne" %}</li>{% endif %}
+          {% if course.course_file %}<li class="flex items-center gap-3">{% icon "download" "h-4 w-4 text-teal-500" %} {% trans "Fichier téléchargeable" %}</li>{% endif %}
+          <li class="flex items-center gap-3">{% icon "zap" "h-4 w-4 text-teal-500" %} {% trans "Accès immédiat après la commande" %}</li>
+          <li class="flex items-center gap-3">{% icon "file-text" "h-4 w-4 text-teal-500" %} {% trans "Reçu disponible pour chaque achat" %}</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  {# --- Cours similaires --- #}
+  {% if related_courses %}
+    <div class="mt-20">
+      <h2 class="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white">{% trans "Vous aimerez aussi" %}</h2>
+      <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {% for course in related_courses %}{% include "partials/course_card.html" %}{% endfor %}
+      </div>
+    </div>
+  {% endif %}
+</section>
+{% endblock %}

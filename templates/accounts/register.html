@@ -1,0 +1,21 @@
+{% extends "accounts/auth_base.html" %}
+
+{% block title %}{% trans "Créer un compte" %}{% endblock %}
+{% block auth_title %}{% trans "Créer un compte" %}{% endblock %}
+{% block auth_subtitle %}{% trans "Inscrivez-vous pour acheter et suivre vos cours." %}{% endblock %}
+
+{% block auth_body %}
+<form method="post" class="space-y-5" data-lock>
+  {% csrf_token %}
+  <input type="hidden" name="next" value="{{ next }}">
+  {% include "partials/form.html" with form=form %}
+  <button type="submit" class="btn btn-primary btn-lg w-full">{% trans "S'inscrire" %}</button>
+</form>
+{% endblock %}
+
+{% block auth_footer %}
+<p class="mt-6 text-center text-sm">
+  {% trans "Déjà inscrit ?" %}
+  <a class="font-semibold text-teal-600 hover:underline dark:text-teal-400" href="{% url 'accounts:login' %}{% if next %}?next={{ next|urlencode }}{% endif %}">{% trans "Se connecter" %}</a>
+</p>
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}{% trans "Reçu" %} {{ order.short_reference }}{% endblock %}
+{% block robots %}noindex, nofollow{% endblock %}
+
+{% block content %}
+<section class="mx-auto max-w-3xl px-4 py-12 sm:px-6">
+  <div class="no-print mb-6 flex flex-wrap items-center justify-between gap-3">
+    <a href="{% url 'courses:dashboard' %}" class="inline-flex items-center gap-1.5 text-sm text-teal-600 hover:underline dark:text-teal-400">{% trans "&larr; Mes cours" %}</a>
+    <button type="button" data-print class="btn btn-primary">{% icon "printer" "h-4 w-4" %} {% trans "Imprimer / enregistrer en PDF" %}</button>
+  </div>
+
+  <article class="card print-card p-8 sm:p-12">
+    <header class="flex flex-wrap items-start justify-between gap-6 border-b border-slate-200 pb-8 dark:border-slate-800">
+      <div>
+        <p class="font-display text-xl font-extrabold text-slate-900 dark:text-white">{{ profile.full_name|default:"Portfolio" }}</p>
+        <p class="mt-1 text-sm">{{ profile.headline }}</p>
+        <ul class="mt-3 space-y-0.5 text-sm text-slate-500">
+          {% if profile.email %}<li>{{ profile.email }}</li>{% endif %}
+          {% if profile.phone %}<li>{{ profile.phone }}</li>{% endif %}
+          {% if profile.location %}<li>{{ profile.location }}</li>{% endif %}
+        </ul>
+      </div>
+      <div class="text-right">
+        <p class="font-display text-3xl font-extrabold tracking-tight text-teal-600 dark:text-teal-400">{% trans "REÇU" %}</p>
+        <p class="mt-2 font-mono text-sm text-slate-900 dark:text-white">N° {{ order.short_reference }}</p>
+        <p class="text-sm text-slate-500">{{ order.paid_at|date:"j F Y" }}</p>
+      </div>
+    </header>
+
+    <div class="grid gap-6 py-8 sm:grid-cols-2">
+      <div>
+        <h2 class="text-xs font-bold uppercase tracking-wider text-slate-500">{% trans "Facturé à" %}</h2>
+        <p class="mt-2 font-semibold text-slate-900 dark:text-white">{{ order.user.get_full_name|default:order.user.username }}</p>
+        {% if order.user.email %}<p class="text-sm">{{ order.user.email }}</p>{% endif %}
+      </div>
+      <div>
+        <h2 class="text-xs font-bold uppercase tracking-wider text-slate-500">{% trans "Paiement" %}</h2>
+        <p class="mt-2 font-semibold text-slate-900 dark:text-white">{{ order.get_payment_method_display|default:"—" }}</p>
+        <p class="text-sm">{% trans "Statut :" %} <span class="font-semibold text-emerald-600 dark:text-emerald-400">{{ order.get_status_display }}</span></p>
+      </div>
+    </div>
+
+    <table class="w-full text-left text-sm">
+      <thead class="border-y border-slate-200 text-xs uppercase tracking-wide text-slate-500 dark:border-slate-800">
+        <tr><th class="py-3 font-semibold">{% trans "Description" %}</th><th class="py-3 text-right font-semibold">{% trans "Montant" %}</th></tr>
+      </thead>
+      <tbody>
+        <tr class="border-b border-slate-100 dark:border-slate-800">
+          <td class="py-4">
+            <p class="font-semibold text-slate-900 dark:text-white">{{ order.course.title }}</p>
+            <p class="text-xs text-slate-500">{% trans "Cours en ligne" %} · {{ order.course.get_level_display }}</p>
+          </td>
+          <td class="py-4 text-right">{% if order.amount == 0 %}{% trans "Gratuit" %}{% else %}{{ order.amount|floatformat:"-2" }} {{ CURRENCY_SYMBOL }}{% endif %}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td class="pt-5 text-base font-bold text-slate-900 dark:text-white">{% trans "Total payé" %}</td>
+          <td class="pt-5 text-right font-display text-2xl font-extrabold text-slate-900 dark:text-white">{{ order.amount|floatformat:"-2" }} {{ CURRENCY_SYMBOL }}</td>
+        </tr>
+      </tfoot>
+    </table>
+
+    {% if simulated %}
+      <p class="mt-8 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-xs text-amber-800 dark:border-amber-500/30 dark:bg-amber-500/10 dark:text-amber-300">
+        {% trans "Paiement effectué en mode démonstration : aucun montant n'a été réellement débité." %}
+      </p>
+    {% endif %}
+    <p class="mt-8 text-center text-xs text-slate-500">{% trans "Merci pour votre confiance." %}</p>
+  </article>
+</section>
+{% endblock %}

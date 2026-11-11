@@ -1,0 +1,40 @@
+<article class="card card-hover group flex h-full flex-col overflow-hidden">
+  <div class="relative aspect-[16/10] overflow-hidden bg-slate-100 dark:bg-slate-800">
+    {% if project.cover_url %}
+      <button type="button" data-lightbox="{{ project.cover_url }}" data-lightbox-alt="{% trans "Capture d'écran du projet" %} {{ project.title }}"
+              class="block h-full w-full cursor-zoom-in overflow-hidden text-left" aria-label="{% trans "Agrandir la capture" %}">
+        <img src="{{ project.cover_url }}" alt="{% trans "Capture d'écran du projet" %} {{ project.title }}" loading="lazy" class="img-fade h-full w-full object-cover object-top transition duration-500 group-hover:scale-105">
+      </button>
+    {% else %}
+      <div class="flex h-full w-full flex-col items-center justify-center gap-2 bg-slate-800 px-4 text-center">
+        {% icon "code" "h-10 w-10 text-white/40" %}
+        <p class="text-xs font-medium text-slate-400">{% trans "Ajoutez une image dans l'admin → Projets" %}</p>
+      </div>
+    {% endif %}
+    {% if project.featured %}
+      <span class="absolute left-3 top-3 inline-flex items-center gap-1 rounded-md bg-slate-900 px-2.5 py-1 text-xs font-semibold text-white dark:bg-teal-700">{% icon "star" "h-3 w-3" %} {% trans "À la une" %}</span>
+    {% endif %}
+    {% if project.images.all %}
+      <span class="absolute bottom-3 right-3 rounded-md bg-black/60 px-2 py-1 text-[11px] font-semibold text-white backdrop-blur">
+        +{{ project.images.count }} {% trans "photo(s)" %}
+      </span>
+    {% endif %}
+  </div>
+  <div class="flex flex-1 flex-col p-5">
+    <h3 class="text-lg font-bold text-slate-900 dark:text-white">{{ project.title }}</h3>
+    <p class="mt-2 flex-1 text-sm leading-6">{{ project.description|truncatewords:35 }}</p>
+    <ul class="mt-4 flex flex-wrap gap-1.5">
+      {% for tech in project.tech_list %}<li class="badge">{{ tech }}</li>{% endfor %}
+    </ul>
+    {% if project.github_url or project.demo_url %}
+      <div class="mt-5 flex flex-wrap gap-2 border-t border-slate-100 pt-4 dark:border-slate-800">
+        {% if project.github_url %}
+          <a href="{{ project.github_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary !px-3.5 !py-2 text-xs">{% icon "github" "h-4 w-4" %} {% trans "Code source" %}</a>
+        {% endif %}
+        {% if project.demo_url %}
+          <a href="{{ project.demo_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary !px-3.5 !py-2 text-xs">{% icon "external" "h-4 w-4" %} {% trans "Démo" %}</a>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</article>

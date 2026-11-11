@@ -1,0 +1,51 @@
+<article class="card card-hover group flex h-full flex-col overflow-hidden">
+  <a href="{{ course.get_absolute_url }}" class="relative block aspect-[16/10] overflow-hidden" tabindex="-1" aria-hidden="true">
+    {% if course.image %}
+      <img src="{{ course.image.url }}" alt="" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105">
+    {% else %}
+      <div class="flex h-full w-full items-center justify-center bg-slate-800 text-5xl font-bold text-white/80 dark:bg-slate-900">
+        {{ course.title|slice:":1"|upper }}
+      </div>
+    {% endif %}
+    <div class="absolute inset-x-3 top-3 flex items-start justify-between gap-2">
+      <span class="rounded-md bg-white/95 px-2.5 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-200/80 dark:bg-slate-900/95 dark:text-slate-200 dark:ring-slate-700">{{ course.get_level_display }}</span>
+      <span class="flex gap-1.5">
+        {% if course.pk in owned_ids %}
+          <span class="rounded-md bg-emerald-700 px-2.5 py-1 text-xs font-semibold text-white">{% trans "Acquis" %}</span>
+        {% elif course.is_featured %}
+          <span class="rounded-md bg-slate-900 px-2.5 py-1 text-xs font-semibold text-white dark:bg-teal-700">{% trans "À la une" %}</span>
+        {% elif course.is_new %}
+          <span class="rounded-md bg-teal-800 px-2.5 py-1 text-xs font-semibold text-white">{% trans "Nouveau" %}</span>
+        {% endif %}
+      </span>
+    </div>
+  </a>
+
+  <div class="flex flex-1 flex-col p-5">
+    <h3 class="text-lg font-bold leading-snug text-slate-900 dark:text-white">
+      <a href="{{ course.get_absolute_url }}" class="transition hover:text-teal-600 dark:hover:text-teal-400">{{ course.title }}</a>
+    </h3>
+    <p class="mt-2 line-clamp-2 text-sm leading-6">{{ course.short_description }}</p>
+    {% if course.rating_count %}
+      <p class="mt-3 flex items-center gap-1.5 text-xs">
+        {% include "partials/stars.html" with value=course.avg_rating size="h-3.5 w-3.5" %}
+        <span class="font-semibold text-slate-700 dark:text-slate-200">{{ course.avg_rating|floatformat:1 }}</span>
+        <span class="text-slate-500">({% blocktrans count counter=course.rating_count %}{{ counter }} avis{% plural %}{{ counter }} avis{% endblocktrans %})</span>
+      </p>
+    {% endif %}
+    {% if course.duration %}
+      <p class="mt-3 flex items-center gap-1.5 text-xs text-slate-500">{% icon "clock" "h-3.5 w-3.5" %} {{ course.duration }}</p>
+    {% endif %}
+
+    <div class="mt-auto pt-5">
+      <div class="flex items-center justify-between border-t border-slate-100 pt-4 dark:border-slate-800">
+        <span class="font-display text-xl font-extrabold text-slate-900 dark:text-white">
+          {% if course.is_free %}{% trans "Gratuit" %}{% else %}{{ course.price|floatformat:"-2" }} {{ CURRENCY_SYMBOL }}{% endif %}
+        </span>
+        <a href="{{ course.get_absolute_url }}" class="inline-flex items-center gap-1.5 text-sm font-semibold text-teal-600 transition group-hover:gap-2.5 dark:text-teal-400">
+          {% if course.pk in owned_ids %}{% trans "Ouvrir" %}{% else %}{% trans "Découvrir" %}{% endif %} {% icon "arrow-right" "h-4 w-4" %}
+        </a>
+      </div>
+    </div>
+  </div>
+</article>

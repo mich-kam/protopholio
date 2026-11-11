@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block robots %}noindex, nofollow{% endblock %}
+
+{% block content %}
+<section class="relative isolate overflow-hidden">
+  <div class="bg-dots pointer-events-none absolute inset-0 -z-10 opacity-70" aria-hidden="true"></div>
+  <div class="mx-auto flex min-h-[calc(100vh-16rem)] max-w-md flex-col justify-center px-4 py-14 sm:px-6">
+    <div class="text-center">
+      <span class="icon-box mx-auto">{% block auth_icon %}{% icon "user" "h-6 w-6" %}{% endblock %}</span>
+      <h1 class="mt-5 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">{% block auth_title %}{% endblock %}</h1>
+      <p class="mt-2 text-sm">{% block auth_subtitle %}{% endblock %}</p>
+    </div>
+
+    <div class="card mt-8 p-6 sm:p-8">
+      {% block auth_body %}{% endblock %}
+    </div>
+
+    {% block auth_footer %}{% endblock %}
+  </div>
+</section>
+{% endblock %}

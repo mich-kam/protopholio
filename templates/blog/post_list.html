@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block title %}{% trans "Blog" %}{% if tag %} — {{ tag }}{% endif %}{% if q %} — « {{ q }} »{% endif %}{% endblock %}
+{% block meta_description %}{% trans "Articles et tutoriels sur la cybersécurité, le développement web, les réseaux et les bonnes pratiques numériques." %}{% endblock %}
+{% block og_title %}{% trans "Blog" %}{% endblock %}
+{% block og_description %}{% trans "Articles et tutoriels sur la cybersécurité, le développement web et les réseaux." %}{% endblock %}
+
+{% block content %}
+<section class="relative isolate overflow-hidden border-b border-slate-200 dark:border-slate-800">
+  <div class="mx-auto max-w-6xl px-4 pb-10 pt-14 sm:px-6">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <p class="eyebrow">{% trans "Blog" %}</p>
+        <h1 class="section-title">{% trans "Articles &amp; tutoriels" %}</h1>
+        <p class="section-lead">{% trans "Cybersécurité, développement web, réseaux : des conseils concrets, sans jargon inutile." %}</p>
+      </div>
+      <a href="{% url 'blog:rss' %}" class="btn btn-secondary" title="{% trans "S'abonner avec un lecteur RSS" %}">{% icon "link" "h-4 w-4" %} {% trans "Flux RSS" %}</a>
+    </div>
+
+    <form method="get" action="{% url 'blog:list' %}" class="mt-8 flex flex-wrap gap-3" role="search">
+      <div class="field min-w-[14rem] flex-1">
+        <label for="q" class="sr-only">{% trans "Rechercher un article" %}</label>
+        <input type="search" id="q" name="q" value="{{ q }}" placeholder="{% trans "Rechercher un article…" %}" maxlength="100">
+      </div>
+      {% if tag %}<input type="hidden" name="tag" value="{{ tag }}">{% endif %}
+      <button type="submit" class="btn btn-primary">{% icon "search" "h-4 w-4" %} {% trans "Chercher" %}</button>
+      {% if q or tag %}<a href="{% url 'blog:list' %}" class="btn btn-secondary">{% trans "Effacer" %}</a>{% endif %}
+    </form>
+
+    {% if tags %}
+      <ul class="mt-6 flex flex-wrap gap-2" aria-label="{% trans "Filtrer par tag" %}">
+        {% for name, count in tags %}
+          <li>
+            <a href="{% url 'blog:list' %}?tag={{ name|urlencode }}"
+               class="inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-sm font-medium transition
+               {% if name|lower == tag|lower %}border-teal-600 bg-teal-600 text-white{% else %}border-slate-200 bg-white text-slate-600 hover:border-teal-300 hover:text-teal-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300{% endif %}">
+              {{ name }} <span class="text-xs opacity-60">{{ count }}</span>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+</section>
+
+<section class="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+  <p class="text-sm text-slate-500 [&_strong]:text-slate-700 dark:[&_strong]:text-slate-200" aria-live="polite">
+    {% if total == 0 %}{% trans "Aucun article" %}{% else %}{% blocktrans trimmed count counter=total %}{{ counter }} article{% plural %}{{ counter }} articles{% endblocktrans %}{% endif %}{% if tag %} {% blocktrans trimmed %}dans « <strong>{{ tag }}</strong> »{% endblocktrans %}{% endif %}{% if q %} {% blocktrans trimmed %}pour « <strong>{{ q }}</strong> »{% endblocktrans %}{% endif %}
+  </p>
+
+  {# Article à la une #}
+  {% if featured %}
+    <article class="card card-hover reveal group mt-6 grid overflow-hidden lg:grid-cols-2">
+      <a href="{{ featured.get_absolute_url }}" class="relative block min-h-[14rem] overflow-hidden" tabindex="-1" aria-hidden="true">
+        {% if featured.cover %}
+          <img src="{{ featured.cover.url }}" alt="" class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105">
+        {% else %}
+          <div class="absolute inset-0 flex items-center justify-center bg-slate-900 text-teal-400/70">{% icon "shield" "h-20 w-20" %}</div>
+        {% endif %}
+      </a>
+      <div class="flex flex-col justify-center p-7 sm:p-10">
+        <span class="inline-flex w-fit items-center gap-1 rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-700 dark:bg-amber-500/10 dark:text-amber-300">{% icon "star" "h-3 w-3" %} {% trans "À la une" %}</span>
+        <h2 class="mt-4 text-2xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-3xl dark:text-white"><a href="{{ featured.get_absolute_url }}" class="hover:text-teal-600 dark:hover:text-teal-400">{{ featured.title }}</a></h2>
+        <p class="mt-3 leading-7">{{ featured.excerpt }}</p>
+        <p class="mt-4 flex items-center gap-2 text-xs text-slate-500">{{ featured.published_at|date:"j F Y" }} · {% blocktrans with minutes=featured.reading_time %}{{ minutes }} min de lecture{% endblocktrans %}</p>
+        <a href="{{ featured.get_absolute_url }}" class="btn btn-primary mt-6 w-fit">{% trans "Lire l'article" %} {% icon "arrow-right" "h-4 w-4" %}</a>
+      </div>
+    </article>
+  {% endif %}
+
+  {% if posts %}
+    <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {% for post in posts %}
+        <div class="reveal" style="--d: {% widthratio forloop.counter0 1 60 %}ms">{% include "partials/post_card.html" %}</div>
+      {% endfor %}
+    </div>
+  {% elif not featured %}
+    <div class="card mt-6 px-6 py-16 text-center">
+      <span class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-teal-50 text-teal-600 dark:bg-teal-500/10 dark:text-teal-300">{% icon "file-text" "h-6 w-6" %}</span>
+      <p class="mt-5 text-lg font-bold text-slate-900 dark:text-white">{% trans "Aucun article pour le moment" %}</p>
+      <p class="mt-2 text-sm">{% if q or tag %}{% trans "Essayez un autre mot-clé ou retirez le filtre." %}{% else %}{% trans "Les premiers articles arrivent bientôt." %}{% endif %}</p>
+      {% if q or tag %}<a href="{% url 'blog:list' %}" class="btn btn-primary mt-6">{% trans "Voir tous les articles" %}</a>{% endif %}
+    </div>
+  {% endif %}
+
+  {% if page_obj.has_other_pages %}
+    <nav class="mt-12 flex items-center justify-center gap-3" aria-label="{% trans "Pagination" %}">
+      {% if page_obj.has_previous %}<a href="{% querystring page=page_obj.previous_page_number %}" class="btn btn-secondary">{% trans "&larr; Précédent" %}</a>{% endif %}
+      <span class="text-sm text-slate-500">{% blocktrans trimmed with number=page_obj.number pages=page_obj.paginator.num_pages %}Page {{ number }} sur {{ pages }}{% endblocktrans %}</span>
+      {% if page_obj.has_next %}<a href="{% querystring page=page_obj.next_page_number %}" class="btn btn-secondary">{% trans "Suivant &rarr;" %}</a>{% endif %}
+    </nav>
+  {% endif %}
+</section>
+{% endblock %}

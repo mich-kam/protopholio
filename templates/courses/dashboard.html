@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block title %}{% trans "Mes cours achetés" %}{% endblock %}
+{% block robots %}noindex, nofollow{% endblock %}
+
+{% block content %}
+<section class="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+  {# --- En-tête --- #}
+  <div class="flex flex-wrap items-center justify-between gap-5">
+    <div class="flex items-center gap-4">
+      <span class="flex h-14 w-14 items-center justify-center rounded-xl bg-slate-900 text-xl font-bold text-white dark:bg-teal-700">{{ user.username|slice:":1"|upper }}</span>
+      <div>
+        <p class="eyebrow">{% trans "Mon espace" %}</p>
+        <h1 class="mt-1 text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl dark:text-white">{% blocktrans with name=user.first_name|default:user.username %}Bonjour {{ name }}{% endblocktrans %}</h1>
+      </div>
+    </div>
+    <div class="flex gap-3">
+      <a href="{% url 'accounts:profile' %}" class="btn btn-secondary">{% icon "settings" "h-4 w-4" %} {% trans "Mon compte" %}</a>
+      <a href="{% url 'courses:list' %}" class="btn btn-primary">{% trans "Découvrir des cours" %}</a>
+    </div>
+  </div>
+
+  {# --- Statistiques --- #}
+  <dl class="mt-10 grid gap-4 sm:grid-cols-3">
+    <div class="card flex items-center gap-4 p-5">
+      <span class="icon-box">{% icon "book" "h-6 w-6" %}</span>
+      <div><dt class="text-xs font-semibold uppercase tracking-wide text-slate-500">{% trans "Cours achetés" %}</dt><dd class="font-display text-2xl font-extrabold text-slate-900 dark:text-white">{{ orders|length }}</dd></div>
+    </div>
+    <div class="card flex items-center gap-4 p-5">
+      <span class="icon-box">{% icon "award" "h-6 w-6" %}</span>
+      <div><dt class="text-xs font-semibold uppercase tracking-wide text-slate-500">{% trans "Total investi" %}</dt><dd class="font-display text-2xl font-extrabold text-slate-900 dark:text-white">{{ total_spent|floatformat:"-2" }} {{ CURRENCY_SYMBOL }}</dd></div>
+    </div>
+    <div class="card flex items-center gap-4 p-5">
+      <span class="icon-box">{% icon "clock" "h-6 w-6" %}</span>
+      <div><dt class="text-xs font-semibold uppercase tracking-wide text-slate-500">{% trans "Dernier achat" %}</dt><dd class="text-lg font-bold text-slate-900 dark:text-white">{% if last_order %}{{ last_order.paid_at|date:"j M Y" }}{% else %}—{% endif %}</dd></div>
+    </div>
+  </dl>
+
+  {# --- Cours achetés --- #}
+  <h2 class="mt-14 text-xl font-bold text-slate-900 dark:text-white">{% trans "Mes cours achetés" %}</h2>
+
+  {% if orders %}
+    <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {% for order in orders %}
+        <article class="card card-hover flex flex-col overflow-hidden">
+          <a href="{% url 'courses:access' order.course.slug %}" class="block aspect-[16/8] overflow-hidden" tabindex="-1" aria-hidden="true">
+            {% if order.course.image %}
+              <img src="{{ order.course.image.url }}" alt="" loading="lazy" class="h-full w-full object-cover">
+            {% else %}
+              <div class="flex h-full w-full items-center justify-center bg-slate-800 text-5xl font-bold text-white/80">{{ order.course.title|slice:":1"|upper }}</div>
+            {% endif %}
+          </a>
+          <div class="flex flex-1 flex-col p-5">
+            <span class="badge self-start">{{ order.course.get_level_display }}</span>
+            <h3 class="mt-3 text-lg font-bold leading-snug text-slate-900 dark:text-white">{{ order.course.title }}</h3>
+            <p class="mt-1 text-xs text-slate-500">{% blocktrans with date=order.paid_at|date:"j F Y" %}Acheté le {{ date }}{% endblocktrans %}</p>
+            <div class="mt-auto flex gap-2 pt-5">
+              <a href="{% url 'courses:access' order.course.slug %}" class="btn btn-primary flex-1 !px-3">{% icon "play" "h-4 w-4" %} {% trans "Accéder" %}</a>
+              <a href="{% url 'courses:receipt' order.reference %}" class="btn btn-secondary !px-3" aria-label="{% trans "Voir le reçu" %}" title="{% trans "Voir le reçu" %}">{% icon "file-text" "h-4 w-4" %}</a>
+            </div>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="card mt-6 px-6 py-16 text-center">
+      <span class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-teal-50 text-teal-600 dark:bg-teal-500/10 dark:text-teal-300">{% icon "book" "h-6 w-6" %}</span>
+      <p class="mt-5 text-lg font-bold text-slate-900 dark:text-white">{% trans "Vous n'avez encore acheté aucun cours" %}</p>
+      <p class="mt-2 text-sm">{% trans "Parcourez le catalogue pour commencer à apprendre." %}</p>
+      <a href="{% url 'courses:list' %}" class="btn btn-primary mt-6">{% trans "Découvrir les cours" %}</a>
+    </div>
+  {% endif %}
+
+  {# --- Historique des commandes --- #}
+  {% if orders %}
+    <h2 class="mt-14 text-xl font-bold text-slate-900 dark:text-white">{% trans "Historique des commandes" %}</h2>
+    <div class="card mt-6 overflow-x-auto">
+      <table class="w-full min-w-[34rem] text-left text-sm">
+        <thead class="border-b border-slate-200 text-xs uppercase tracking-wide text-slate-500 dark:border-slate-800">
+          <tr><th class="px-5 py-3 font-semibold">{% trans "Date" %}</th><th class="px-5 py-3 font-semibold">{% trans "Référence" %}</th><th class="px-5 py-3 font-semibold">{% trans "Cours" %}</th><th class="px-5 py-3 text-right font-semibold">{% trans "Montant" %}</th><th class="px-5 py-3"><span class="sr-only">{% trans "Reçu" %}</span></th></tr>
+        </thead>
+        <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+          {% for order in orders %}
+            <tr>
+              <td class="whitespace-nowrap px-5 py-3.5">{{ order.paid_at|date:"d/m/Y" }}</td>
+              <td class="whitespace-nowrap px-5 py-3.5 font-mono text-xs">{{ order.short_reference }}</td>
+              <td class="px-5 py-3.5 font-medium text-slate-900 dark:text-white">{{ order.course.title }}</td>
+              <td class="whitespace-nowrap px-5 py-3.5 text-right">{% if order.amount == 0 %}{% trans "Gratuit" %}{% else %}{{ order.amount|floatformat:"-2" }} {{ CURRENCY_SYMBOL }}{% endif %}</td>
+              <td class="whitespace-nowrap px-5 py-3.5 text-right"><a href="{% url 'courses:receipt' order.reference %}" class="font-semibold text-teal-600 hover:underline dark:text-teal-400">{% trans "Reçu" %}</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% endif %}
+
+  {# --- Recommandations --- #}
+  {% if recommended %}
+    <h2 class="mt-14 text-xl font-bold text-slate-900 dark:text-white">{% trans "Pour aller plus loin" %}</h2>
+    <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {% for course in recommended %}{% include "partials/course_card.html" %}{% endfor %}
+    </div>
+  {% endif %}
+</section>
+{% endblock %}

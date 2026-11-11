@@ -1,0 +1,14 @@
+{% autoescape off %}Bonjour {{ user.first_name|default:user.username }},
+
+Merci pour votre commande ! Votre cours est disponible immédiatement.
+
+Cours      : {{ course.title }}
+Montant    : {% if order.amount == 0 %}Gratuit{% else %}{{ order.amount|floatformat:"-2" }} {{ CURRENCY_SYMBOL }}{% endif %}
+Référence  : {{ order.short_reference }}
+Date       : {{ order.paid_at|date:"j F Y à H:i" }}
+
+Accéder au cours : {{ access_url }}
+Télécharger le reçu : {{ receipt_url }}
+
+Bon apprentissage !
+{% endautoescape %}

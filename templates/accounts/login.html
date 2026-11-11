@@ -1,0 +1,24 @@
+{% extends "accounts/auth_base.html" %}
+
+{% block title %}{% trans "Connexion" %}{% endblock %}
+{% block auth_title %}{% trans "Content de vous revoir" %}{% endblock %}
+{% block auth_subtitle %}{% trans "Connectez-vous pour accéder à vos cours." %}{% endblock %}
+
+{% block auth_body %}
+<form method="post" class="space-y-5" data-lock>
+  {% csrf_token %}
+  <input type="hidden" name="next" value="{{ next }}">
+  {% include "partials/form.html" with form=form %}
+  <div class="text-right text-sm">
+    <a class="font-medium text-teal-600 hover:underline dark:text-teal-400" href="{% url 'accounts:password_reset' %}">{% trans "Mot de passe oublié ?" %}</a>
+  </div>
+  <button type="submit" class="btn btn-primary btn-lg w-full">{% trans "Se connecter" %}</button>
+</form>
+{% endblock %}
+
+{% block auth_footer %}
+<p class="mt-6 text-center text-sm">
+  {% trans "Pas encore de compte ?" %}
+  <a class="font-semibold text-teal-600 hover:underline dark:text-teal-400" href="{% url 'accounts:register' %}{% if next %}?next={{ next|urlencode }}{% endif %}">{% trans "Créer un compte" %}</a>
+</p>
+{% endblock %}

@@ -1,0 +1,15 @@
+{# Emplacement vide guidant l'ajout de contenu (projet ou photo). Variables : kind, href, title, hint #}
+<div class="flex min-h-[12rem] flex-col items-center justify-center gap-3 rounded-xl border border-dashed border-slate-300 bg-slate-50/80 p-6 text-center dark:border-slate-600 dark:bg-slate-900/40 {% if kind == 'project' %}aspect-[16/10]{% else %}aspect-[4/3]{% endif %}">
+  <span class="flex h-11 w-11 items-center justify-center rounded-lg bg-slate-200 text-slate-600 dark:bg-slate-800 dark:text-slate-300">
+    {% if kind == "project" %}{% icon "layers" "h-5 w-5" %}{% else %}{% icon "camera" "h-5 w-5" %}{% endif %}
+  </span>
+  <div>
+    <p class="text-sm font-semibold text-slate-800 dark:text-slate-100">{{ title }}</p>
+    <p class="mt-1 max-w-[16rem] text-xs leading-5 text-slate-500">{{ hint }}</p>
+  </div>
+  {% if user.is_staff and href %}
+    <a href="{{ href }}" class="btn btn-primary !py-2 text-xs">{% icon "plus" "h-3.5 w-3.5" %} {% trans "Ajouter maintenant" %}</a>
+  {% elif user.is_staff %}
+    <a href="{% url 'admin:index' %}" class="btn btn-primary !py-2 text-xs">{% trans "Ouvrir l'admin" %}</a>
+  {% endif %}
+</div>

@@ -1,0 +1,6 @@
+{# Étoiles de notation. Usage : {% include "partials/stars.html" with value=course.avg_rating size="h-4 w-4" %} #}
+<span class="inline-flex items-center gap-0.5" role="img" aria-label="{% blocktrans with rating=value|floatformat:1 %}Note : {{ rating }} sur 5{% endblocktrans %}">
+  {% for filled in value|star_flags %}
+    {% if filled %}{% icon "star" size|add:" fill-amber-400 text-amber-400" %}{% else %}{% icon "star" size|add:" text-slate-300 dark:text-slate-600" %}{% endif %}
+  {% endfor %}
+</span>

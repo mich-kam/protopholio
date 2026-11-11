@@ -1,0 +1,736 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{# ============================== ACCUEIL ============================== #}
+<section id="accueil" class="relative isolate scroll-mt-20 overflow-hidden border-b border-slate-200 dark:border-slate-800">
+  <div class="hero-mesh pointer-events-none absolute inset-0 -z-10" aria-hidden="true"></div>
+  <div class="aurora-a pointer-events-none absolute -left-24 top-0 -z-10 h-80 w-80 rounded-full bg-teal-400/20 blur-3xl dark:bg-teal-500/15" aria-hidden="true"></div>
+  <div class="aurora-b pointer-events-none absolute -right-20 top-24 -z-10 h-96 w-96 rounded-full bg-cyan-400/15 blur-3xl dark:bg-cyan-500/10" aria-hidden="true"></div>
+
+  <div class="mx-auto grid max-w-6xl items-center gap-10 px-4 pb-14 pt-10 sm:gap-12 sm:px-6 sm:pb-20 sm:pt-14 lg:grid-cols-12 lg:gap-16 lg:pb-24 lg:pt-18">
+    <div class="min-w-0 lg:col-span-7">
+      {% if profile.photo_url %}
+        <div class="reveal mb-6 flex items-center gap-4 lg:hidden">
+          <img src="{{ profile.photo_url }}" alt="{% trans "Photo de" %} {{ profile.full_name }}"
+               class="h-20 w-20 rounded-2xl object-cover object-top ring-2 ring-slate-200 dark:ring-slate-700"
+               width="80" height="80" fetchpriority="high">
+          <div class="min-w-0">
+            <p class="font-display text-base font-bold text-slate-900 dark:text-white">{{ profile.full_name }}</p>
+            {% if profile.location %}<p class="mt-0.5 flex items-center gap-1.5 text-sm text-slate-500">{% icon "pin" "h-3.5 w-3.5 text-teal-700" %} {{ profile.location }}</p>{% endif %}
+          </div>
+        </div>
+      {% endif %}
+
+      {% if profile.available_for_work %}
+        <span class="reveal inline-flex items-center gap-2 rounded-md border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-800 dark:border-emerald-500/30 dark:bg-emerald-500/10 dark:text-emerald-300">
+          <span class="pulse-dot h-1.5 w-1.5 rounded-full bg-emerald-600"></span>
+          {% trans "Disponible pour de nouvelles missions" %}
+        </span>
+      {% endif %}
+
+      <h1 class="reveal mt-5 text-[2.25rem] font-bold leading-[1.1] tracking-tight text-slate-900 sm:mt-6 sm:text-5xl lg:text-[3.25rem] dark:text-white" style="--d: 80ms">
+        <span class="block text-sm font-medium tracking-wide text-slate-500 sm:text-base dark:text-slate-400">{% trans "Bonjour, je suis" %}</span>
+        {% if profile %}
+          <span class="mt-1 block text-slate-900 dark:text-white">{{ profile.full_name }}</span>
+        {% else %}
+          <span class="mt-1 block text-slate-900 dark:text-white">{% trans "développeur &amp; formateur" %}</span>
+        {% endif %}
+      </h1>
+
+      {% if roles %}
+        <p class="reveal mt-4 flex min-h-[1.75rem] flex-wrap items-center gap-x-2 text-base font-medium text-teal-800 sm:text-xl dark:text-teal-300" style="--d: 160ms">
+          <span class="sr-only">{{ roles|join:", " }}</span>
+          <span aria-hidden="true" class="flex min-w-0 items-center">
+            <span data-typewriter="{{ roles|join:'|' }}" class="truncate">{{ roles.0 }}</span><span class="caret text-teal-700"></span>
+          </span>
+        </p>
+        <p class="reveal mt-1 text-sm text-slate-500 sm:text-base dark:text-slate-400" style="--d: 190ms">{{ profile.headline }}</p>
+      {% else %}
+        <p class="reveal mt-4 text-base font-medium text-slate-800 sm:text-xl dark:text-slate-200" style="--d: 160ms">
+          {% if profile %}{{ profile.headline }}{% else %}{% trans "Développeur &amp; formateur" %}{% endif %}
+        </p>
+      {% endif %}
+      <p class="reveal mt-4 max-w-xl text-base leading-7 text-slate-600 dark:text-slate-400" style="--d: 220ms">
+        {% if profile.tagline %}{{ profile.tagline }}{% else %}{% trans "Je conçois des applications web et je partage mon savoir-faire à travers des cours en ligne." %}{% endif %}
+      </p>
+
+      <div class="reveal mt-8 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap" style="--d: 300ms">
+        <a href="#portfolio" data-magnetic class="btn btn-primary btn-lg btn-shimmer w-full sm:w-auto">{% trans "Voir mes projets" %} {% icon "arrow-right" "h-5 w-5" %}</a>
+        <a href="{% url 'courses:list' %}" data-magnetic class="btn btn-secondary btn-lg w-full sm:w-auto">{% trans "Découvrir mes cours" %}</a>
+        <a href="{% url 'portfolio:cv' %}" data-magnetic class="btn btn-secondary btn-lg w-full sm:w-auto">{% icon "file-text" "h-5 w-5" %} {% trans "Mon CV" %}</a>
+      </div>
+
+      {% if stats %}
+        <dl class="reveal stat-pop mt-10 grid max-w-xl grid-cols-2 gap-x-6 gap-y-4 border-t border-slate-200 pt-8 sm:grid-cols-4 dark:border-slate-800" style="--d: 380ms">
+          {% for label, value in stats %}
+            <div class="flex flex-col-reverse">
+              <dt class="mt-1 text-[11px] font-medium uppercase tracking-wide text-slate-500">{{ label }}</dt>
+              <dd class="font-display text-2xl font-bold text-slate-900 sm:text-3xl dark:text-white"><span data-count="{{ value }}">{{ value }}</span></dd>
+            </div>
+          {% endfor %}
+        </dl>
+      {% endif %}
+    </div>
+
+    <div class="reveal reveal-right mx-auto w-full max-w-md lg:col-span-5 lg:mx-0 lg:max-w-none" style="--d: 200ms">
+      {% if profile.photo_url %}
+        <div class="relative">
+          <figure data-tilt class="gradient-border overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 shadow-lg shadow-slate-900/10 dark:border-slate-700 dark:bg-slate-900">
+            <div class="aspect-[4/5] overflow-hidden sm:aspect-[3/4]">
+              <img src="{{ profile.photo_url }}"
+                   alt="{% trans "Photo de" %} {{ profile.full_name }}"
+                   width="640" height="800"
+                   class="h-full w-full object-cover object-top transition duration-700 hover:scale-[1.03]"
+                   fetchpriority="high">
+            </div>
+            <figcaption class="absolute inset-x-0 bottom-0 bg-linear-to-t from-slate-950/90 via-slate-950/40 to-transparent px-5 pb-5 pt-16">
+              <p class="font-display text-lg font-bold text-white">{{ profile.full_name }}</p>
+              {% if profile.location %}
+                <p class="mt-1 flex items-center gap-1.5 text-sm text-slate-200">{% icon "pin" "h-3.5 w-3.5 text-teal-300" %} {{ profile.location }}</p>
+              {% endif %}
+            </figcaption>
+          </figure>
+          {% if profile.available_for_work %}
+            <div class="float-slow absolute -left-2 top-6 hidden items-center gap-2 rounded-lg border border-emerald-400/30 bg-slate-950/90 px-3 py-2 text-xs font-semibold text-emerald-300 shadow-lg backdrop-blur sm:-left-4 sm:flex">
+              <span class="pulse-dot h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+              {% trans "Disponible" %}
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      <div class="{% if profile.photo_url %}mt-5{% endif %} overflow-hidden rounded-xl border border-slate-200 bg-slate-950 shadow-sm dark:border-slate-700">
+        <div class="flex items-center gap-2 border-b border-white/10 px-4 py-2.5">
+          <span class="h-2.5 w-2.5 rounded-full bg-rose-400"></span>
+          <span class="h-2.5 w-2.5 rounded-full bg-amber-400"></span>
+          <span class="h-2.5 w-2.5 rounded-full bg-emerald-400"></span>
+          <span class="ml-3 font-mono text-[11px] text-slate-400">{% if LANGUAGE_CODE == "en" %}{% trans "developer.py" %}{% else %}{% trans "developpeur.py" %}{% endif %}</span>
+        </div>
+<pre data-code-animate class="overflow-x-auto p-4 font-mono text-[11px] leading-5 text-slate-300 sm:text-[12px] sm:leading-6"><code><span class="code-line"><span class="tok-kw">class</span> <span class="tok-cls">{% if LANGUAGE_CODE == "en" %}Developer{% else %}Developpeur{% endif %}</span>:</span>
+<span class="code-line">    {% if LANGUAGE_CODE == "en" %}name{% else %}nom{% endif %} = <span class="tok-str">"{{ profile.full_name|default:'Votre nom' }}"</span></span>
+{% with parts=profile.headline|code_lines:30 %}{% if parts|length > 1 %}<span class="code-line">    role = (</span>{% for part in parts %}
+<span class="code-line">        <span class="tok-str">"{{ part }}"</span></span>{% endfor %}
+<span class="code-line">    )</span>{% else %}<span class="code-line">    role = <span class="tok-str">"{{ profile.headline|default:'Développeur' }}"</span></span>{% endif %}{% endwith %}
+<span class="code-line">    stack = [</span>{% for skill in top_skills %}
+<span class="code-line">        <span class="tok-str">"{{ skill.name }}"</span>,</span>{% endfor %}
+<span class="code-line">    ]</span>
+<span class="code-line">    {% if LANGUAGE_CODE == "en" %}available{% else %}disponible{% endif %} = <span class="tok-bool">{% if profile.available_for_work %}True{% else %}False{% endif %}</span></span>
+<span class="code-line"> </span>
+<span class="code-line">    <span class="tok-kw">def</span> <span class="tok-fn">{% if LANGUAGE_CODE == "en" %}contact{% else %}contacter{% endif %}</span>(self):</span>
+<span class="code-line">        <span class="tok-kw">return</span> <span class="tok-str">"{{ profile.email|default:'contact@exemple.com' }}"</span></span></code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ============================== TECHNOLOGIES (bandeau défilant) ============================== #}
+{% if marquee_items %}
+<section aria-label="{% trans "Technologies maîtrisées" %}" class="border-y border-slate-200 bg-slate-50/70 py-5 dark:border-slate-800 dark:bg-slate-900/40">
+  <div class="marquee marquee-mask overflow-hidden">
+    <div class="marquee-track flex w-max items-center gap-12 pr-12">
+      {% for _ in "ab" %}{% for name in marquee_items %}
+        <span class="flex items-center gap-12 whitespace-nowrap text-sm font-bold uppercase tracking-[0.18em] text-slate-400 dark:text-slate-500">
+          {{ name }} <span class="h-1.5 w-1.5 rounded-full bg-teal-400"></span>
+        </span>
+      {% endfor %}{% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{# ============================== SERVICES ============================== #}
+{% if services %}
+<section id="services" class="band scroll-mt-20 py-16 sm:py-20 lg:py-24">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <div class="reveal mx-auto max-w-2xl text-center">
+      <p class="eyebrow">{% trans "Services" %}</p>
+      <h2 class="section-title">{% trans "Ce que je peux faire pour vous" %}</h2>
+      <p class="section-lead mx-auto">{% trans "Du développement d'applications à l'installation de réseaux, des solutions fiables, de la conception à la maintenance." %}</p>
+    </div>
+
+    <div class="reveal stagger mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {% for service in services %}
+        <article class="card card-hover group p-7">
+          <div class="icon-box">{% icon service.icon "h-6 w-6" %}</div>
+          <h3 class="mt-5 text-lg font-bold text-slate-900 dark:text-white">{{ service.title }}</h3>
+          <p class="mt-2.5 text-sm leading-6">{{ service.description }}</p>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{# ============================== CYBERSÉCURITÉ (section sombre, masquée sans compétences « Cybersécurité ») ============================== #}
+{% if security_skills %}
+<section id="cybersecurite" class="relative isolate scroll-mt-20 overflow-hidden bg-slate-950 py-16 sm:py-20 lg:py-24 text-slate-300">
+  <div class="bg-grid mask-fade pointer-events-none absolute inset-0 -z-10" aria-hidden="true"></div>
+  {# Réseau de nœuds animé (canvas, voir main.js) : décoratif, mis en pause hors écran #}
+  <canvas data-network class="pointer-events-none absolute inset-0 -z-10 h-full w-full opacity-40" aria-hidden="true"></canvas>
+
+  <div class="mx-auto grid max-w-6xl items-center gap-14 px-4 sm:px-6 lg:grid-cols-2">
+    <div class="reveal reveal-left">
+      <p class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-teal-400 before:h-px before:w-5 before:bg-teal-500">{% icon "shield" "h-4 w-4" %} {% trans "Cybersécurité" %}</p>
+      <h2 class="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">{% trans "La sécurité, pensée dès le départ" %}</h2>
+      <p class="mt-4 max-w-xl leading-7 text-slate-400">
+        {% trans "Un site, un réseau local ou un système de vidéosurveillance n'est fiable que s'il est protégé. J'intègre la sécurité à chaque projet : accès maîtrisés, configurations durcies, données sauvegardées et utilisateurs sensibilisés." %}
+      </p>
+
+      <ul class="reveal stagger mt-8 grid gap-4 sm:grid-cols-2">
+        <li class="rounded-lg border border-white/10 bg-white/5 p-4 transition hover:-translate-y-1 hover:border-teal-500/40">
+          <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-teal-800 text-white">{% icon "network" "h-5 w-5" %}</span>
+          <p class="mt-3 font-semibold text-white">{% trans "Réseaux" %}</p>
+          <p class="mt-1 text-sm leading-6 text-slate-400">{% trans "Mots de passe robustes, mises à jour, segmentation et sauvegardes." %}</p>
+        </li>
+        <li class="rounded-lg border border-white/10 bg-white/5 p-4 transition hover:-translate-y-1 hover:border-teal-500/40">
+          <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-teal-800 text-white">{% icon "code" "h-5 w-5" %}</span>
+          <p class="mt-3 font-semibold text-white">{% trans "Applications web" %}</p>
+          <p class="mt-1 text-sm leading-6 text-slate-400">{% trans "Validation des données, authentification et protection contre les attaques courantes." %}</p>
+        </li>
+        <li class="rounded-lg border border-white/10 bg-white/5 p-4 transition hover:-translate-y-1 hover:border-teal-500/40">
+          <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-teal-800 text-white">{% icon "lock" "h-5 w-5" %}</span>
+          <p class="mt-3 font-semibold text-white">{% trans "Données" %}</p>
+          <p class="mt-1 text-sm leading-6 text-slate-400">{% trans "Contrôle des accès et protection des informations sensibles." %}</p>
+        </li>
+        <li class="rounded-lg border border-white/10 bg-white/5 p-4 transition hover:-translate-y-1 hover:border-teal-500/40">
+          <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-teal-800 text-white">{% icon "users" "h-5 w-5" %}</span>
+          <p class="mt-3 font-semibold text-white">{% trans "Utilisateurs" %}</p>
+          <p class="mt-1 text-sm leading-6 text-slate-400">{% trans "Sensibilisation au phishing et aux bonnes pratiques : le maillon humain compte." %}</p>
+        </li>
+      </ul>
+    </div>
+
+    {# --- Terminal animé : domaines de sécurité et niveaux (modifiables dans l'admin > Compétences) --- #}
+    <div class="reveal reveal-scale relative" style="--d: 150ms">
+      <div class="scan overflow-hidden rounded-xl border border-teal-500/30 bg-slate-900 shadow-xl shadow-teal-900/20">
+        <div class="flex items-center gap-2 border-b border-white/10 px-4 py-2.5">
+          <span class="h-2.5 w-2.5 rounded-full bg-rose-400"></span>
+          <span class="h-2.5 w-2.5 rounded-full bg-amber-400"></span>
+          <span class="h-2.5 w-2.5 rounded-full bg-emerald-400"></span>
+          <span class="ml-3 flex items-center gap-1.5 font-mono text-xs text-slate-500">{% icon "terminal" "h-3.5 w-3.5" %} {% trans "securite.sh" %}</span>
+        </div>
+        <div class="p-5 font-mono text-[12.5px] leading-6">
+          <p><span class="text-teal-400">$</span> <span class="text-slate-200">{% trans "./verifier --domaines-de-securite" %}</span></p>
+          <ul class="mt-5 space-y-4">
+            {% for skill in security_skills %}
+              <li>
+                <div class="flex items-center justify-between gap-3">
+                  <span class="flex items-center gap-2 text-slate-200"><span class="text-teal-400">{% icon "check" "h-3.5 w-3.5" %}</span> {{ skill.name }}</span>
+                  <span class="text-slate-400">{{ skill.level }}%</span>
+                </div>
+                <div class="mt-1.5 h-1.5 overflow-hidden rounded-full bg-slate-800">
+                  <div data-skill-bar="{{ skill.level }}" class="skill-bar h-full rounded-full bg-teal-600" style="--skill: {{ skill.level }}%"></div>
+                </div>
+              </li>
+            {% endfor %}
+          </ul>
+          <p class="mt-6"><span class="text-teal-400">$</span> <span class="caret-block"></span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{# ============================== À PROPOS ============================== #}
+<section id="a-propos" class="band scroll-mt-20 py-16 sm:py-20 lg:py-24">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <div class="reveal">
+      <p class="eyebrow">{% trans "À propos" %}</p>
+      <h2 class="section-title">{% trans "Mon parcours et mes compétences" %}</h2>
+    </div>
+
+    <div class="mt-12 grid items-start gap-10 lg:grid-cols-12">
+      {# --- Portrait --- #}
+      {% if profile.photo_url %}
+        <div class="reveal reveal-left mx-auto w-full max-w-xs lg:col-span-4 lg:max-w-none">
+          <div class="relative">
+            <figure class="gradient-border overflow-hidden rounded-xl border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-900">
+              <div class="relative aspect-[4/5] overflow-hidden bg-slate-100 dark:bg-slate-800">
+                <img src="{{ profile.photo_url }}" alt="{% trans "Portrait de" %} {{ profile.full_name }}" loading="lazy" class="h-full w-full object-cover object-top transition duration-700 hover:scale-105">
+              </div>
+              <figcaption class="border-t border-slate-200 px-5 py-4 dark:border-slate-700">
+                <p class="font-display text-base font-bold text-slate-900 dark:text-white">{{ profile.full_name }}</p>
+                <p class="mt-0.5 text-sm text-slate-500">{{ profile.headline }}</p>
+                {% if profile.location %}
+                  <p class="mt-2 flex items-center gap-1.5 text-xs font-medium text-slate-500">{% icon "pin" "h-3.5 w-3.5 text-teal-700" %} {{ profile.location }}</p>
+                {% endif %}
+              </figcaption>
+            </figure>
+            {% if security_skills %}
+              <div class="float-slow absolute -right-3 top-8 flex items-center gap-2 rounded-lg border border-teal-500/30 bg-slate-950/90 px-3 py-2 text-xs font-semibold text-teal-300 shadow-lg backdrop-blur sm:-right-5">
+                {% icon "shield" "h-4 w-4" %} {% trans "Cybersécurité" %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+
+      {# --- Présentation + coordonnées --- #}
+      <div class="reveal {% if profile.photo_url %}lg:col-span-8{% else %}lg:col-span-12{% endif %}" style="--d: 100ms">
+        <div class="space-y-4 text-base leading-7">
+          {% if profile.about %}{{ profile.about|linebreaks }}{% else %}<p>{% trans "Renseignez votre présentation depuis l'espace d'administration." %}</p>{% endif %}
+        </div>
+
+        <dl class="mt-8 grid gap-4 sm:grid-cols-2">
+          {% if profile.location %}
+            <div class="card p-4"><dt class="text-xs font-semibold uppercase tracking-wide text-slate-500">{% trans "Localisation" %}</dt><dd class="mt-1 font-semibold text-slate-900 dark:text-white">{{ profile.location }}</dd></div>
+          {% endif %}
+          {% if profile.email %}
+            <div class="card p-4">
+              <dt class="text-xs font-semibold uppercase tracking-wide text-slate-500">{% trans "E-mail" %}</dt>
+              <dd class="mt-1 flex flex-wrap items-center gap-2 break-all font-semibold text-slate-900 dark:text-white">
+                <a href="mailto:{{ profile.email }}" class="hover:text-teal-600 dark:hover:text-teal-400">{{ profile.email }}</a>
+                <button type="button" data-copy="{{ profile.email }}" data-toast="{% trans "E-mail copié !" %}" class="inline-flex items-center gap-1 rounded-lg border border-slate-200 px-2 py-1 text-[11px] font-semibold uppercase tracking-wide text-slate-500 transition hover:border-teal-300 hover:text-teal-600 dark:border-slate-700 dark:text-slate-400" aria-label="{% trans "Copier l'e-mail" %}">{% icon "link" "h-3.5 w-3.5" %} {% trans "Copier" %}</button>
+              </dd>
+            </div>
+          {% endif %}
+          {% if profile.phone %}
+            <div class="card p-4"><dt class="text-xs font-semibold uppercase tracking-wide text-slate-500">{% trans "Téléphone" %}</dt><dd class="mt-1 font-semibold text-slate-900 dark:text-white"><a href="tel:{{ profile.phone_digits }}" class="hover:text-teal-600 dark:hover:text-teal-400">{{ profile.phone }}</a></dd></div>
+          {% endif %}
+          {% if profile.languages %}
+            <div class="card p-4"><dt class="text-xs font-semibold uppercase tracking-wide text-slate-500">{% trans "Langues" %}</dt><dd class="mt-1 font-semibold text-slate-900 dark:text-white">{{ profile.languages }}</dd></div>
+          {% endif %}
+        </dl>
+
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="{% url 'portfolio:cv' %}" class="btn btn-primary">{% icon "file-text" "h-4 w-4" %} {% trans "Voir mon CV complet" %}</a>
+          <a href="#contact" class="btn btn-secondary">{% icon "mail" "h-4 w-4" %} {% trans "Me contacter" %}</a>
+        </div>
+      </div>
+    </div>
+
+    {# --- Compétences : radar + barres --- #}
+    <div class="reveal card mt-12 p-7 sm:p-9" style="--d: 100ms">
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white">{% trans "Compétences" %}</h3>
+      {% regroup skills by get_category_display as skill_groups %}
+      <div class="mt-8 grid items-start gap-10 {% if radar %}lg:grid-cols-5{% endif %}">
+        {% if radar %}
+          <figure class="mx-auto w-full max-w-sm lg:col-span-2" aria-label="{% trans "Radar des compétences par domaine" %}">
+            <svg viewBox="0 0 {{ radar.size }} {{ radar.size }}" class="h-auto w-full" role="img" aria-label="{% trans "Niveau moyen par domaine :" %}{% for l in radar.labels %} {{ l.text }} {{ l.value }} %{% if not forloop.last %},{% endif %}{% endfor %}">
+              <defs>
+                <linearGradient id="radar-fill" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#0d9488" stop-opacity="0.55"/>
+                  <stop offset="1" stop-color="#06b6d4" stop-opacity="0.45"/>
+                </linearGradient>
+              </defs>
+              {% for ring in radar.rings %}
+                <polygon points="{{ ring }}" fill="none" class="stroke-slate-200 dark:stroke-slate-700" stroke-width="1"/>
+              {% endfor %}
+              {% for axis in radar.axes %}
+                <line x1="{{ radar.center }}" y1="{{ radar.center }}" x2="{{ axis.x }}" y2="{{ axis.y }}" class="stroke-slate-200 dark:stroke-slate-700" stroke-width="1"/>
+              {% endfor %}
+              <g class="radar-shape">
+                <polygon points="{{ radar.polygon }}" fill="url(#radar-fill)" stroke="#0d9488" stroke-width="2" stroke-linejoin="round"/>
+                {% for dot in radar.dots %}<circle cx="{{ dot.x }}" cy="{{ dot.y }}" r="4" fill="#fff" stroke="#0d9488" stroke-width="2.5"/>{% endfor %}
+              </g>
+              {% for label in radar.labels %}
+                <text x="{{ label.x }}" y="{{ label.y }}" text-anchor="{{ label.anchor }}" class="fill-slate-600 text-[11px] font-semibold dark:fill-slate-300">{{ label.text }}</text>
+              {% endfor %}
+            </svg>
+          </figure>
+        {% endif %}
+
+        <div class="space-y-6 {% if radar %}lg:col-span-3{% endif %} sm:columns-2 sm:gap-10 sm:space-y-0">
+          {% for group in skill_groups %}
+            <div class="break-inside-avoid sm:mb-7">
+              <p class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">{{ group.grouper }}</p>
+              <ul class="mt-3 space-y-3.5">
+                {% for skill in group.list %}
+                  <li>
+                    <div class="flex justify-between text-sm"><span class="font-medium text-slate-800 dark:text-slate-200">{{ skill.name }}</span><span class="text-slate-500">{{ skill.level }}%</span></div>
+                    <div class="mt-1.5 h-2 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-800" role="progressbar" aria-valuenow="{{ skill.level }}" aria-valuemin="0" aria-valuemax="100" aria-label="{{ skill.name }}">
+                      <div data-skill-bar="{{ skill.level }}" class="skill-bar h-full rounded-full bg-teal-700 dark:bg-teal-500" style="--skill: {{ skill.level }}%"></div>
+                    </div>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% empty %}
+            <p class="text-sm text-slate-500">{% trans "Aucune compétence renseignée pour le moment." %}</p>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    {# --- Parcours --- #}
+    <div class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {% trans "Expérience professionnelle" as heading_experience %}
+      {% trans "Formation" as heading_education %}
+      {% trans "Certifications" as heading_certifications %}
+      <div class="reveal">{% include "partials/timeline.html" with heading=heading_experience items=experiences icon_name="tool" %}</div>
+      <div class="reveal" style="--d: 100ms">{% include "partials/timeline.html" with heading=heading_education items=education icon_name="book" %}</div>
+      <div class="reveal" style="--d: 200ms">{% include "partials/timeline.html" with heading=heading_certifications items=certifications icon_name="award" %}</div>
+    </div>
+  </div>
+</section>
+
+{# ============================== PORTFOLIO ============================== #}
+<section id="portfolio" class="band scroll-mt-20 py-16 sm:py-20 lg:py-24">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <div class="reveal flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <p class="eyebrow">{% trans "Portfolio" %}</p>
+        <h2 class="section-title">{% trans "Mes projets" %}</h2>
+        <p class="section-lead">{% trans "Une sélection de projets réalisés pendant mes études, mes stages et à titre personnel. Chaque projet peut avoir une image principale et plusieurs photos." %}</p>
+      </div>
+      {% if user.is_staff %}
+        <a href="{% url 'admin:portfolio_project_add' %}" class="btn btn-primary">{% icon "plus" "h-4 w-4" %} {% trans "Ajouter un projet" %}</a>
+      {% endif %}
+    </div>
+
+    {% if featured_project %}
+      <div class="reveal mt-12">{% include "partials/featured_project.html" with project=featured_project %}</div>
+    {% endif %}
+
+    {% if other_projects or user.is_staff and project_slots %}
+      <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {% for project in other_projects %}
+          <div class="reveal" style="--d: {% widthratio forloop.counter0 1 70 %}ms">{% include "partials/project_card.html" %}</div>
+        {% endfor %}
+        {% if user.is_staff %}
+          {% for i in "123"|make_list %}
+            {% if forloop.counter <= project_slots %}
+              <div class="reveal" style="--d: {% widthratio forloop.counter0 1 70 %}ms">
+                {% url 'admin:portfolio_project_add' as add_project_url %}
+                {% trans "Emplacement projet" as slot_title %}
+                {% trans "Admin → Projets → Ajouter. Joignez une image principale (1600×1000) et des captures dans « Images de projet »." as slot_hint %}
+                {% include "partials/content_slot.html" with kind="project" href=add_project_url title=slot_title hint=slot_hint %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      </div>
+    {% elif not featured_project %}
+      {% if user.is_staff %}
+        <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {% for i in "123" %}
+            <div class="reveal" style="--d: {% widthratio forloop.counter0 1 70 %}ms">
+              {% url 'admin:portfolio_project_add' as add_project_url %}
+              {% trans "Emplacement projet" as slot_title %}
+              {% trans "Admin → Projets → Ajouter. Joignez une image principale et des photos." as slot_hint %}
+              {% include "partials/content_slot.html" with kind="project" href=add_project_url title=slot_title hint=slot_hint %}
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="card mt-12 p-8 text-center text-slate-500">{% trans "Les projets seront publiés ici prochainement." %}</p>
+      {% endif %}
+    {% endif %}
+  </div>
+</section>
+
+{# ============================== GALERIE PHOTOS ============================== #}
+{% if gallery_photos or user.is_staff %}
+<section id="galerie" class="band scroll-mt-20 py-16 sm:py-20 lg:py-24">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <div class="reveal flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <p class="eyebrow">{% trans "Galerie" %}</p>
+        <h2 class="section-title">{% trans "Photos professionnelles" %}</h2>
+        <p class="section-lead">{% trans "Portrait, atelier, formations ou interventions. Ajoutez vos photos dans Admin → Galerie photos." %}</p>
+      </div>
+      {% if user.is_staff %}
+        <a href="{% url 'admin:portfolio_galleryphoto_add' %}" class="btn btn-secondary">{% icon "camera" "h-4 w-4" %} {% trans "Ajouter une photo" %}</a>
+      {% endif %}
+    </div>
+
+    <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {% for photo in gallery_photos %}
+        <figure class="reveal group overflow-hidden rounded-xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900" style="--d: {% widthratio forloop.counter0 1 60 %}ms">
+          <button type="button" data-lightbox="{{ photo.image.url }}" data-lightbox-alt="{{ photo.title }}"
+                  class="relative block aspect-[4/3] w-full cursor-zoom-in overflow-hidden text-left" aria-label="{% trans "Agrandir" %} {{ photo.title }}">
+            <img src="{{ photo.image.url }}" alt="{{ photo.title }}" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105">
+          </button>
+          <figcaption class="border-t border-slate-100 px-4 py-3 dark:border-slate-800">
+            <p class="text-sm font-semibold text-slate-900 dark:text-white">{{ photo.title }}</p>
+            {% if photo.caption %}<p class="mt-0.5 text-xs text-slate-500">{{ photo.caption }}</p>{% endif %}
+            <p class="mt-1 text-[11px] font-medium uppercase tracking-wide text-teal-700 dark:text-teal-400">{{ photo.get_kind_display }}</p>
+          </figcaption>
+        </figure>
+      {% endfor %}
+      {% if user.is_staff %}
+        {% for i in "1234"|make_list %}
+          {% if forloop.counter <= gallery_slots %}
+            <div class="reveal" style="--d: {% widthratio forloop.counter0 1 60 %}ms">
+              {% url 'admin:portfolio_galleryphoto_add' as add_photo_url %}
+              {% trans "Emplacement photo" as slot_title %}
+              {% trans "Admin → Galerie photos → Ajouter. Format conseillé : 1200×900 px." as slot_hint %}
+              {% include "partials/content_slot.html" with kind="photo" href=add_photo_url title=slot_title hint=slot_hint %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    </div>
+
+    {% if user.is_staff %}
+      <div class="reveal card mt-10 grid gap-4 p-5 sm:grid-cols-3 sm:p-6">
+        <div class="flex items-start gap-3">
+          <span class="icon-box !h-10 !w-10">{% icon "user" "h-5 w-5" %}</span>
+          <div>
+            <p class="text-sm font-semibold text-slate-900 dark:text-white">{% trans "1. Photo de profil" %}</p>
+            <p class="mt-1 text-xs leading-5 text-slate-500">{% trans "Admin → Profil → Photo de profil (hero & À propos)." %}</p>
+            <a href="{% url 'admin:portfolio_profile_changelist' %}" class="mt-2 inline-flex text-xs font-semibold text-teal-700 hover:underline dark:text-teal-400">{% trans "Ouvrir le profil" %}</a>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="icon-box !h-10 !w-10">{% icon "layers" "h-5 w-5" %}</span>
+          <div>
+            <p class="text-sm font-semibold text-slate-900 dark:text-white">{% trans "2. Projets + captures" %}</p>
+            <p class="mt-1 text-xs leading-5 text-slate-500">{% trans "Admin → Projets : image principale + images supplémentaires." %}</p>
+            <a href="{% url 'admin:portfolio_project_changelist' %}" class="mt-2 inline-flex text-xs font-semibold text-teal-700 hover:underline dark:text-teal-400">{% trans "Gérer les projets" %}</a>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="icon-box !h-10 !w-10">{% icon "image" "h-5 w-5" %}</span>
+          <div>
+            <p class="text-sm font-semibold text-slate-900 dark:text-white">{% trans "3. Galerie photos" %}</p>
+            <p class="mt-1 text-xs leading-5 text-slate-500">{% trans "Admin → Galerie photos : portrait, atelier, formations…" %}</p>
+            <a href="{% url 'admin:portfolio_galleryphoto_changelist' %}" class="mt-2 inline-flex text-xs font-semibold text-teal-700 hover:underline dark:text-teal-400">{% trans "Gérer la galerie" %}</a>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</section>
+{% endif %}
+
+{# ============================== MÉTHODE DE TRAVAIL ============================== #}
+<section id="methode" class="band scroll-mt-20 py-16 sm:py-20 lg:py-24">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <div class="reveal mx-auto max-w-2xl text-center">
+      <p class="eyebrow">{% trans "Méthode" %}</p>
+      <h2 class="section-title">{% trans "Comment je travaille" %}</h2>
+      <p class="section-lead mx-auto">{% trans "Un déroulé simple et transparent, de la première discussion à la mise en service." %}</p>
+    </div>
+
+    <ol class="relative mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      {# Ligne de liaison entre les étapes (écrans larges) #}
+      <div class="pointer-events-none absolute left-[12%] right-[12%] top-7 hidden h-px bg-slate-200 lg:block dark:bg-slate-700" aria-hidden="true"></div>
+
+      <li class="reveal relative text-center">
+        <span class="step-num icon-box relative mx-auto !h-14 !w-14 ring-8 ring-slate-50 dark:ring-slate-950">{% icon "mail" "h-6 w-6" %}</span>
+        <p class="mt-5 text-xs font-bold uppercase tracking-widest text-teal-600 dark:text-teal-400">{% trans "Étape 1" %}</p>
+        <h3 class="mt-1 text-lg font-bold text-slate-900 dark:text-white">{% trans "Échange" %}</h3>
+        <p class="mt-2 text-sm leading-6">{% trans "On définit ensemble votre besoin, vos contraintes et vos délais." %}</p>
+      </li>
+      <li class="reveal relative text-center" style="--d: 100ms">
+        <span class="step-num icon-box relative mx-auto !h-14 !w-14 ring-8 ring-slate-50 dark:ring-slate-950">{% icon "file-text" "h-6 w-6" %}</span>
+        <p class="mt-5 text-xs font-bold uppercase tracking-widest text-teal-600 dark:text-teal-400">{% trans "Étape 2" %}</p>
+        <h3 class="mt-1 text-lg font-bold text-slate-900 dark:text-white">{% trans "Proposition" %}</h3>
+        <p class="mt-2 text-sm leading-6">{% trans "Je vous présente une solution claire, un planning et un budget." %}</p>
+      </li>
+      <li class="reveal relative text-center" style="--d: 200ms">
+        <span class="step-num icon-box relative mx-auto !h-14 !w-14 ring-8 ring-slate-50 dark:ring-slate-950">{% icon "code" "h-6 w-6" %}</span>
+        <p class="mt-5 text-xs font-bold uppercase tracking-widest text-teal-600 dark:text-teal-400">{% trans "Étape 3" %}</p>
+        <h3 class="mt-1 text-lg font-bold text-slate-900 dark:text-white">{% trans "Réalisation" %}</h3>
+        <p class="mt-2 text-sm leading-6">{% trans "Développement ou installation, avec des points d'étape réguliers." %}</p>
+      </li>
+      <li class="reveal relative text-center" style="--d: 300ms">
+        <span class="step-num icon-box relative mx-auto !h-14 !w-14 ring-8 ring-slate-50 dark:ring-slate-950">{% icon "shield" "h-6 w-6" %}</span>
+        <p class="mt-5 text-xs font-bold uppercase tracking-widest text-teal-600 dark:text-teal-400">{% trans "Étape 4" %}</p>
+        <h3 class="mt-1 text-lg font-bold text-slate-900 dark:text-white">{% trans "Livraison &amp; suivi" %}</h3>
+        <p class="mt-2 text-sm leading-6">{% trans "Tests, sécurisation, mise en service et assistance après livraison." %}</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+{# ============================== COURS EN LIGNE ============================== #}
+<section id="cours" class="band scroll-mt-20 py-16 sm:py-20 lg:py-24">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <div class="reveal flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <p class="eyebrow">{% trans "Cours en ligne" %}</p>
+        <h2 class="section-title">{% trans "Apprenez avec moi" %}</h2>
+        <p class="section-lead">{% trans "Des cours pratiques, accessibles à vie depuis votre espace personnel après achat." %}</p>
+      </div>
+      <a href="{% url 'courses:list' %}" class="btn btn-secondary">{% trans "Voir tout le catalogue" %} {% icon "arrow-right" "h-4 w-4" %}</a>
+    </div>
+
+    {% if courses %}
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {% for course in courses %}
+          <div class="reveal" style="--d: {% widthratio forloop.counter0 1 70 %}ms">{% include "partials/course_card.html" %}</div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="card mt-12 p-8 text-center text-slate-500">{% trans "Les premiers cours arrivent bientôt." %}</p>
+    {% endif %}
+
+    <ul class="reveal mt-12 grid gap-4 sm:grid-cols-3">
+      <li class="flex items-center gap-3 text-sm"><span class="icon-box !h-10 !w-10">{% icon "zap" "h-5 w-5" %}</span> {% trans "Accès immédiat après la commande" %}</li>
+      <li class="flex items-center gap-3 text-sm"><span class="icon-box !h-10 !w-10">{% icon "file-text" "h-5 w-5" %}</span> {% trans "Reçu disponible pour chaque achat" %}</li>
+      <li class="flex items-center gap-3 text-sm"><span class="icon-box !h-10 !w-10">{% icon "layers" "h-5 w-5" %}</span> {% trans "Retrouvez tout dans « Mes cours »" %}</li>
+    </ul>
+  </div>
+</section>
+
+{# ============================== DERNIERS ARTICLES (masqués s'il n'y en a aucun) ============================== #}
+{% if latest_posts %}
+<section id="blog" class="band scroll-mt-20 py-16 sm:py-20 lg:py-24">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <div class="reveal flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <p class="eyebrow">{% trans "Blog" %}</p>
+        <h2 class="section-title">{% trans "Derniers articles" %}</h2>
+        <p class="section-lead">{% trans "Cybersécurité, développement web, réseaux : des conseils concrets à appliquer tout de suite." %}</p>
+      </div>
+      <a href="{% url 'blog:list' %}" class="btn btn-secondary">{% trans "Tous les articles" %} {% icon "arrow-right" "h-4 w-4" %}</a>
+    </div>
+    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {% for post in latest_posts %}
+        <div class="reveal" style="--d: {% widthratio forloop.counter0 1 80 %}ms">{% include "partials/post_card.html" %}</div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{# ============================== TÉMOIGNAGES (affichés seulement s'il y en a) ============================== #}
+{% if testimonials %}
+<section id="temoignages" class="band scroll-mt-20 py-16 sm:py-20 lg:py-24">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <div class="reveal mx-auto max-w-2xl text-center">
+      <p class="eyebrow">{% trans "Témoignages" %}</p>
+      <h2 class="section-title">{% trans "Ils m'ont fait confiance" %}</h2>
+    </div>
+    <div class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {% for t in testimonials %}
+        <figure class="reveal card flex flex-col p-7" style="--d: {% widthratio forloop.counter0 1 70 %}ms">
+          <span class="font-display text-5xl font-extrabold leading-none text-teal-300 dark:text-teal-500/60" aria-hidden="true">&ldquo;</span>
+          <blockquote class="mt-2 flex-1 text-sm leading-7 text-slate-700 dark:text-slate-300">{{ t.content }}</blockquote>
+          <figcaption class="mt-6 flex items-center gap-3 border-t border-slate-100 pt-5 dark:border-slate-800">
+            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 text-sm font-bold text-white dark:bg-teal-700">{{ t.author_name|slice:":1"|upper }}</span>
+            <span>
+              <span class="block text-sm font-semibold text-slate-900 dark:text-white">{{ t.author_name }}</span>
+              {% if t.author_role %}<span class="block text-xs text-slate-500">{{ t.author_role }}</span>{% endif %}
+            </span>
+          </figcaption>
+        </figure>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{# ============================== FAQ ============================== #}
+{% if faqs %}
+<section id="faq" class="band scroll-mt-20 py-16 sm:py-20 lg:py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6">
+    <div class="reveal text-center">
+      <p class="eyebrow">{% trans "FAQ" %}</p>
+      <h2 class="section-title">{% trans "Questions fréquentes" %}</h2>
+    </div>
+    <div class="mt-12 space-y-3">
+      {% for faq in faqs %}
+        <details class="reveal card group overflow-hidden" style="--d: {% widthratio forloop.counter0 1 40 %}ms">
+          <summary class="flex cursor-pointer items-center justify-between gap-4 px-6 py-4 font-semibold text-slate-900 dark:text-white">
+            {{ faq.question }}
+            <span class="shrink-0 text-slate-400 transition duration-300 group-open:rotate-180">{% icon "chevron-down" "h-5 w-5" %}</span>
+          </summary>
+          <div class="border-t border-slate-100 px-6 py-4 text-sm leading-7 dark:border-slate-800">{{ faq.answer|linebreaksbr }}</div>
+        </details>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{# ============================== CONTACT ============================== #}
+<section id="contact" class="band scroll-mt-20 py-16 sm:py-20 lg:py-24">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    {# Bandeau d'appel à l'action #}
+    <div class="reveal reveal-scale relative overflow-hidden rounded-xl border border-slate-200 bg-slate-900 px-6 py-12 text-center dark:border-slate-700 sm:px-12">
+      <div class="aurora-a pointer-events-none absolute -left-16 top-0 h-40 w-40 rounded-full bg-teal-500/20 blur-3xl" aria-hidden="true"></div>
+      <div class="aurora-b pointer-events-none absolute -right-10 bottom-0 h-40 w-40 rounded-full bg-cyan-400/15 blur-3xl" aria-hidden="true"></div>
+      <div class="relative">
+        <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">{% trans "Un projet en tête ? Parlons-en." %}</h2>
+        <p class="mx-auto mt-3 max-w-xl text-slate-300">{% trans "Application web, réseau, vidéosurveillance ou formation : décrivez votre besoin, je vous réponds rapidement." %}</p>
+        <div class="mt-7 flex flex-wrap justify-center gap-3">
+          <a href="#formulaire" data-magnetic class="btn btn-shimmer bg-white text-slate-900 hover:bg-slate-100">{% icon "mail" "h-4 w-4" %} {% trans "Envoyer un message" %}</a>
+          {% if profile.whatsapp_digits %}
+            <a href="https://wa.me/{{ profile.whatsapp_digits }}" target="_blank" rel="noopener noreferrer" data-magnetic class="btn border border-slate-600 bg-transparent text-white hover:border-slate-400 hover:bg-white/5">{% icon "whatsapp" "h-4 w-4" %} {% trans "WhatsApp" %}</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div id="formulaire" class="mt-20 grid scroll-mt-24 gap-12 lg:grid-cols-5">
+      <div class="reveal lg:col-span-2">
+        <p class="eyebrow">{% trans "Contact" %}</p>
+        <h2 class="section-title">{% trans "Écrivez-moi" %}</h2>
+        <p class="section-lead">{% trans "Une question sur un cours, une collaboration ou une opportunité ? Je lis chaque message." %}</p>
+
+        <ul class="mt-8 space-y-4">
+          {% if profile.email %}
+            <li class="flex items-start gap-3">
+              <span class="icon-box !h-11 !w-11">{% icon "mail" "h-5 w-5" %}</span>
+              <span class="min-w-0">
+                <span class="block text-xs font-semibold uppercase tracking-wide text-slate-500">{% trans "E-mail" %}</span>
+                <span class="mt-0.5 flex flex-wrap items-center gap-2">
+                  <a href="mailto:{{ profile.email }}" class="break-all font-semibold text-slate-900 hover:text-teal-600 dark:text-white dark:hover:text-teal-400">{{ profile.email }}</a>
+                  <button type="button" data-copy="{{ profile.email }}" data-toast="{% trans "E-mail copié !" %}" class="inline-flex items-center gap-1 rounded-lg border border-slate-200 px-2 py-1 text-[11px] font-semibold uppercase tracking-wide text-slate-500 transition hover:border-teal-300 hover:text-teal-600 dark:border-slate-700 dark:text-slate-400" aria-label="{% trans "Copier l'e-mail" %}">{% icon "link" "h-3.5 w-3.5" %} {% trans "Copier" %}</button>
+                </span>
+              </span>
+            </li>
+          {% endif %}
+          {% if profile.phone %}
+            <li class="flex items-center gap-3">
+              <span class="icon-box !h-11 !w-11">{% icon "phone" "h-5 w-5" %}</span>
+              <span><span class="block text-xs font-semibold uppercase tracking-wide text-slate-500">{% trans "Téléphone" %}</span><a href="tel:{{ profile.phone_digits }}" class="font-semibold text-slate-900 hover:text-teal-600 dark:text-white dark:hover:text-teal-400">{{ profile.phone }}</a></span>
+            </li>
+          {% endif %}
+          {% if profile.location %}
+            <li class="flex items-center gap-3">
+              <span class="icon-box !h-11 !w-11">{% icon "pin" "h-5 w-5" %}</span>
+              <span><span class="block text-xs font-semibold uppercase tracking-wide text-slate-500">{% trans "Localisation" %}</span><span class="font-semibold text-slate-900 dark:text-white">{{ profile.location }}</span></span>
+            </li>
+          {% endif %}
+        </ul>
+
+        {% if profile.social_links %}
+          <ul class="mt-8 flex gap-2.5">
+            {% for icon_name, label, url in profile.social_links %}
+              <li><a href="{{ url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ label }}" class="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 transition hover:-translate-y-0.5 hover:border-teal-300 hover:text-teal-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:text-teal-400">{% icon icon_name "h-5 w-5" %}</a></li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+
+      <form method="post" action="{% url 'portfolio:contact' %}" class="reveal card relative space-y-5 p-6 sm:p-8 lg:col-span-3" style="--d: 120ms" novalidate data-lock>
+        {% csrf_token %}
+        {# Honeypot anti-spam : invisible pour les humains #}
+        <div class="absolute -left-[9999px]" aria-hidden="true">
+          <label for="id_website">{% trans "Ne pas remplir" %}</label>
+          <input type="text" id="id_website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+        <div class="grid gap-5 sm:grid-cols-2">
+          {% for field in contact_form.visible_fields|slice:":2" %}
+            <div class="field">
+              <label for="{{ field.id_for_label }}" class="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-200">{{ field.label }}</label>
+              {{ field }}
+              {% for error in field.errors %}<p class="mt-1.5 text-sm text-red-600 dark:text-red-400">{{ error }}</p>{% endfor %}
+            </div>
+          {% endfor %}
+        </div>
+        {% for field in contact_form.visible_fields|slice:"2:" %}
+          <div class="field">
+            <label for="{{ field.id_for_label }}" class="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-200">{{ field.label }}</label>
+            {{ field }}
+            {% for error in field.errors %}<p class="mt-1.5 text-sm text-red-600 dark:text-red-400">{{ error }}</p>{% endfor %}
+          </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary btn-lg w-full">{% trans "Envoyer le message" %} {% icon "arrow-right" "h-5 w-5" %}</button>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+{% if contact_form.errors %}
+<script>document.getElementById("formulaire").scrollIntoView();</script>
+{% endif %}
+{% endblock %}

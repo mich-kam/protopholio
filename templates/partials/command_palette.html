@@ -1,0 +1,63 @@
+{% url 'portfolio:home' as home_url %}
+{# Palette de commandes : ouverte par Ctrl/⌘ + K ou « / » (logique dans static/js/main.js) #}
+<dialog id="cmdk" aria-label="{% trans "Palette de commandes" %}"
+        class="no-print m-auto mt-[12vh] w-[min(36rem,calc(100vw-2rem))] overflow-hidden rounded-2xl border border-slate-200 bg-white p-0 text-slate-700 shadow-2xl dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200">
+  <div class="flex items-center gap-3 border-b border-slate-200 px-4 dark:border-slate-800">
+    {% icon "search" "h-5 w-5 shrink-0 text-slate-400" %}
+    <input data-cmdk-input type="text" autocomplete="off" spellcheck="false" aria-label="{% trans "Rechercher une page ou une action" %}"
+           placeholder="{% trans "Aller à… une section, une page, une action" %}"
+           class="h-14 w-full bg-transparent text-base outline-none placeholder:text-slate-400">
+    <kbd class="hidden shrink-0 rounded-md border border-slate-200 px-1.5 py-0.5 text-[10px] font-semibold text-slate-400 sm:block dark:border-slate-700">{% trans "Échap" %}</kbd>
+  </div>
+
+  <div role="listbox" aria-label="{% trans "Résultats" %}" class="max-h-[50vh] overflow-y-auto p-2">
+    <div data-cmdk-group>
+      <p class="px-3 pb-1 pt-2 text-[11px] font-bold uppercase tracking-wider text-slate-400">{% trans "Aller à" %}</p>
+      <ul>
+        <li><a role="option" data-cmdk-option href="{{ home_url }}#accueil" class="menu-item">{% icon "grid" "h-4 w-4 text-slate-400" %} {% trans "Accueil" %}</a></li>
+        <li><a role="option" data-cmdk-option href="{{ home_url }}#services" class="menu-item">{% icon "layers" "h-4 w-4 text-slate-400" %} {% trans "Services" %}</a></li>
+        <li><a role="option" data-cmdk-option data-keywords="sécurité securite hacking protection" href="{{ home_url }}#cybersecurite" class="menu-item">{% icon "shield" "h-4 w-4 text-slate-400" %} {% trans "Cybersécurité" %}</a></li>
+        <li><a role="option" data-cmdk-option data-keywords="parcours compétences formation expérience" href="{{ home_url }}#a-propos" class="menu-item">{% icon "user" "h-4 w-4 text-slate-400" %} {% trans "À propos" %}</a></li>
+        <li><a role="option" data-cmdk-option data-keywords="projets réalisations github" href="{{ home_url }}#portfolio" class="menu-item">{% icon "code" "h-4 w-4 text-slate-400" %} {% trans "Portfolio" %}</a></li>
+        <li><a role="option" data-cmdk-option data-keywords="photos images galerie portrait" href="{{ home_url }}#galerie" class="menu-item">{% icon "camera" "h-4 w-4 text-slate-400" %} {% trans "Galerie photos" %}</a></li>
+        <li><a role="option" data-cmdk-option data-keywords="cours catalogue formation acheter" href="{% url 'courses:list' %}" class="menu-item">{% icon "book" "h-4 w-4 text-slate-400" %} {% trans "Catalogue des cours" %}</a></li>
+        <li><a role="option" data-cmdk-option data-keywords="articles tutoriels actualités rss" href="{% url 'blog:list' %}" class="menu-item">{% icon "file-text" "h-4 w-4 text-slate-400" %} {% trans "Blog &amp; articles" %}</a></li>
+        <li><a role="option" data-cmdk-option data-keywords="curriculum vitae pdf télécharger imprimer" href="{% url 'portfolio:cv' %}" class="menu-item">{% icon "download" "h-4 w-4 text-slate-400" %} {% trans "Mon CV (PDF)" %}</a></li>
+        <li><a role="option" data-cmdk-option data-keywords="sécurité vulnérabilité faille signaler protection données" href="{% url 'portfolio:security' %}" class="menu-item">{% icon "lock" "h-4 w-4 text-slate-400" %} {% trans "Sécurité du site" %}</a></li>
+        <li><a role="option" data-cmdk-option data-keywords="aide questions" href="{{ home_url }}#faq" class="menu-item">{% icon "zap" "h-4 w-4 text-slate-400" %} {% trans "Questions fréquentes" %}</a></li>
+        <li><a role="option" data-cmdk-option data-keywords="écrire message formulaire" href="{{ home_url }}#contact" class="menu-item">{% icon "mail" "h-4 w-4 text-slate-400" %} {% trans "Contact" %}</a></li>
+      </ul>
+    </div>
+
+    <div data-cmdk-group>
+      <p class="px-3 pb-1 pt-3 text-[11px] font-bold uppercase tracking-wider text-slate-400">{% trans "Compte" %}</p>
+      <ul>
+        {% if user.is_authenticated %}
+          <li><a role="option" data-cmdk-option data-keywords="achats commandes reçus" href="{% url 'courses:dashboard' %}" class="menu-item">{% icon "play" "h-4 w-4 text-slate-400" %} {% trans "Mes cours" %}</a></li>
+          <li><a role="option" data-cmdk-option data-keywords="profil mot de passe" href="{% url 'accounts:profile' %}" class="menu-item">{% icon "settings" "h-4 w-4 text-slate-400" %} {% trans "Mon compte" %}</a></li>
+          {% if user.is_staff %}<li><a role="option" data-cmdk-option data-keywords="admin gestion" href="{% url 'admin:index' %}" class="menu-item">{% icon "lock" "h-4 w-4 text-slate-400" %} {% trans "Administration" %}</a></li>{% endif %}
+        {% else %}
+          <li><a role="option" data-cmdk-option href="{% url 'accounts:login' %}" class="menu-item">{% icon "lock" "h-4 w-4 text-slate-400" %} {% trans "Connexion" %}</a></li>
+          <li><a role="option" data-cmdk-option data-keywords="créer compte inscription" href="{% url 'accounts:register' %}" class="menu-item">{% icon "user" "h-4 w-4 text-slate-400" %} {% trans "S'inscrire" %}</a></li>
+        {% endif %}
+      </ul>
+    </div>
+
+    <div data-cmdk-group>
+      <p class="px-3 pb-1 pt-3 text-[11px] font-bold uppercase tracking-wider text-slate-400">{% trans "Actions" %}</p>
+      <ul>
+        <li><button type="button" role="option" data-cmdk-option data-cmdk-action="theme" data-keywords="thème sombre clair dark light mode" class="menu-item">{% icon "zap" "h-4 w-4 text-slate-400" %} {% trans "Basculer le thème clair / sombre" %}</button></li>
+        <li><button type="button" role="option" data-cmdk-option data-cmdk-action="top" data-keywords="haut remonter" class="menu-item">{% icon "arrow-up" "h-4 w-4 text-slate-400" %} {% trans "Remonter en haut de page" %}</button></li>
+        {% if profile.whatsapp_digits %}<li><a role="option" data-cmdk-option data-keywords="discuter chat message" href="https://wa.me/{{ profile.whatsapp_digits }}" target="_blank" rel="noopener noreferrer" class="menu-item">{% icon "whatsapp" "h-4 w-4 text-slate-400" %} {% trans "Discuter sur WhatsApp" %}</a></li>{% endif %}
+        {% if profile.email %}<li><a role="option" data-cmdk-option data-keywords="écrire courriel" href="mailto:{{ profile.email }}" class="menu-item">{% icon "mail" "h-4 w-4 text-slate-400" %} {% trans "Écrire un e-mail" %}</a></li>{% endif %}
+      </ul>
+    </div>
+
+    <p data-cmdk-empty hidden class="px-3 py-8 text-center text-sm text-slate-500">{% trans "Aucun résultat. Essayez un autre mot." %}</p>
+  </div>
+
+  <div class="flex items-center justify-between border-t border-slate-200 px-4 py-2.5 text-[11px] text-slate-400 dark:border-slate-800">
+    <span><kbd class="font-semibold">↑</kbd> <kbd class="font-semibold">↓</kbd> {% trans "naviguer ·" %} <kbd class="font-semibold">{% trans "Entrée" %}</kbd> {% trans "ouvrir" %}</span>
+    <span class="hidden sm:inline"><kbd class="font-semibold">Ctrl</kbd> + <kbd class="font-semibold">K</kbd> {% trans "pour l'ouvrir partout" %}</span>
+  </div>
+</dialog>

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}{% trans "Sécurité du site" %}{% endblock %}
+{% block meta_description %}{% trans "Les mesures de sécurité appliquées à ce site : chiffrement, mots de passe, protection des comptes, des cours et des commandes. Comment signaler une vulnérabilité." %}{% endblock %}
+{% block og_title %}{% trans "Sécurité du site" %}{% endblock %}
+{% block og_description %}{% trans "Les mesures de sécurité réellement appliquées à ce site, et comment signaler une vulnérabilité." %}{% endblock %}
+
+{% block content %}
+{# --- Bandeau sombre --- #}
+<section class="relative isolate overflow-hidden bg-slate-950 text-slate-300">
+  <div class="bg-grid mask-fade pointer-events-none absolute inset-0 -z-10 opacity-60" aria-hidden="true"></div>
+
+  <div class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+    <span class="flex h-14 w-14 items-center justify-center rounded-xl bg-teal-800 text-white">{% icon "shield" "h-7 w-7" %}</span>
+    <h1 class="mt-6 max-w-3xl text-4xl font-bold tracking-tight text-white sm:text-5xl">{% trans "Comment ce site protège vos données" %}</h1>
+    <p class="mt-4 max-w-2xl text-lg leading-8 text-slate-400">
+      {% trans "La sécurité n'est pas un slogan. Voici, sans jargon, ce qui est réellement mis en place ici, et comment me signaler un problème si vous en trouvez un." %}
+    </p>
+  </div>
+</section>
+
+{# --- Mesures --- #}
+<section class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+  <ul class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    {% for icon_name, title, text in measures %}
+      <li class="reveal card card-hover p-6" style="--d: {% widthratio forloop.counter0 1 45 %}ms">
+        <span class="icon-box">{% icon icon_name "h-5 w-5" %}</span>
+        <h2 class="mt-4 text-base font-bold text-slate-900 dark:text-white">{{ title }}</h2>
+        <p class="mt-2 text-sm leading-6">{{ text }}</p>
+      </li>
+    {% endfor %}
+  </ul>
+
+  {# --- Signalement --- #}
+  <div class="reveal card mt-14 p-8 sm:p-10">
+    <div class="grid gap-8 lg:grid-cols-3 lg:items-center">
+      <div class="lg:col-span-2">
+        <p class="eyebrow">{% trans "Divulgation responsable" %}</p>
+        <h2 class="mt-3 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl dark:text-white">{% trans "Vous avez trouvé une faille ?" %}</h2>
+        <p class="mt-3 leading-7">
+          {% trans "Merci de me la signaler en privé avant toute publication, avec le plus de détails possible (page concernée, étapes pour reproduire). Je m'engage à accuser réception rapidement et à corriger le problème dans les meilleurs délais. Merci de ne pas accéder aux données d'autres utilisateurs." %}
+        </p>
+      </div>
+      <div class="flex flex-col gap-3">
+        {% if profile.email %}
+          <a href="mailto:{{ profile.email }}?subject=Signalement%20de%20s%C3%A9curit%C3%A9" class="btn btn-primary btn-lg">{% icon "mail" "h-5 w-5" %} {% trans "Signaler par e-mail" %}</a>
+          <a href="{% url 'root:security_txt' %}" class="btn btn-secondary">{% icon "file-text" "h-4 w-4" %} security.txt</a>
+        {% else %}
+          <a href="{% url 'portfolio:home' %}#contact" class="btn btn-primary btn-lg">{% icon "mail" "h-5 w-5" %} {% trans "Me contacter" %}</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <p class="mt-8 text-center text-sm text-slate-500">
+    {% trans "Aucun système n'est invulnérable : la sécurité est un travail continu, fait de mises à jour et de vigilance." %}
+  </p>
+</section>
+{% endblock %}

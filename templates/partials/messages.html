@@ -1,0 +1,20 @@
+{% if messages %}
+{# Notifications « toast » en haut à droite : disparaissent seules (voir main.js) #}
+<div class="no-print pointer-events-none fixed inset-x-4 top-20 z-[55] flex flex-col items-end gap-3 sm:inset-x-auto sm:right-6" aria-live="polite">
+  {% for message in messages %}
+    <div data-flash role="status"
+         class="toast pointer-events-auto flex w-full max-w-sm items-start gap-3 rounded-xl border bg-white p-4 text-sm shadow-2xl dark:bg-slate-900
+         {% if message.level_tag == 'success' %}border-emerald-200 dark:border-emerald-500/30
+         {% elif message.level_tag == 'error' %}border-red-200 dark:border-red-500/30
+         {% elif message.level_tag == 'warning' %}border-amber-200 dark:border-amber-500/30
+         {% else %}border-sky-200 dark:border-sky-500/30{% endif %}">
+      <span class="mt-0.5 shrink-0
+         {% if message.level_tag == 'success' %}text-emerald-500{% elif message.level_tag == 'error' %}text-red-500{% elif message.level_tag == 'warning' %}text-amber-500{% else %}text-sky-500{% endif %}">
+        {% if message.level_tag == 'success' %}{% icon "check-circle" "h-5 w-5" %}{% elif message.level_tag == 'error' or message.level_tag == 'warning' %}{% icon "shield" "h-5 w-5" %}{% else %}{% icon "zap" "h-5 w-5" %}{% endif %}
+      </span>
+      <p class="flex-1 text-slate-700 dark:text-slate-200">{{ message }}</p>
+      <button type="button" data-flash-close class="shrink-0 text-lg leading-none text-slate-400 hover:text-slate-700 dark:hover:text-white" aria-label="{% trans "Fermer" %}">&times;</button>
+    </div>
+  {% endfor %}
+</div>
+{% endif %}

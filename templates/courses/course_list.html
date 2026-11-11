@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}{% trans "Cours en ligne" %}{% if q %} — « {{ q }} »{% endif %}{% endblock %}
+{% block meta_description %}{% trans "Catalogue de cours en ligne : programmation, bases de données, web. Achetez un cours et retrouvez-le à vie dans votre espace personnel." %}{% endblock %}
+{% block og_title %}{% trans "Cours en ligne" %}{% endblock %}
+{% block og_description %}{% trans "Catalogue de cours en ligne : programmation, bases de données, web." %}{% endblock %}
+
+{% block content %}
+<section class="relative isolate overflow-hidden border-b border-slate-200 dark:border-slate-800">
+  <div class="mx-auto max-w-6xl px-4 pb-10 pt-14 sm:px-6">
+    <p class="eyebrow">{% trans "Cours en ligne" %}</p>
+    <h1 class="section-title">{% trans "Catalogue des cours" %}</h1>
+    <p class="section-lead">{% trans "Achetez un cours et retrouvez-le à vie dans votre espace « Mes cours »." %}</p>
+
+    <form method="get" action="{% url 'courses:list' %}" class="card mt-8 grid gap-3 p-4 sm:grid-cols-2 lg:grid-cols-12" role="search">
+      <div class="field lg:col-span-4">
+        <label for="q" class="sr-only">{% trans "Rechercher un cours" %}</label>
+        <input type="search" id="q" name="q" value="{{ q }}" placeholder="{% trans "Rechercher un cours…" %}" maxlength="100">
+      </div>
+      <div class="field lg:col-span-2">
+        <label for="niveau" class="sr-only">{% trans "Niveau" %}</label>
+        <select id="niveau" name="niveau" data-autosubmit>
+          <option value="">{% trans "Tous les niveaux" %}</option>
+          {% for value, label in levels %}<option value="{{ value }}"{% if value == level %} selected{% endif %}>{{ label }}</option>{% endfor %}
+        </select>
+      </div>
+      <div class="field lg:col-span-2">
+        <label for="prix" class="sr-only">{% trans "Prix" %}</label>
+        <select id="prix" name="prix" data-autosubmit>
+          <option value="">{% trans "Tous les prix" %}</option>
+          <option value="free"{% if price == "free" %} selected{% endif %}>{% trans "Gratuits" %}</option>
+          <option value="paid"{% if price == "paid" %} selected{% endif %}>{% trans "Payants" %}</option>
+        </select>
+      </div>
+      <div class="field lg:col-span-2">
+        <label for="tri" class="sr-only">{% trans "Trier par" %}</label>
+        <select id="tri" name="tri" data-autosubmit>
+          {% for key, label in sorts %}<option value="{{ key }}"{% if key == sort %} selected{% endif %}>{{ label }}</option>{% endfor %}
+        </select>
+      </div>
+      <div class="flex gap-2 sm:col-span-2 lg:col-span-2">
+        <button type="submit" class="btn btn-primary flex-1">{% icon "search" "h-4 w-4" %} {% trans "Chercher" %}</button>
+        {% if has_filters %}<a href="{% url 'courses:list' %}" class="btn btn-secondary" aria-label="{% trans "Effacer les filtres" %}">&times;</a>{% endif %}
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+  <p class="text-sm text-slate-500 [&_strong]:text-slate-700 dark:[&_strong]:text-slate-200" aria-live="polite">
+    {% if total == 0 %}{% trans "Aucun résultat" %}{% else %}{% blocktrans trimmed count counter=total %}{{ counter }} cours{% plural %}{{ counter }} cours{% endblocktrans %}{% endif %}{% if q %} {% blocktrans trimmed %}pour « <strong>{{ q }}</strong> »{% endblocktrans %}{% endif %}
+  </p>
+
+  {% if courses %}
+    <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {% for course in courses %}{% include "partials/course_card.html" %}{% endfor %}
+    </div>
+
+    {% if page_obj.has_other_pages %}
+      <nav class="mt-12 flex items-center justify-center gap-3" aria-label="{% trans "Pagination" %}">
+        {% if page_obj.has_previous %}
+          <a href="{% querystring page=page_obj.previous_page_number %}" class="btn btn-secondary">{% trans "&larr; Précédent" %}</a>
+        {% endif %}
+        <span class="text-sm text-slate-500">{% blocktrans trimmed with number=page_obj.number pages=page_obj.paginator.num_pages %}Page {{ number }} sur {{ pages }}{% endblocktrans %}</span>
+        {% if page_obj.has_next %}
+          <a href="{% querystring page=page_obj.next_page_number %}" class="btn btn-secondary">{% trans "Suivant &rarr;" %}</a>
+        {% endif %}
+      </nav>
+    {% endif %}
+  {% else %}
+    <div class="card mt-6 px-6 py-16 text-center">
+      <span class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-teal-50 text-teal-600 dark:bg-teal-500/10 dark:text-teal-300">{% icon "search" "h-6 w-6" %}</span>
+      <p class="mt-5 text-lg font-bold text-slate-900 dark:text-white">{% trans "Aucun cours ne correspond à votre recherche" %}</p>
+      <p class="mt-2 text-sm">{% trans "Essayez d'autres mots-clés ou retirez certains filtres." %}</p>
+      {% if has_filters %}<a href="{% url 'courses:list' %}" class="btn btn-primary mt-6">{% trans "Réinitialiser les filtres" %}</a>{% endif %}
+    </div>
+  {% endif %}
+</section>
+{% endblock %}

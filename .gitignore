@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Django
+db.sqlite3
+/staticfiles/
+/media/
+
+# Secrets
+.env
+
+# Éditeurs / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Fichiers locaux de test / logs
+test_out.txt
+*.log

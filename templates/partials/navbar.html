@@ -1,0 +1,114 @@
+{% url 'portfolio:home' as home_url %}
+{% url 'courses:list' as courses_url %}
+<header data-site-header class="no-print sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur-md transition-transform duration-300 ease-out dark:border-slate-800 dark:bg-slate-950/90">
+  <nav class="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:gap-4 sm:px-6" aria-label="{% trans "Navigation principale" %}">
+    <a href="{{ home_url }}" class="flex min-w-0 items-center gap-2.5 font-display text-base font-bold text-slate-900 sm:text-lg dark:text-white">
+      <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-slate-900 text-sm font-bold text-white dark:bg-teal-700">{% if profile %}{{ profile.initials }}{% else %}P{% endif %}</span>
+      <span class="truncate hidden sm:inline">{% if profile %}{{ profile.full_name }}{% else %}{% trans "Portfolio" %}{% endif %}</span>
+    </a>
+
+    {# Liens desktop : le scroll-spy (data-spy) souligne la section visible #}
+    <div class="hidden items-center gap-0.5 lg:flex">
+      <a class="nav-link hidden xl:inline-block" data-spy="services" href="{{ home_url }}#services">{% trans "Services" %}</a>
+      <a class="nav-link" data-spy="cybersecurite" href="{{ home_url }}#cybersecurite">{% trans "Cybersécurité" %}</a>
+      <a class="nav-link" data-spy="a-propos" href="{{ home_url }}#a-propos">{% trans "À propos" %}</a>
+      <a class="nav-link" data-spy="portfolio" href="{{ home_url }}#portfolio">{% trans "Portfolio" %}</a>
+      <a class="nav-link hidden xl:inline-block" data-spy="galerie" href="{{ home_url }}#galerie">{% trans "Galerie" %}</a>
+      <a class="nav-link" data-spy="cours" href="{{ courses_url }}"{% if request.resolver_match.app_name == "courses" and request.resolver_match.url_name != "dashboard" %} aria-current="page"{% endif %}>{% trans "Cours" %}</a>
+      <a class="nav-link" href="{% url 'blog:list' %}"{% if request.resolver_match.app_name == "blog" %} aria-current="page"{% endif %}>{% trans "Blog" %}</a>
+      <a class="nav-link" data-spy="contact" href="{{ home_url }}#contact">{% trans "Contact" %}</a>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <button type="button" data-cmdk-open aria-label="{% trans "Rechercher (Ctrl+K)" %}" title="{% trans "Rechercher (Ctrl+K)" %}"
+              class="flex items-center gap-2 rounded-xl border border-slate-200 bg-white/60 p-2.5 text-slate-500 transition hover:border-teal-300 hover:text-teal-600 xl:px-3 xl:py-2 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-400">
+        {% icon "search" "h-4 w-4" %}
+        <span class="hidden text-sm xl:inline">{% trans "Rechercher" %}</span>
+        <kbd class="hidden rounded-md border border-slate-200 px-1.5 py-0.5 text-[10px] font-semibold text-slate-400 xl:inline dark:border-slate-700">Ctrl K</kbd>
+      </button>
+      <div class="flex items-center rounded-xl border border-slate-200 p-0.5 dark:border-slate-700" role="group" aria-label="{% trans "Langue" %}">
+        {% for code, name in LANGUAGES %}
+          {% if code == LANGUAGE_CODE %}
+            <span class="rounded-lg bg-slate-900 px-2 py-1 text-xs font-bold uppercase tracking-wide text-white dark:bg-white dark:text-slate-900" aria-current="true">{{ code }}</span>
+          {% else %}
+            <a href="{% language_url code %}" lang="{{ code }}" hreflang="{{ code }}"
+               class="rounded-lg px-2 py-1 text-xs font-bold uppercase tracking-wide text-slate-500 transition hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white"
+               title="{{ name }}">{{ code }}</a>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <button type="button" data-theme-toggle class="rounded-xl p-2.5 text-slate-600 transition hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800" aria-label="{% trans "Changer de thème" %}">
+        <svg class="hidden h-5 w-5 dark:block" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg>
+        <svg class="h-5 w-5 dark:hidden" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"/></svg>
+      </button>
+
+      <div class="hidden items-center gap-2 lg:flex">
+        {% if user.is_authenticated %}
+          <details data-dropdown class="relative">
+            <summary class="flex cursor-pointer items-center gap-2 rounded-xl border border-slate-200 bg-white py-1.5 pl-1.5 pr-2.5 transition hover:border-teal-300 dark:border-slate-700 dark:bg-slate-900">
+              <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-800 text-sm font-bold text-white dark:bg-teal-700">{{ user.username|slice:":1"|upper }}</span>
+              <span class="max-w-[7rem] truncate text-sm font-medium text-slate-700 dark:text-slate-200">{{ user.first_name|default:user.username }}</span>
+              {% icon "chevron-down" "h-4 w-4 text-slate-400" %}
+            </summary>
+            <div class="absolute right-0 mt-2 w-60 rounded-xl border border-slate-200 bg-white p-1.5 shadow-2xl dark:border-slate-700 dark:bg-slate-900">
+              <p class="truncate px-3 pb-2 pt-1.5 text-xs text-slate-500">{{ user.email|default:user.username }}</p>
+              <a class="menu-item" href="{% url 'courses:dashboard' %}">{% icon "grid" "h-4 w-4 text-slate-400" %} {% trans "Mes cours" %}</a>
+              <a class="menu-item" href="{% url 'accounts:profile' %}">{% icon "settings" "h-4 w-4 text-slate-400" %} {% trans "Mon compte" %}</a>
+              {% if user.is_staff %}<a class="menu-item" href="{% url 'admin:index' %}">{% icon "shield" "h-4 w-4 text-slate-400" %} {% trans "Administration" %}</a>{% endif %}
+              <form method="post" action="{% url 'accounts:logout' %}" class="mt-1 border-t border-slate-200 pt-1 dark:border-slate-800">
+                {% csrf_token %}
+                <button type="submit" class="menu-item text-red-600 dark:text-red-400">{% icon "log-out" "h-4 w-4" %} {% trans "Déconnexion" %}</button>
+              </form>
+            </div>
+          </details>
+        {% else %}
+          <a href="{% url 'accounts:login' %}" class="nav-link">{% trans "Connexion" %}</a>
+          <a href="{% url 'accounts:register' %}" class="btn btn-primary !py-2">{% trans "S'inscrire" %}</a>
+        {% endif %}
+      </div>
+
+      <button type="button" data-menu-toggle class="rounded-xl p-2.5 text-slate-600 hover:bg-slate-100 lg:hidden dark:text-slate-300 dark:hover:bg-slate-800" aria-label="{% trans "Ouvrir le menu" %}" aria-expanded="false" aria-controls="mobile-menu">
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  {# Menu mobile #}
+  <div id="mobile-menu" class="hidden border-t border-slate-200 px-4 pb-4 pt-2 lg:hidden dark:border-slate-800">
+    <div class="flex flex-col gap-1">
+      <a class="nav-link" data-spy="accueil" href="{{ home_url }}#accueil">{% trans "Accueil" %}</a>
+      <a class="nav-link" data-spy="services" href="{{ home_url }}#services">{% trans "Services" %}</a>
+      <a class="nav-link" data-spy="cybersecurite" href="{{ home_url }}#cybersecurite">{% trans "Cybersécurité" %}</a>
+      <a class="nav-link" data-spy="a-propos" href="{{ home_url }}#a-propos">{% trans "À propos" %}</a>
+      <a class="nav-link" data-spy="portfolio" href="{{ home_url }}#portfolio">{% trans "Portfolio" %}</a>
+      <a class="nav-link" data-spy="galerie" href="{{ home_url }}#galerie">{% trans "Galerie" %}</a>
+      <a class="nav-link" href="{{ courses_url }}">{% trans "Cours en ligne" %}</a>
+      <a class="nav-link" href="{% url 'blog:list' %}">{% trans "Blog" %}</a>
+      <a class="nav-link" href="{% url 'portfolio:cv' %}">{% trans "Mon CV" %}</a>
+      <a class="nav-link" data-spy="contact" href="{{ home_url }}#contact">{% trans "Contact" %}</a>
+    </div>
+    <div class="mt-3 flex items-center gap-2 border-t border-slate-200 pt-3 dark:border-slate-800" role="group" aria-label="{% trans "Langue" %}">
+      {% for code, name in LANGUAGES %}
+        {% if code == LANGUAGE_CODE %}
+          <span class="rounded-lg bg-slate-900 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-white dark:bg-white dark:text-slate-900" aria-current="true">{{ name }}</span>
+        {% else %}
+          <a href="{% language_url code %}" lang="{{ code }}" hreflang="{{ code }}"
+             class="rounded-lg border border-slate-200 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-slate-600 transition hover:border-teal-300 hover:text-teal-600 dark:border-slate-700 dark:text-slate-300">{{ name }}</a>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div class="mt-3 flex flex-wrap gap-2 border-t border-slate-200 pt-3 dark:border-slate-800">
+      {% if user.is_authenticated %}
+        <a href="{% url 'courses:dashboard' %}" class="btn btn-secondary flex-1">{% trans "Mes cours" %}</a>
+        <a href="{% url 'accounts:profile' %}" class="btn btn-secondary flex-1">{% trans "Mon compte" %}</a>
+        <form method="post" action="{% url 'accounts:logout' %}" class="w-full">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-primary w-full">{% trans "Déconnexion" %}</button>
+        </form>
+      {% else %}
+        <a href="{% url 'accounts:login' %}" class="btn btn-secondary flex-1">{% trans "Connexion" %}</a>
+        <a href="{% url 'accounts:register' %}" class="btn btn-primary flex-1">{% trans "S'inscrire" %}</a>
+      {% endif %}
+    </div>
+  </div>
+</header>

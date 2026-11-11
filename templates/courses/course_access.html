@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}{{ course.title }} — {% trans "Mon cours" %}{% endblock %}
+{% block robots %}noindex, nofollow{% endblock %}
+
+{% block content %}
+<section class="mx-auto max-w-4xl px-4 py-12 sm:px-6">
+  <a href="{% url 'courses:dashboard' %}" class="inline-flex items-center gap-1.5 text-sm text-teal-600 hover:underline dark:text-teal-400">{% trans "&larr; Mes cours" %}</a>
+
+  <div class="mt-5 flex flex-wrap items-center gap-2">
+    <span class="badge">{% icon "layers" "h-3.5 w-3.5" %} {{ course.get_level_display }}</span>
+    {% if course.duration %}<span class="badge">{% icon "clock" "h-3.5 w-3.5" %} {{ course.duration }}</span>{% endif %}
+    <span class="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-300">{% icon "check" "h-3 w-3" %} {% trans "Cours acquis" %}</span>
+  </div>
+  <h1 class="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl dark:text-white">{{ course.title }}</h1>
+
+  <div class="mt-8 rounded-xl border border-slate-200 bg-slate-900 p-7 text-white dark:border-slate-700 sm:p-9">
+    <h2 class="text-xl font-bold">{% trans "Accéder au contenu" %}</h2>
+    <p class="mt-1 text-sm text-slate-300">{% trans "Votre contenu est disponible immédiatement et pour toujours." %}</p>
+    <div class="mt-6 flex flex-wrap gap-3">
+      {% if course.course_url %}
+        <a href="{{ course.course_url }}" target="_blank" rel="noopener noreferrer" class="btn bg-white text-slate-900 hover:bg-slate-100">{% icon "play" "h-4 w-4" %} {% trans "Ouvrir le cours en ligne" %}</a>
+      {% endif %}
+      {% if course.course_file %}
+        <a href="{% url 'courses:download' course.slug %}" class="btn border border-slate-600 bg-transparent text-white hover:border-slate-400 hover:bg-white/5">{% icon "download" "h-4 w-4" %} {% trans "Télécharger le fichier" %}</a>
+      {% endif %}
+      {% if not course.course_url and not course.course_file %}
+        <p class="text-sm text-slate-300">{% trans "Le contenu de ce cours sera bientôt disponible." %}</p>
+      {% endif %}
+    </div>
+  </div>
+
+  {% if order %}
+    <div class="card mt-6 flex flex-wrap items-center justify-between gap-4 p-5 text-sm">
+      <p>{% trans "Commande" %} <strong class="text-slate-900 dark:text-white">n° {{ order.short_reference }}</strong> · {{ order.paid_at|date:"j F Y" }}</p>
+      <a href="{% url 'courses:receipt' order.reference %}" class="inline-flex items-center gap-2 font-semibold text-teal-600 hover:underline dark:text-teal-400">{% icon "file-text" "h-4 w-4" %} {% trans "Voir le reçu" %}</a>
+    </div>
+  {% endif %}
+
+  {% if course.outcomes_list %}
+    <h2 class="mt-12 text-xl font-bold text-slate-900 dark:text-white">{% trans "Ce que vous allez apprendre" %}</h2>
+    <ul class="mt-5 grid gap-3 sm:grid-cols-2">
+      {% for item in course.outcomes_list %}
+        <li class="flex items-start gap-3 text-sm leading-6"><span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-500/15 dark:text-emerald-400">{% icon "check" "h-3 w-3" %}</span> {{ item }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  <h2 class="mt-12 text-xl font-bold text-slate-900 dark:text-white">{% trans "À propos de ce cours" %}</h2>
+  <div class="mt-4 space-y-4 leading-7">{{ course.description|linebreaks }}</div>
+
+  {# --- Donner son avis (réservé aux acheteurs) --- #}
+  {% if can_review %}
+    <div id="avis" class="card mt-12 scroll-mt-24 p-6 sm:p-8">
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white">{% if my_review %}{% trans "Votre avis" %}{% else %}{% trans "Ce cours vous a plu ?" %}{% endif %}</h2>
+      <p class="mt-1 text-sm">{% if my_review %}{% trans "Vous pouvez le modifier à tout moment." %}{% else %}{% trans "Votre retour aide les autres apprenants à choisir." %}{% endif %}</p>
+
+      <form method="post" action="{% url 'courses:review' course.slug %}" class="mt-6 space-y-5" data-lock>
+        {% csrf_token %}
+        <fieldset>
+          <legend class="mb-2 text-sm font-medium text-slate-700 dark:text-slate-200">{% trans "Votre note" %}</legend>
+          <div class="star-rating" role="radiogroup">
+            {% for value in "54321" %}
+              <input type="radio" name="rating" id="star{{ value }}" value="{{ value }}" required{% if review_form.rating.value|stringformat:"s" == value %} checked{% endif %}>
+              <label for="star{{ value }}" title="{% blocktrans with n=value %}{{ n }} sur 5{% endblocktrans %}">{% icon "star" "h-8 w-8" %}<span class="sr-only">{% blocktrans count counter=value|add:0 %}{{ counter }} étoile{% plural %}{{ counter }} étoiles{% endblocktrans %}</span></label>
+            {% endfor %}
+          </div>
+          {% for error in review_form.rating.errors %}<p class="mt-1.5 text-sm text-red-600 dark:text-red-400">{{ error }}</p>{% endfor %}
+        </fieldset>
+
+        <div class="field">
+          <label for="{{ review_form.comment.id_for_label }}" class="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-200">{{ review_form.comment.label }}</label>
+          {{ review_form.comment }}
+          {% for error in review_form.comment.errors %}<p class="mt-1.5 text-sm text-red-600 dark:text-red-400">{{ error }}</p>{% endfor %}
+        </div>
+        <button type="submit" class="btn btn-primary">{% if my_review %}{% trans "Mettre à jour mon avis" %}{% else %}{% trans "Publier mon avis" %}{% endif %}</button>
+      </form>
+    </div>
+  {% endif %}
+
+  <div class="card mt-12 flex flex-wrap items-center justify-between gap-4 p-6">
+    <div>
+      <p class="font-semibold text-slate-900 dark:text-white">{% trans "Une question sur ce cours ?" %}</p>
+      <p class="mt-1 text-sm">{% trans "Écrivez-moi, je vous répondrai rapidement." %}</p>
+    </div>
+    <a href="{% url 'portfolio:home' %}#contact" class="btn btn-secondary">{% icon "mail" "h-4 w-4" %} {% trans "Me contacter" %}</a>
+  </div>
+</section>
+{% endblock %}
