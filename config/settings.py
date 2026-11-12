@@ -12,6 +12,9 @@ from pathlib import Path
 
 import dj_database_url
 from django.core.exceptions import ImproperlyConfigured
+from django.templatetags.static import static
+from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
 from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -63,7 +66,9 @@ for _host_var in ("RENDER_EXTERNAL_HOSTNAME", "RAILWAY_PUBLIC_DOMAIN"):
 # Applications
 # --------------------------------------------------------------------------
 INSTALLED_APPS = [
-    # Doit précéder django.contrib.admin : ajoute les champs « français / anglais » dans l'administration.
+    # Thème moderne de l'administration. Doit précéder django.contrib.admin.
+    "unfold",
+    # Doit précéder django.contrib.admin : ajoute les champs « français / anglais ».
     "modeltranslation",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -78,6 +83,82 @@ INSTALLED_APPS = [
     "courses",
     "blog",
 ]
+
+# Administration : barre latérale, couleurs du site, pages regroupées.
+UNFOLD = {
+    "SITE_TITLE": "Administration",
+    "SITE_HEADER": "Kamango",
+    "SITE_SUBHEADER": _("Portfolio & cours"),
+    "SITE_SYMBOL": "terminal",
+    "SITE_URL": "/",
+    "SHOW_HISTORY": True,
+    "SHOW_VIEW_ON_SITE": True,
+    "SHOW_BACK_BUTTON": True,
+    "ENVIRONMENT": "local" if DEBUG else "production",
+    "LOGIN": {
+        "image": lambda request: static("img/profile.jpg"),
+    },
+    "COLORS": {
+        "primary": {
+            "50": "oklch(98% 0.016 180)",
+            "100": "oklch(95% 0.04 180)",
+            "200": "oklch(91% 0.055 180)",
+            "300": "oklch(85% 0.09 180)",
+            "400": "oklch(75% 0.12 180)",
+            "500": "oklch(66% 0.12 180)",
+            "600": "oklch(58% 0.11 180)",
+            "700": "oklch(51% 0.096 180)",
+            "800": "oklch(44% 0.08 180)",
+            "900": "oklch(38% 0.065 180)",
+            "950": "oklch(28% 0.045 180)",
+        },
+    },
+    "SIDEBAR": {
+        "show_search": True,
+        "show_all_applications": False,
+        "navigation": [
+            {
+                "title": _("Site"),
+                "separator": True,
+                "items": [
+                    {"title": _("Profil"), "icon": "person", "link": reverse_lazy("admin:portfolio_profile_changelist")},
+                    {"title": _("Services"), "icon": "design_services", "link": reverse_lazy("admin:portfolio_service_changelist")},
+                    {"title": _("Compétences"), "icon": "psychology", "link": reverse_lazy("admin:portfolio_skill_changelist")},
+                    {"title": _("Parcours"), "icon": "timeline", "link": reverse_lazy("admin:portfolio_timelineitem_changelist")},
+                    {"title": _("Projets"), "icon": "work", "link": reverse_lazy("admin:portfolio_project_changelist")},
+                    {"title": _("Galerie"), "icon": "photo_library", "link": reverse_lazy("admin:portfolio_galleryphoto_changelist")},
+                    {"title": _("Témoignages"), "icon": "reviews", "link": reverse_lazy("admin:portfolio_testimonial_changelist")},
+                    {"title": _("FAQ"), "icon": "quiz", "link": reverse_lazy("admin:portfolio_faq_changelist")},
+                    {"title": _("Messages"), "icon": "mail", "link": reverse_lazy("admin:portfolio_contactmessage_changelist")},
+                ],
+            },
+            {
+                "title": _("Cours"),
+                "separator": True,
+                "items": [
+                    {"title": _("Catalogue"), "icon": "school", "link": reverse_lazy("admin:courses_course_changelist")},
+                    {"title": _("Commandes"), "icon": "shopping_bag", "link": reverse_lazy("admin:courses_order_changelist")},
+                    {"title": _("Avis"), "icon": "star", "link": reverse_lazy("admin:courses_review_changelist")},
+                ],
+            },
+            {
+                "title": _("Contenu"),
+                "separator": True,
+                "items": [
+                    {"title": _("Articles"), "icon": "article", "link": reverse_lazy("admin:blog_post_changelist")},
+                ],
+            },
+            {
+                "title": _("Accès"),
+                "separator": True,
+                "items": [
+                    {"title": _("Utilisateurs"), "icon": "group", "link": reverse_lazy("admin:accounts_user_changelist")},
+                    {"title": _("Tentatives"), "icon": "shield", "link": reverse_lazy("admin:accounts_failedlogin_changelist")},
+                ],
+            },
+        ],
+    },
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
