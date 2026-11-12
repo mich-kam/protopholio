@@ -317,9 +317,12 @@ EMAIL_HOST = os.environ.get("EMAIL_HOST", "")
 if EMAIL_HOST:
     EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
     EMAIL_PORT = int(os.environ.get("EMAIL_PORT", 587))
-    EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER", "")
-    EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD", "")
+    EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER", "").strip()
+    # Gmail affiche le mot de passe d'application avec des espaces : on les retire.
+    EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD", "").replace(" ", "")
     EMAIL_USE_TLS = env_bool("EMAIL_USE_TLS", True)
+    # Sans délai, une connexion SMTP bloquée (port fermé) fait tomber la page en erreur 500.
+    EMAIL_TIMEOUT = int(os.environ.get("EMAIL_TIMEOUT", 8))
 else:
     # Sans serveur SMTP configuré, les e-mails sont simplement écrits dans les logs.
     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"

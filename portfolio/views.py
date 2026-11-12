@@ -169,6 +169,12 @@ def contact(request):
                 to=[recipient],
                 reply_to=[message.email],
             ).send()
+        except TimeoutError:
+            # Le message est déjà en base. Render (offre gratuite) bloque souvent le port SMTP.
+            logger.error(
+                "Envoi du message de contact %s interrompu : le serveur mail ne répond pas.",
+                message.pk,
+            )
         except Exception:  # un e-mail raté ne doit jamais perdre le message (déjà en base)
             logger.exception("Échec d'envoi de la notification de contact.")
 
