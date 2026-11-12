@@ -19,19 +19,26 @@ User = get_user_model()
 username = os.environ["DJANGO_SUPERUSER_USERNAME"]
 email = os.environ.get("DJANGO_SUPERUSER_EMAIL") or "admin@example.com"
 password = os.environ["DJANGO_SUPERUSER_PASSWORD"]
-user = User.objects.filter(username=username).first()
+user = (
+    User.objects.filter(username__iexact=username).first()
+    or User.objects.filter(email__iexact=email).first()
+    or User.objects.filter(is_superuser=True).order_by("id").first()
+)
 if user is None:
     user = User.objects.create_superuser(username, email, password)
 else:
-    user.email = email
+    # Le compte créé au premier déploiement n'a pas forcément le nom « admin ».
+    if user.username.lower() != username.lower() and not User.objects.filter(username__iexact=username).exclude(pk=user.pk).exists():
+        user.username = username
     user.set_password(password)
     user.is_staff = True
     user.is_superuser = True
     user.save()
 # Un mauvais mot de passe répété bloque aussi l'administration pendant 15 minutes.
 from accounts.models import FailedLogin
-FailedLogin.objects.filter(identifier__in={username.lower(), email.lower()}).delete()
-print("admin-ready")
+keys = {username.lower(), email.lower(), user.username.lower(), (user.email or "").lower()}
+FailedLogin.objects.filter(identifier__in=keys).delete()
+print("admin-ready", user.username)
 PY
 fi
 
