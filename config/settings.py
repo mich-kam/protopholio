@@ -94,6 +94,7 @@ UNFOLD = {
     "SHOW_HISTORY": True,
     "SHOW_VIEW_ON_SITE": True,
     "SHOW_BACK_BUTTON": True,
+    "DASHBOARD_CALLBACK": "portfolio.dashboard.dashboard_callback",
     "ENVIRONMENT": "local" if DEBUG else "production",
     "LOGIN": {
         "image": lambda request: static("img/profile.jpg"),
@@ -129,7 +130,13 @@ UNFOLD = {
                     {"title": _("Galerie"), "icon": "photo_library", "link": reverse_lazy("admin:portfolio_galleryphoto_changelist")},
                     {"title": _("Témoignages"), "icon": "reviews", "link": reverse_lazy("admin:portfolio_testimonial_changelist")},
                     {"title": _("FAQ"), "icon": "quiz", "link": reverse_lazy("admin:portfolio_faq_changelist")},
-                    {"title": _("Messages"), "icon": "mail", "link": reverse_lazy("admin:portfolio_contactmessage_changelist")},
+                    {
+                        "title": _("Messages"),
+                        "icon": "mail",
+                        "link": reverse_lazy("admin:portfolio_contactmessage_changelist"),
+                        "badge": "portfolio.dashboard.unread_messages",
+                        "badge_style": "bg-primary-600 text-white",
+                    },
                 ],
             },
             {

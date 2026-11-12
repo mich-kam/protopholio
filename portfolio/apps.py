@@ -9,3 +9,5 @@ class PortfolioConfig(AppConfig):
         from django.contrib.admin.options import ModelAdmin
 
         ModelAdmin.show_add_link = True
+        ModelAdmin.list_filter_submit = True
+        ModelAdmin.warn_unsaved_form = True
